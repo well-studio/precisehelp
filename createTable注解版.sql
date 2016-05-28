@@ -25,6 +25,7 @@ create table usersinfo (
 	user_sex varchar(5), -- 用户性别
 	user_nickname varchar(30), -- 用户昵称
 	user_sign varchar(250), -- 用户个性签名
+	user_phone varchar(20), -- 用户手机号码
 	user_idnum varchar(25), -- 用户身份证号码
 	user_rname varchar(10), -- 用户真实姓名
 	user_id int, -- 关联用户表
