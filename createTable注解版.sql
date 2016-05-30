@@ -142,6 +142,7 @@ create table goodsinfo (
 	goods_stat text, -- 商品描述
 	goods_last_price double, -- 商品上一次价格
 	goods_now_price double, -- 商品现在的价格
+	goods_discount double default 1.0, -- 商品折扣
 	goods_price_unit varchar(10), -- 单价对应的商品重量(数量)单位
 	--	goods_from 详细的产地名称 (我们弄张产地表)
 	goodsarea_id int, -- 关联生产地
