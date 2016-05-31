@@ -1,17 +1,19 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Comments entity. @author MyEclipse Persistence Tools
+ * 评论实体
+ * @author huhong
+ *
  */
-
 public class Comments implements java.io.Serializable {
 
 	// Fields
 
-	private Integer comId;
-	private OrderDone orderDone;
-	private Goodsinfo goodsinfo;
-	private String comContent;
+	private Integer comId; // 评论id
+	private Users users; // 用户
+	private OrderDone orderDone; // 已完成的订单
+	private Goodsinfo goodsinfo; // 商品信息
+	private String comContent; // 评论内容
 
 	// Constructors
 
@@ -20,7 +22,9 @@ public class Comments implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Comments(OrderDone orderDone, Goodsinfo goodsinfo, String comContent) {
+	public Comments(Users users, OrderDone orderDone, Goodsinfo goodsinfo,
+			String comContent) {
+		this.users = users;
 		this.orderDone = orderDone;
 		this.goodsinfo = goodsinfo;
 		this.comContent = comContent;
@@ -34,6 +38,14 @@ public class Comments implements java.io.Serializable {
 
 	public void setComId(Integer comId) {
 		this.comId = comId;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 	public OrderDone getOrderDone() {

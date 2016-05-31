@@ -3,20 +3,21 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * Letters entity. @author MyEclipse Persistence Tools
+ * 站内信实体
+ * @author huhong
+ *
  */
-
 public class Letters implements java.io.Serializable {
 
 	// Fields
 
-	private Integer letId;
-	private Users usersByLetFrom;
-	private Users usersByLetTo;
-	private String letTitle;
-	private String letContent;
-	private Date letTime;
-	private Integer letStat;
+	private Integer letId; // 信id
+	private Users usersByLetFrom; // 信来自哪
+	private Users usersByLetTo; // 信去哪
+	private String letTitle; // 信标题
+	private String letContent; // 信内容
+	private Date letTime; // 信时间
+	private Integer letStat; // 信的状态(0 未看 1已看)
 
 	// Constructors
 

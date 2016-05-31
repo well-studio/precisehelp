@@ -5,26 +5,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * OrderDone entity. @author MyEclipse Persistence Tools
+ * 已完成的订单
+ * @author huhong
+ *
  */
-
 public class OrderDone implements java.io.Serializable {
 
 	// Fields
 
-	private Integer orderdoneId;
-	private Users users;
-	private Express express;
-	private Admins admins;
-	private Goodsinfo goodsinfo;
-	private String orderNum;
-	private String orderPs;
-	private Date orderTime;
-	private String orderKcom;
-	private String orderKnum;
-	private Date orderDonetime;
-	private Integer orderComment;
-	private Set commentses = new HashSet(0);
+	private Integer orderdoneId; // 订单id
+	private Users users; // 下单用户
+	private Express express; // 物流信息
+	private Admins admins; // 处理的管理员
+	private Goodsinfo goodsinfo; // 商品信息
+	private String orderNum; // 订单编号
+	private String orderPs; // 订单注释
+	private Date orderTime; // 订单下单时间
+	private String orderKcom; // 订单快递公司
+	private String orderKnum; // 订单快递单号
+	private Date orderDonetime; // 订单完成的时间
+	private Integer orderComment; // 是否评价(++++) 0 尚未评价 1 已评价
+	private Set commentses = new HashSet(0); // 完成的订单对应的评论
 
 	// Constructors
 

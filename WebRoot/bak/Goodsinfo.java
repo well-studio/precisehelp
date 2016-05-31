@@ -17,14 +17,14 @@ public class Goodsinfo implements java.io.Serializable {
 	private Goodsarea goodsarea; // 商品产地
 	private String goodsName; // 商品姓名
 	private String goodsStat; // 商品描述
-	private Double goodsLastPrice; // 商品最后一次价格
-	private Double goodsNowPrice; // 商品现在的价格
-	private Double goodsDiscount; // 商品折扣率
-	private String goodsPriceUnit; // 商品单位
-	private Set orderDoings = new HashSet(0); // 该商品正在处理的订单
-	private Set commentses = new HashSet(0); // 该商品对应的评论列表
-	private Set orderDones = new HashSet(0); // 该商品已完成的订单
-	private Set orderTodos = new HashSet(0); // 该商品待处理的订单
+	private Double goodsLastPrice; // 订单上次的价格
+	private Double goodsNowPrice; // 订单现在价格
+	private Double goodsDiscount; // 商品折扣
+	private String goodsPriceUnit; // 单位
+	private Set orderDoings = new HashSet(0);
+	private Set commentses = new HashSet(0);
+	private Set orderDones = new HashSet(0);
+	private Set orderTodos = new HashSet(0);
 
 	// Constructors
 
@@ -33,10 +33,12 @@ public class Goodsinfo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Goodsinfo(Goodstype goodstype, Goodsarea goodsarea,
+	public Goodsinfo(Integer goodsId, Goodstype goodstype, Goodsarea goodsarea,
 			String goodsName, String goodsStat, Double goodsLastPrice,
 			Double goodsNowPrice, Double goodsDiscount, String goodsPriceUnit,
 			Set orderDoings, Set commentses, Set orderDones, Set orderTodos) {
+		super();
+		this.goodsId = goodsId;
 		this.goodstype = goodstype;
 		this.goodsarea = goodsarea;
 		this.goodsName = goodsName;
@@ -52,7 +54,6 @@ public class Goodsinfo implements java.io.Serializable {
 	}
 
 	// Property accessors
-
 	public Integer getGoodsId() {
 		return this.goodsId;
 	}
@@ -109,14 +110,6 @@ public class Goodsinfo implements java.io.Serializable {
 		this.goodsNowPrice = goodsNowPrice;
 	}
 
-	public Double getGoodsDiscount() {
-		return this.goodsDiscount;
-	}
-
-	public void setGoodsDiscount(Double goodsDiscount) {
-		this.goodsDiscount = goodsDiscount;
-	}
-
 	public String getGoodsPriceUnit() {
 		return this.goodsPriceUnit;
 	}
@@ -156,5 +149,14 @@ public class Goodsinfo implements java.io.Serializable {
 	public void setOrderTodos(Set orderTodos) {
 		this.orderTodos = orderTodos;
 	}
+
+	public Double getGoodsDiscount() {
+		return goodsDiscount;
+	}
+
+	public void setGoodsDiscount(Double goodsDiscount) {
+		this.goodsDiscount = goodsDiscount;
+	}
+	
 
 }

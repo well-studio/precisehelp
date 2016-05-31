@@ -4,19 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Express entity. @author MyEclipse Persistence Tools
+ * 物流表
+ * @author huhong
+ *
  */
-
 public class Express implements java.io.Serializable {
 
 	// Fields
 
-	private Integer expressId;
-	private String expressKcom;
-	private String expressKnum;
-	private String expressContent;
-	private Set orderDoings = new HashSet(0);
-	private Set orderDones = new HashSet(0);
+	private Integer expressId; // 物流id
+	private String expressKcom; // 物流快递公司
+	private String expressKnum; // 物流快递单号
+	private String expressContent; // 物流具体内容
+	private Set orderDoings = new HashSet(0); // 正在进行的订单
+	private Set orderDones = new HashSet(0); // 处理完的订单
 
 	// Constructors
 

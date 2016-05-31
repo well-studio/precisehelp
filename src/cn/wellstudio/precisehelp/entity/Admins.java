@@ -4,19 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Admins entity. @author MyEclipse Persistence Tools
+ * 管理员实体
+ * @author huhong
+ *
  */
-
 public class Admins implements java.io.Serializable {
 
 	// Fields
 
-	private Integer admId;
-	private String admAccount;
-	private String admPsw;
-	private Set orderDoings = new HashSet(0);
-	private Set adminsinfos = new HashSet(0);
-	private Set orderDones = new HashSet(0);
+	private Integer admId; // 用户id
+	private String admAccount; // 管理员账号
+	private String admPsw; // 管理员密码
+	private Set orderDoings = new HashSet(0); // 正在处理的订单
+	private Set adminsinfos = new HashSet(0); // 管理员资料
+	private Set orderDones = new HashSet(0); // 管理员处理过的订单
 
 	// Constructors
 

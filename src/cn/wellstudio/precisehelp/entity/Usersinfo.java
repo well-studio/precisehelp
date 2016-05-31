@@ -1,22 +1,23 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Usersinfo entity. @author MyEclipse Persistence Tools
+ * 用户资料实体
+ * @author huhong
+ *
  */
-
 public class Usersinfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer usersinfoId;
-	private Users users;
-	private String userImg;
-	private String userSex;
-	private String userNickname;
-	private String userSign;
-	private String userPhone;
-	private String userIdnum;
-	private String userRname;
+	private Integer usersinfoId; // 用户资料id
+	private Users users; // 该资料属于哪一个用户
+	private String userImg; // 用户头像
+	private String userSex; // 用户性别
+	private String userNickname; // 用户昵称
+	private String userSign; // 用户个性签名
+	private String userPhone; // 用户手机号码
+	private String userIdnum; // 用户身份证号码
+	private String userRname; // 用户真实姓名
 
 	// Constructors
 

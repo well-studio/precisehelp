@@ -4,24 +4,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Users entity. @author MyEclipse Persistence Tools
+ * 用户
+ * @author huhong
+ *
  */
-
 public class Users implements java.io.Serializable {
 
 	// Fields
 
-	private Integer userId;
-	private String userAccount;
-	private String userPsw;
-	private String userZfPsw;
-	private Set lettersesForLetTo = new HashSet(0);
-	private Set lettersesForLetFrom = new HashSet(0);
-	private Set orderDoings = new HashSet(0);
-	private Set usersinfos = new HashSet(0);
-	private Set orderDones = new HashSet(0);
-	private Set toaddresses = new HashSet(0);
-	private Set orderTodos = new HashSet(0);
+	private Integer userId; // 用户id
+	private String userAccount; // 用户账号
+	private String userPsw; // 用户密码
+	private String userZfPsw; // 用户支付密码
+	private Set lettersesForLetTo = new HashSet(0); // 发出去的信
+	private Set lettersesForLetFrom = new HashSet(0); // 收到的信
+	private Set orderDoings = new HashSet(0); // 正在处理的订单
+	private Set commentses = new HashSet(0); // 发出的评论列表
+	private Set usersinfos = new HashSet(0); // 用户信息
+	private Set orderDones = new HashSet(0); // 该用户已完成的订单
+	private Set toaddresses = new HashSet(0); // 该用户的收货地址
+	private Set orderTodos = new HashSet(0); // 该用户待处理的订单
 
 	// Constructors
 
@@ -32,13 +34,15 @@ public class Users implements java.io.Serializable {
 	/** full constructor */
 	public Users(String userAccount, String userPsw, String userZfPsw,
 			Set lettersesForLetTo, Set lettersesForLetFrom, Set orderDoings,
-			Set usersinfos, Set orderDones, Set toaddresses, Set orderTodos) {
+			Set commentses, Set usersinfos, Set orderDones, Set toaddresses,
+			Set orderTodos) {
 		this.userAccount = userAccount;
 		this.userPsw = userPsw;
 		this.userZfPsw = userZfPsw;
 		this.lettersesForLetTo = lettersesForLetTo;
 		this.lettersesForLetFrom = lettersesForLetFrom;
 		this.orderDoings = orderDoings;
+		this.commentses = commentses;
 		this.usersinfos = usersinfos;
 		this.orderDones = orderDones;
 		this.toaddresses = toaddresses;
@@ -101,6 +105,14 @@ public class Users implements java.io.Serializable {
 
 	public void setOrderDoings(Set orderDoings) {
 		this.orderDoings = orderDoings;
+	}
+
+	public Set getCommentses() {
+		return this.commentses;
+	}
+
+	public void setCommentses(Set commentses) {
+		this.commentses = commentses;
 	}
 
 	public Set getUsersinfos() {

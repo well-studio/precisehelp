@@ -1,23 +1,24 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Toaddress entity. @author MyEclipse Persistence Tools
+ * 收货地址实体
+ * @author huhong
+ *
  */
-
 public class Toaddress implements java.io.Serializable {
 
 	// Fields
 
-	private Integer addressId;
-	private Users users;
-	private String addressProvince;
-	private String addressCity;
-	private String addressArea;
-	private String addressRoad;
-	private String addressDetail;
-	private String addressPostcode;
-	private String addressName;
-	private String addressPhone;
+	private Integer addressId; // 地址id
+	private Users users; // 用户
+	private String addressProvince; // 省份
+	private String addressCity; // 城市
+	private String addressArea; // 区域
+	private String addressRoad; // 街道
+	private String addressDetail; // 地址详情
+	private String addressPostcode; // 邮编
+	private String addressName; // 收货地址人姓名
+	private String addressPhone; // 收货地址人电话
 
 	// Constructors
 
