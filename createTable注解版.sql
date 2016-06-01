@@ -178,9 +178,11 @@ create table comments (
 	com_id int primary key auto_increment, -- 评论id
 	com_content varchar(250), -- 评论内容
 	orderdone_id int, -- 关联已完成订单表
+	com_parent int,
 	user_id int, -- 关联用户
 	goods_id int, -- 关联商品
 	constraint foreign key(orderdone_id) references order_done(orderdone_id),
+	constraint foreign key(com_parent) references comments(com_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
 );

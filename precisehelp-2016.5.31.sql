@@ -51,15 +51,18 @@ CREATE TABLE `comments` (
   `com_id` int(11) NOT NULL AUTO_INCREMENT,
   `com_content` varchar(250) DEFAULT NULL,
   `orderdone_id` int(11) DEFAULT NULL,
+  `com_parent` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `goods_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`com_id`),
   KEY `orderdone_id` (`orderdone_id`),
+  KEY `com_parent` (`com_id`)
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`orderdone_id`) REFERENCES `order_done` (`orderdone_id`),
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`)
+  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`),
+  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`com_parent`) REFERENCES `comments` (`com_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
