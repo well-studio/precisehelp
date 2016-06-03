@@ -177,6 +177,7 @@ create table goodsarea (
 create table comments (
 	com_id int primary key auto_increment, -- 评论id
 	com_content varchar(250), -- 评论内容
+	com_time date, -- 评论时间
 	orderdone_id int, -- 关联已完成订单表
 	com_parent int,
 	user_id int, -- 关联用户
