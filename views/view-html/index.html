@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>你我帮扶</title>
+	<link rel="stylesheet" href="./public/css/style.css">
+	<link rel="stylesheet" href="./public/plugins/font-awesome/4.6.1/css/font-awesome.css">
+	<link rel="stylesheet" href="./public/plugins/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="header">
+		<div class="container">
+			<span class="logo">LOGO</span>
+			<ul class="float-right">
+				<li><i class="fa fa-home"></i><a href="#">首页</a></li>
+				<li><i class="fa fa-search"></i><a href="#">搜索</a></li>
+				<li><i class="fa fa-user"></i><a href="#">我的</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div id="carousel-box" style="height: 350px;"></div>
+		<div class="cate-box">
+			<div class="col-xs-3 cate-innerbox"><a href="#"><img class="cate-img" src="111">分类1</a></div>
+			<div class="col-xs-3 cate-innerbox"><a href="#"><img class="cate-img" src="111">分类2</a></div>
+			<div class="col-xs-3 cate-innerbox"><a href="#"><img class="cate-img" src="111">分类3</a></div>
+			<div class="col-xs-3 cate-innerbox"><a href="#"><img class="cate-img" src="111">分类4</a></div>
+		</div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+		<div class="item" style="background:#eee"></div>
+	</div>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="./public/js/carousel.js"></script>
+	<script>
+		var _s = new Carousel();
+		_s.init({
+			id:'carousel-box', 				//目标div的id，轮播将在这个元素里面展示
+			openInNewTab:false,		//点击图片后是否在新标签打开
+			transitionTime : 500,	//设置css3中transition的时间(ms)
+			delay: 2000,			//延时时间(ms)
+			autoCarousel: true,		//自动轮播
+			stretch:true,			//是否拉伸
+			img:[{					//图片数组
+				src:'./public/images/素材/车厘子.jpg',
+				target:'#'
+			},{
+				src:'./public/images/素材/葡萄.jpg',
+				target:'#'
+			},{
+				src:'./public/images/素材/山竹.jpg',
+				target:'#'
+			}]
+		})
+		_s.show();
+		function lins(){
+			document.getElementById('t_'+(_s.currImgNum)).style.color = 'rgb(255,100,0)';
+		}
+	</script>
+</body>
+</html>
