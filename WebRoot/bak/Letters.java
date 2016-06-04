@@ -1,99 +1,107 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
- * 站内信表实体
+ * 站内信箱(系统消息)
  * @author huhong
  *
  */
-public class Letters {
-	
-	int let_id; // 信id
-	String let_title; // 信标题
-	String let_content; // 信内容
-	Timestamp let_time; // 发信时间
-	int let_stat; // 是否已读 (0 收信人未读  1 收信人已读)
-	User user1; // 发信人 关联用户
-	User user2; // 收信人 关联用户
-	
-	public Letters(){}
+public class Letters implements java.io.Serializable {
 
-	public Letters(int let_id, String let_title, String let_content,
-			Timestamp let_time, int let_stat, User user1, User user2) {
-		super();
-		this.let_id = let_id;
-		this.let_title = let_title;
-		this.let_content = let_content;
-		this.let_time = let_time;
-		this.let_stat = let_stat;
-		this.user1 = user1;
-		this.user2 = user2;
+	// Fields
+
+	private Integer letId; //id
+	private Users usersByLetFrom; // 信从哪儿来
+	private Users usersByLetTo; // 信要去哪儿
+	private String letTitle; // 信的标题
+	private String letContent; // 信的内容
+	private Date letTime; // 信的时间
+	private Integer letStat; // 信的描述
+	private Integer letSys; // 是否是系统消息(0 不是 1 是)
+
+	// Constructors
+
+	/** default constructor */
+	public Letters() {
 	}
 
-	public int getLet_id() {
-		return let_id;
+	/** full constructor */
+	public Letters(Users usersByLetFrom, Users usersByLetTo, String letTitle,
+			String letContent, Date letTime, Integer letStat, Integer letSys) {
+		this.usersByLetFrom = usersByLetFrom;
+		this.usersByLetTo = usersByLetTo;
+		this.letTitle = letTitle;
+		this.letContent = letContent;
+		this.letTime = letTime;
+		this.letStat = letStat;
+		this.letSys = letSys;
 	}
 
-	public void setLet_id(int let_id) {
-		this.let_id = let_id;
+	// Property accessors
+
+	public Integer getLetId() {
+		return this.letId;
 	}
 
-	public String getLet_title() {
-		return let_title;
+	public void setLetId(Integer letId) {
+		this.letId = letId;
 	}
 
-	public void setLet_title(String let_title) {
-		this.let_title = let_title;
+	public Users getUsersByLetFrom() {
+		return this.usersByLetFrom;
 	}
 
-	public String getLet_content() {
-		return let_content;
+	public void setUsersByLetFrom(Users usersByLetFrom) {
+		this.usersByLetFrom = usersByLetFrom;
 	}
 
-	public void setLet_content(String let_content) {
-		this.let_content = let_content;
+	public Users getUsersByLetTo() {
+		return this.usersByLetTo;
 	}
 
-	public Timestamp getLet_time() {
-		return let_time;
+	public void setUsersByLetTo(Users usersByLetTo) {
+		this.usersByLetTo = usersByLetTo;
 	}
 
-	public void setLet_time(Timestamp let_time) {
-		this.let_time = let_time;
+	public String getLetTitle() {
+		return this.letTitle;
 	}
 
-	public int getLet_stat() {
-		return let_stat;
+	public void setLetTitle(String letTitle) {
+		this.letTitle = letTitle;
 	}
 
-	public void setLet_stat(int let_stat) {
-		this.let_stat = let_stat;
+	public String getLetContent() {
+		return this.letContent;
 	}
 
-	public User getUser1() {
-		return user1;
+	public void setLetContent(String letContent) {
+		this.letContent = letContent;
 	}
 
-	public void setUser1(User user1) {
-		this.user1 = user1;
+	public Date getLetTime() {
+		return this.letTime;
 	}
 
-	public User getUser2() {
-		return user2;
+	public void setLetTime(Date letTime) {
+		this.letTime = letTime;
 	}
 
-	public void setUser2(User user2) {
-		this.user2 = user2;
+	public Integer getLetStat() {
+		return this.letStat;
 	}
 
-	@Override
-	public String toString() {
-		return "Letters [let_id=" + let_id + ", let_title=" + let_title
-				+ ", let_content=" + let_content + ", let_time=" + let_time
-				+ ", let_stat=" + let_stat + ", user1=" + user1 + ", user2="
-				+ user2 + "]";
+	public void setLetStat(Integer letStat) {
+		this.letStat = letStat;
 	}
-	
-	
+
+	public Integer getLetSys() {
+		return this.letSys;
+	}
+
+	public void setLetSys(Integer letSys) {
+		this.letSys = letSys;
+	}
+
 }

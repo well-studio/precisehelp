@@ -1,79 +1,88 @@
 package cn.wellstudio.precisehelp.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * 物流(快递)实体
+ * 物流实体
  * @author huhong
  *
  */
-public class Express {
-	
-	int express_id; // 物流id
-	String express_kcom; // 快递公司名称
-	String express_knum; // 快递单号
-	String express_content; // 物流信息(第三方查询)
-	
-	
-	public Express(){}
+public class Express implements java.io.Serializable {
 
+	// Fields
 
-	public Express(int express_id, String express_kcom, String express_knum,
-			String express_content) {
-		super();
-		this.express_id = express_id;
-		this.express_kcom = express_kcom;
-		this.express_knum = express_knum;
-		this.express_content = express_content;
+	private Integer expressId; // id
+	private String expressKcom; // 快递公司名称
+	private String expressKnum; // 快递单号
+	private String expressContent; // 快递物流信息
+	private Set orderDoings = new HashSet(0); // 1:1 正在处理中的订单
+	private Set orderDones = new HashSet(0); // 1:1 处理完的订单
+
+	// Constructors
+
+	/** default constructor */
+	public Express() {
 	}
 
-
-	public int getExpress_id() {
-		return express_id;
+	/** full constructor */
+	public Express(String expressKcom, String expressKnum,
+			String expressContent, Set orderDoings, Set orderDones) {
+		this.expressKcom = expressKcom;
+		this.expressKnum = expressKnum;
+		this.expressContent = expressContent;
+		this.orderDoings = orderDoings;
+		this.orderDones = orderDones;
 	}
 
+	// Property accessors
 
-	public void setExpress_id(int express_id) {
-		this.express_id = express_id;
+	public Integer getExpressId() {
+		return this.expressId;
 	}
 
-
-	public String getExpress_kcom() {
-		return express_kcom;
+	public void setExpressId(Integer expressId) {
+		this.expressId = expressId;
 	}
 
-
-	public void setExpress_kcom(String express_kcom) {
-		this.express_kcom = express_kcom;
+	public String getExpressKcom() {
+		return this.expressKcom;
 	}
 
-
-	public String getExpress_knum() {
-		return express_knum;
+	public void setExpressKcom(String expressKcom) {
+		this.expressKcom = expressKcom;
 	}
 
-
-	public void setExpress_knum(String express_knum) {
-		this.express_knum = express_knum;
+	public String getExpressKnum() {
+		return this.expressKnum;
 	}
 
-
-	public String getExpress_content() {
-		return express_content;
+	public void setExpressKnum(String expressKnum) {
+		this.expressKnum = expressKnum;
 	}
 
-
-	public void setExpress_content(String express_content) {
-		this.express_content = express_content;
+	public String getExpressContent() {
+		return this.expressContent;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Express [express_id=" + express_id + ", express_kcom="
-				+ express_kcom + ", express_knum=" + express_knum
-				+ ", express_content=" + express_content + "]";
+	public void setExpressContent(String expressContent) {
+		this.expressContent = expressContent;
 	}
-	
-	
-	
-	
+
+	public Set getOrderDoings() {
+		return this.orderDoings;
+	}
+
+	public void setOrderDoings(Set orderDoings) {
+		this.orderDoings = orderDoings;
+	}
+
+	public Set getOrderDones() {
+		return this.orderDones;
+	}
+
+	public void setOrderDones(Set orderDones) {
+		this.orderDones = orderDones;
+	}
+
 }
