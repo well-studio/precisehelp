@@ -1,19 +1,9 @@
-
--- 更新自 2016.5.28
--- 在原有的讨论基础上 进行了细微修改 大家看看 有什么地方需要改进！再讨论？
-
-
-
-----------------------------
--- 对外开放部分 表设计
-----------------------------
-
 -- 用户表
 create table users (
-	user_id int primary key auto_increment, -- 用户id
+	user_id varchar(60) primary key, -- 用户id
 	user_account varchar(30), -- 用户账号
 	user_psw varchar(30), -- 用户登录密码
-	user_zf_psw varchar(30) -- 用户支付密码
+	user_pay_psw varchar(30) -- 用户支付密码
 );
 
 
@@ -28,7 +18,7 @@ create table usersinfo (
 	user_phone varchar(20), -- 用户手机号码
 	user_idnum varchar(25), -- 用户身份证号码
 	user_rname varchar(10), -- 用户真实姓名
-	user_id int, -- 关联用户表
+	user_id varchar(60), -- 关联用户表
 	constraint foreign key(user_id) references users(user_id)
 );
 
@@ -45,7 +35,7 @@ create table toaddress (
 	address_postcode varchar(10), -- 邮编
 	address_name varchar(10), -- 收货人姓名
 	address_phone varchar(20), -- 收货人手机号码
-	user_id int, -- 关联用户表
+	user_id varchar(60), -- 关联用户表
 	constraint foreign key(user_id) references users(user_id)
 );
 
@@ -66,8 +56,8 @@ create table order_todo (
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
 	-- order_pay int, -- 是否付款(0 未付款 1 已付款  -- 肯定为1 -- 所以去掉)
-	user_id int, -- 关联用户表
-	goods_id int, -- 关联商品
+	user_id varchar(60), -- 关联用户表
+	goods_id varchar(60), -- 关联商品
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
 );
@@ -83,9 +73,9 @@ create table order_doing (
 	order_stat int, -- 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)(++++)
 	order_kcom varchar(20), -- 快递公司名称(+++)
 	order_knum varchar(50), -- 快递单号(+++)
-	user_id int, -- 关联用户
-	goods_id int, -- 关联商品
-	adm_id int, -- 关联处理人员(+++)
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 关联商品
+	adm_id varchar(60), -- 关联处理人员(+++)
 	express_id int, -- 关联快递(物流)表(+++)
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id),
@@ -106,9 +96,9 @@ create table order_done (
 	order_knum varchar(50), -- 快递单号
 	order_donetime date, -- 订单完成时间(++++)  订单完成后  即可评价该商品
 	order_comment int, -- 是否评价(++++) 0 尚未评价 1 已评价
-	user_id int, -- 关联用户
-	goods_id int, -- 关联商品
-	adm_id int, -- 关联处理人员
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 关联商品
+	adm_id varchar(60), -- 关联处理人员
 	express_id int, -- 关联快递(物流)表
 	-- comment_id int, -- 关联评论表(++++)
 	constraint foreign key(user_id) references users(user_id),
@@ -137,7 +127,7 @@ create table express (
 
 -- 商品表
 create table goodsinfo (
-	goods_id int primary key auto_increment, -- 商品id
+	goods_id varchar(60) primary key, -- 商品id
 	goods_name varchar(50), -- 商品名称
 	goods_stat text, -- 商品描述
 	goods_last_price double, -- 商品上一次价格
@@ -180,8 +170,8 @@ create table comments (
 	com_time date, -- 评论时间
 	orderdone_id int, -- 关联已完成订单表
 	com_parent int,
-	user_id int, -- 关联用户
-	goods_id int, -- 关联商品
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 关联商品
 	constraint foreign key(orderdone_id) references order_done(orderdone_id),
 	constraint foreign key(com_parent) references comments(com_id),
 	constraint foreign key(user_id) references users(user_id),
@@ -200,8 +190,8 @@ create table letters (
 	let_content text, -- 信内容
 	let_time date, -- 发信时间
 	let_stat int, -- 是否已读 (0 收信人未读  1 收信人已读)
-	let_from int, -- 发信人 关联用户
-	let_to int, -- 收信人 关联用户
+	let_from varchar(60), -- 发信人 关联用户
+	let_to varchar(60), -- 收信人 关联用户
 	constraint foreign key(let_from) references users(user_id),
 	constraint foreign key(let_to) references users(user_id)
 );
@@ -215,7 +205,7 @@ create table letters (
 
 -- 管理员登录表
 create table admins (
-	adm_id int primary key auto_increment, -- 管理员id
+	adm_id varchar(60) primary key, -- 管理员id
 	adm_account varchar(20), -- 账号
 	adm_psw varchar(50) -- 密码
 );
@@ -230,7 +220,7 @@ create table adminsinfo (
 	adm_name varchar(10), -- 管理员真实姓名
 	adm_phone varchar(20), -- 管理员电话号码
 	adm_idnum varchar(20), -- 管理员身份证号码
-	adm_id int, -- 关联管理员登录表
+	adm_id varchar(60), -- 关联管理员登录表
 	constraint foreign key(adm_id) references admins(adm_id)
 );
 
@@ -243,13 +233,3 @@ create table todolist (
 	orderdoing_id int, -- 关联订单 
 	constraint foreign key(orderdoing_id) references order_doing(orderdoing_id)
 );
-
-
-
-
-
-
-
-
-
-

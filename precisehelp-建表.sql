@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2016-05-31 18:55:57
+Date: 2016-06-04 10:33:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
-  `adm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `adm_id` varchar(60) NOT NULL,
   `adm_account` varchar(20) DEFAULT NULL,
   `adm_psw` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`adm_id`)
@@ -37,7 +37,7 @@ CREATE TABLE `adminsinfo` (
   `adm_name` varchar(10) DEFAULT NULL,
   `adm_phone` varchar(20) DEFAULT NULL,
   `adm_idnum` varchar(20) DEFAULT NULL,
-  `adm_id` int(11) DEFAULT NULL,
+  `adm_id` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`adminfo_id`),
   KEY `adm_id` (`adm_id`),
   CONSTRAINT `adminsinfo_ibfk_1` FOREIGN KEY (`adm_id`) REFERENCES `admins` (`adm_id`)
@@ -50,19 +50,20 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `com_id` int(11) NOT NULL AUTO_INCREMENT,
   `com_content` varchar(250) DEFAULT NULL,
+  `com_time` date DEFAULT NULL,
   `orderdone_id` int(11) DEFAULT NULL,
   `com_parent` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
+  `goods_id` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`com_id`),
   KEY `orderdone_id` (`orderdone_id`),
-  KEY `com_parent` (`com_id`)
+  KEY `com_parent` (`com_parent`),
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`orderdone_id`) REFERENCES `order_done` (`orderdone_id`),
-  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`),
-  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`com_parent`) REFERENCES `comments` (`com_id`)
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`com_parent`) REFERENCES `comments` (`com_id`),
+  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -94,7 +95,7 @@ CREATE TABLE `goodsarea` (
 -- ----------------------------
 DROP TABLE IF EXISTS `goodsinfo`;
 CREATE TABLE `goodsinfo` (
-  `goods_id` int(11) NOT NULL AUTO_INCREMENT,
+  `goods_id` varchar(60) NOT NULL,
   `goods_name` varchar(50) DEFAULT NULL,
   `goods_stat` text,
   `goods_last_price` double DEFAULT NULL,
@@ -131,8 +132,8 @@ CREATE TABLE `letters` (
   `let_content` text,
   `let_time` date DEFAULT NULL,
   `let_stat` int(11) DEFAULT NULL,
-  `let_from` int(11) DEFAULT NULL,
-  `let_to` int(11) DEFAULT NULL,
+  `let_from` varchar(60) DEFAULT NULL,
+  `let_to` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`let_id`),
   KEY `let_from` (`let_from`),
   KEY `let_to` (`let_to`),
@@ -152,9 +153,9 @@ CREATE TABLE `order_doing` (
   `order_stat` int(11) DEFAULT NULL,
   `order_kcom` varchar(20) DEFAULT NULL,
   `order_knum` varchar(50) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
-  `adm_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
+  `goods_id` varchar(60) DEFAULT NULL,
+  `adm_id` varchar(60) DEFAULT NULL,
   `express_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`orderdoing_id`),
   KEY `user_id` (`user_id`),
@@ -180,9 +181,9 @@ CREATE TABLE `order_done` (
   `order_knum` varchar(50) DEFAULT NULL,
   `order_donetime` date DEFAULT NULL,
   `order_comment` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
-  `adm_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
+  `goods_id` varchar(60) DEFAULT NULL,
+  `adm_id` varchar(60) DEFAULT NULL,
   `express_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`orderdone_id`),
   KEY `user_id` (`user_id`),
@@ -204,8 +205,8 @@ CREATE TABLE `order_todo` (
   `order_number` varchar(30) DEFAULT NULL,
   `order_ps` varchar(200) DEFAULT NULL,
   `order_time` date DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
+  `goods_id` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`ordertodo_id`),
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`goods_id`),
@@ -227,10 +228,23 @@ CREATE TABLE `toaddress` (
   `address_postcode` varchar(10) DEFAULT NULL,
   `address_name` varchar(10) DEFAULT NULL,
   `address_phone` varchar(20) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `toaddress_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for todolist
+-- ----------------------------
+DROP TABLE IF EXISTS `todolist`;
+CREATE TABLE `todolist` (
+  `todo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `todo_time` date DEFAULT NULL,
+  `orderdoing_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`todo_id`),
+  KEY `orderdoing_id` (`orderdoing_id`),
+  CONSTRAINT `todolist_ibfk_1` FOREIGN KEY (`orderdoing_id`) REFERENCES `order_doing` (`orderdoing_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -238,10 +252,10 @@ CREATE TABLE `toaddress` (
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(60) NOT NULL,
   `user_account` varchar(30) DEFAULT NULL,
   `user_psw` varchar(30) DEFAULT NULL,
-  `user_zf_psw` varchar(30) DEFAULT NULL,
+  `user_pay_psw` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -258,7 +272,7 @@ CREATE TABLE `usersinfo` (
   `user_phone` varchar(20) DEFAULT NULL,
   `user_idnum` varchar(25) DEFAULT NULL,
   `user_rname` varchar(10) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`usersinfo_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `usersinfo_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
