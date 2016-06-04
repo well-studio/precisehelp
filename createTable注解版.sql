@@ -24,6 +24,43 @@ create table usersinfo (
 
 
 
+-- 收藏夹
+create table usersfavorite(
+	favo_id int primary key auto_increment, -- 收藏id
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 收藏的商品id
+	constraint foreign key(user_id) references users(user_id),
+	constraint foreign key(goods_id) references goodsinfo(goods_id)
+)
+
+
+-- 购物券表
+create table coupons (
+	cou_id varchar(60) primary key, -- 购物券编号/主键
+	cou_number varchar(30), -- 购物券编号
+	cou_start_time date, -- 购物券开始时间
+	cou_end_time date, -- 购物券结束时间
+	cou_use_time date, -- 购物券使用时间
+	user_id varchar(60), -- 关联用户
+	cou_typeid int, -- 关联购物券类型
+	constraint foreign key(user_id) references users(user_id),
+	constraint foreign key(cou_typeid) references couponstype(type_id)
+);
+
+
+-- 购物券类型
+create table couponstype (
+	type_id int primary key auto_increment,
+	type_name varchar(30), -- 购物券名称
+	type_goods varchar(80), -- 该类购物券使用范围
+	type_require double, -- 门槛金额
+	type_value double, -- 抵用金额
+	type_percent double -- 抵用折扣率
+);
+
+
+
+
 -- 用户收货地址表
 create table toaddress (
 	address_id int primary key auto_increment, -- 收货地址id
@@ -41,8 +78,15 @@ create table toaddress (
 
 
 
--- 购物车表 (这个没讨论 暂时不知道！)
-
+-- 购物车表 (这个没讨论 暂时不知道！)(商品用户多对多)
+create table shoppingcart(
+	user_id varchar(60),
+	goods_id varchar(60),
+	goods_num int default 0,
+	primary key(user_id,goods_id),
+	constraint foreign key(user_id) references users(user_id),
+	constraint foreign key(goods_id) references goodsinfo(goods_id)
+);
 
 
 
@@ -55,7 +99,7 @@ create table order_todo (
 	order_number varchar(30), -- 订单编号
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
-	-- order_pay int, -- 是否付款(0 未付款 1 已付款  -- 肯定为1 -- 所以去掉)
+	order_pay int, -- 是否付款(0 未付款 1 已付款  -- 肯定为1 -- 所以去掉)
 	user_id varchar(60), -- 关联用户表
 	goods_id varchar(60), -- 关联商品
 	constraint foreign key(user_id) references users(user_id),
@@ -70,6 +114,7 @@ create table order_doing (
 	order_num varchar(30), -- 订单编号
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
+	order_handle_time date, -- 订单处理时间(+++)
 	order_stat int, -- 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)(++++)
 	order_kcom varchar(20), -- 快递公司名称(+++)
 	order_knum varchar(50), -- 快递单号(+++)
@@ -219,6 +264,7 @@ create table letters (
 create table admins (
 	adm_id varchar(60) primary key, -- 管理员id
 	adm_account varchar(20), -- 账号
+	adm_power int, -- 权限标记(0 superAdmin)(+++)
 	adm_psw varchar(50) -- 密码
 );
 
