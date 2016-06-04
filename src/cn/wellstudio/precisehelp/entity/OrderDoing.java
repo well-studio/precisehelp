@@ -5,26 +5,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * OrderDoing entity. @author MyEclipse Persistence Tools
+ * 正在处理的订单
+ * @author huhong
+ *
  */
-
 public class OrderDoing implements java.io.Serializable {
 
 	// Fields
 
-	private Integer orderdoingId;
-	private Users users;
-	private Express express;
-	private Admins admins;
-	private Goodsinfo goodsinfo;
-	private String orderNum;
-	private String orderPs;
-	private Date orderTime;
-	private Date orderHandleTime;
-	private Integer orderStat;
-	private String orderKcom;
-	private String orderKnum;
-	private Set todolists = new HashSet(0);
+	private Integer orderdoingId; // id
+	private Users users; // 关联用户
+	private Express express; // 关联物流
+	private Admins admins; // 关联管理员
+	private Goodsinfo goodsinfo; // 关联商品
+	private String orderNum; // 订单编号
+	private String orderPs; // 订单备注
+	private Date orderTime; // 订单下单时间
+	private Date orderHandleTime; // 订单开始处理时间
+	private Integer orderStat; // 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)(++++)
+	private String orderKcom; // 订单快递公司
+	private String orderKnum; // 订单快递单号
+	private Set todolists = new HashSet(0); // 1:1 管理员处理list
 
 	// Constructors
 

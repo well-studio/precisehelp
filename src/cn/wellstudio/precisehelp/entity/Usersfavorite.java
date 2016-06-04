@@ -1,16 +1,17 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Usersfavorite entity. @author MyEclipse Persistence Tools
+ * 用户收藏夹实体
+ * @author huhong
+ *
  */
-
 public class Usersfavorite implements java.io.Serializable {
 
 	// Fields
 
-	private Integer favoId;
-	private Users users;
-	private Goodsinfo goodsinfo;
+	private Integer favoId; // id
+	private Users users; // 关联用户
+	private Goodsinfo goodsinfo; // 关联商品
 
 	// Constructors
 

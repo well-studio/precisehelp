@@ -4,17 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Goodstype entity. @author MyEclipse Persistence Tools
+ * 商品种类
+ * @author huhong
+ *
  */
-
 public class Goodstype implements java.io.Serializable {
 
 	// Fields
 
-	private Integer typeId;
-	private String typeName;
-	private String typeStat;
-	private Set goodsinfos = new HashSet(0);
+	private Integer typeId; // id
+	private String typeName; // 类型名称
+	private String typeStat; // 类型描述
+	private Set goodsinfos = new HashSet(0); // 关联商品信息
 
 	// Constructors
 

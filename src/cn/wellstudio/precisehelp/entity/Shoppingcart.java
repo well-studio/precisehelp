@@ -1,17 +1,16 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Shoppingcart entity. @author MyEclipse Persistence Tools
+ * 购物车实体
+ * @author huhong
+ *
  */
-
 public class Shoppingcart implements java.io.Serializable {
 
 	// Fields
 
-	private ShoppingcartId id;
-	private Users users;
-	private Goodsinfo goodsinfo;
-	private Integer goodsNum;
+	private ShoppingcartId id; // id
+	private Integer goodsNum; // 商品数量
 
 	// Constructors
 
@@ -20,18 +19,13 @@ public class Shoppingcart implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Shoppingcart(ShoppingcartId id, Users users, Goodsinfo goodsinfo) {
+	public Shoppingcart(ShoppingcartId id) {
 		this.id = id;
-		this.users = users;
-		this.goodsinfo = goodsinfo;
 	}
 
 	/** full constructor */
-	public Shoppingcart(ShoppingcartId id, Users users, Goodsinfo goodsinfo,
-			Integer goodsNum) {
+	public Shoppingcart(ShoppingcartId id, Integer goodsNum) {
 		this.id = id;
-		this.users = users;
-		this.goodsinfo = goodsinfo;
 		this.goodsNum = goodsNum;
 	}
 
@@ -43,22 +37,6 @@ public class Shoppingcart implements java.io.Serializable {
 
 	public void setId(ShoppingcartId id) {
 		this.id = id;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
-
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
-
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
 	}
 
 	public Integer getGoodsNum() {

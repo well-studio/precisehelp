@@ -4,18 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Goodsarea entity. @author MyEclipse Persistence Tools
+ * 商品产地
+ * @author huhong
+ *
  */
-
 public class Goodsarea implements java.io.Serializable {
 
 	// Fields
 
-	private Integer areaId;
-	private String areaName;
-	private String areaLocation;
-	private String areaStat;
-	private Set goodsinfos = new HashSet(0);
+	private Integer areaId; // id
+	private String areaName; // 产地名称
+	private String areaLocation; // 产地地理位置
+	private String areaStat; // 产地的详细描述
+	private Set goodsinfos = new HashSet(0); // 关联的商品信息
 
 	// Constructors
 

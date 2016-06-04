@@ -4,28 +4,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Goodsinfo entity. @author MyEclipse Persistence Tools
+ * 商品信息表
+ * @author huhong
+ *
  */
-
 public class Goodsinfo implements java.io.Serializable {
 
 	// Fields
 
-	private String goodsId;
-	private Goodstype goodstype;
-	private Goodsarea goodsarea;
-	private String goodsName;
-	private String goodsStat;
-	private Double goodsLastPrice;
-	private Double goodsNowPrice;
-	private Double goodsDiscount;
-	private String goodsPriceUnit;
-	private Set goodsquestions = new HashSet(0);
-	private Set orderDoings = new HashSet(0);
-	private Set orderDones = new HashSet(0);
-	private Set usersfavorites = new HashSet(0);
-	private Set shoppingcarts = new HashSet(0);
-	private Set orderTodos = new HashSet(0);
+	private String goodsId; // id
+	private Goodstype goodstype; // 商品种类
+	private Goodsarea goodsarea; // 商品产区
+	private String goodsName; // 商品名称
+	private String goodsStat; // 商品描述
+	private Double goodsLastPrice; // 商品上一次价格
+	private Double goodsNowPrice; // 商品现在的价格
+	private Double goodsDiscount; // 商品折扣率(默认为1)
+	private String goodsPriceUnit; // 商品的单位价格
+	private Set goodsquestions = new HashSet(0); // 关联商品提问
+	private Set orderDoings = new HashSet(0); // 关联正在进行的订单
+	private Set orderDones = new HashSet(0); // 关联已完成的订单
+	private Set usersfavorites = new HashSet(0); // 关联用户喜欢
+	private Set shoppingcarts = new HashSet(0); // 关联购物车
+	private Set orderTodos = new HashSet(0); // 关联待处理的订单
 
 	// Constructors
 

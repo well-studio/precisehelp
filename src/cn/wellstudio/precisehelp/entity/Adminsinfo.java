@@ -1,20 +1,21 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * Adminsinfo entity. @author MyEclipse Persistence Tools
+ * 管理员信息
+ * @author huhong
+ *
  */
-
 public class Adminsinfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer adminfoId;
-	private Admins admins;
-	private String admNum;
-	private String admNickname;
-	private String admName;
-	private String admPhone;
-	private String admIdnum;
+	private Integer adminfoId; // id
+	private Admins admins; // 关联管理员
+	private String admNum; // 管理员编号
+	private String admNickname; // 管理员昵称
+	private String admName; // 管理员名称
+	private String admPhone; // 管理员电话号码
+	private String admIdnum; // 管理员身份证号码
 
 	// Constructors
 

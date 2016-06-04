@@ -3,21 +3,22 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * OrderTodo entity. @author MyEclipse Persistence Tools
+ * 待处理订单
+ * @author huhong
+ *
  */
-
 public class OrderTodo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer ordertodoId;
-	private Users users;
-	private Goodsinfo goodsinfo;
-	private String orderNumber;
-	private String orderPs;
-	private Date orderTime;
-	private Integer orderPay;
-	private Integer orderCancel;
+	private Integer ordertodoId; //id
+	private Users users; // 关联用户
+	private Goodsinfo goodsinfo; // 关联商品
+	private String orderNumber; // 订单编号
+	private String orderPs; // 订单备注
+	private Date orderTime; // 订单时间
+	private Integer orderPay; // 订单是否支付(0 未付款 1 已付款)
+	private Integer orderCancel; // 是否退款取消(0 没 1 是)
 
 	// Constructors
 

@@ -3,20 +3,21 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * Coupons entity. @author MyEclipse Persistence Tools
+ * 购物券实体
+ * @author huhong
+ *
  */
-
 public class Coupons implements java.io.Serializable {
 
 	// Fields
 
-	private String couId;
-	private Couponstype couponstype;
-	private Users users;
-	private String couNumber;
-	private Date couStartTime;
-	private Date couEndTime;
-	private Date couUseTime;
+	private String couId; // 购物券id
+	private Couponstype couponstype; // 购物券种类
+	private Users users; // 关联的用户
+	private String couNumber; // 购物券编号
+	private Date couStartTime; // 购物券的开始时间
+	private Date couEndTime; // 购物券的结束时间
+	private Date couUseTime; // 购物券的使用时间
 
 	// Constructors
 

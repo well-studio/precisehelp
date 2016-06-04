@@ -4,20 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Couponstype entity. @author MyEclipse Persistence Tools
+ * 购物券的种类实体
+ * @author huhong
+ *
  */
-
 public class Couponstype implements java.io.Serializable {
 
 	// Fields
 
-	private Integer typeId;
-	private String typeName;
-	private String typeGoods;
-	private Integer typeCandis;
-	private Double typeRequire;
-	private Double typeValue;
-	private Double typePercent;
+	private Integer typeId; // id
+	private String typeName; // 类型名称
+	private String typeGoods; // 限定购买的商品种类
+	private Integer typeCandis; // 能否用于折扣商品(1 能 0 不能)
+	private Double typeRequire; // 门槛金额
+	private Double typeValue; // 抵用金额
+	private Double typePercent; // 抵用折扣率
 	private Set couponses = new HashSet(0);
 
 	// Constructors

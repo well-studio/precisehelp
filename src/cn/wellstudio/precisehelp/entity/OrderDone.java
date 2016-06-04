@@ -3,25 +3,26 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * OrderDone entity. @author MyEclipse Persistence Tools
+ * 完毕的订单
+ * @author huhong
+ *
  */
-
 public class OrderDone implements java.io.Serializable {
 
 	// Fields
 
-	private Integer orderdoneId;
-	private Users users;
-	private Express express;
-	private Admins admins;
-	private Goodsinfo goodsinfo;
-	private String orderNum;
-	private String orderPs;
-	private Date orderTime;
-	private String orderKcom;
-	private String orderKnum;
-	private Date orderDonetime;
-	private Integer orderComment;
+	private Integer orderdoneId; // id
+	private Users users; // 关联用户
+	private Express express; // 关联物流
+	private Admins admins; // 关联管理员
+	private Goodsinfo goodsinfo; // 关联商品
+	private String orderNum; // 订单编号
+	private String orderPs; // 订单备注
+	private Date orderTime; // 订单时间
+	private String orderKcom; // 订单快递公司
+	private String orderKnum; // 订单快递单号
+	private Date orderDonetime; // 订单完成时间
+	private Integer orderComment; // 订单是否已经评论( 0 尚未评价 1 已评价)
 
 	// Constructors
 

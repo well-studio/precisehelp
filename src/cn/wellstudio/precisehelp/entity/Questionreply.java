@@ -3,19 +3,20 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * Questionreply entity. @author MyEclipse Persistence Tools
+ * 提问回应表
+ * @author huhong
+ *
  */
-
 public class Questionreply implements java.io.Serializable {
 
 	// Fields
 
-	private Integer replyId;
-	private Users users;
-	private Goodsquestion goodsquestion;
-	private String replyContent;
-	private Date replyTime;
-	private Integer replyAdm;
+	private Integer replyId; // id
+	private Users users; // 关联用户
+	private Goodsquestion goodsquestion; // 关联商品提问
+	private String replyContent; // 回答内容
+	private Date replyTime; // 回答时间
+	private Integer replyAdm; // 是否是管理员回答
 
 	// Constructors
 

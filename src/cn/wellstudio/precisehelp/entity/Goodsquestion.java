@@ -5,21 +5,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Goodsquestion entity. @author MyEclipse Persistence Tools
+ * 商品提问
+ * @author huhong
+ *
  */
-
 public class Goodsquestion implements java.io.Serializable {
 
 	// Fields
 
-	private String quesId;
-	private Users users;
-	private Goodsinfo goodsinfo;
-	private String quesTitle;
-	private String quesContent;
-	private Date quesTime;
-	private Integer quesClose;
-	private Set questionreplies = new HashSet(0);
+	private String quesId; // id
+	private Users users; // 关联用户
+	private Goodsinfo goodsinfo; // 商品信息
+	private String quesTitle; // 问题标题
+	private String quesContent; // 问题内容
+	private Date quesTime; // 问题时间
+	private Integer quesClose; // 问题是否关闭(0 没 1 是)
+	private Set questionreplies = new HashSet(0); // 关联提问的回答
 
 	// Constructors
 

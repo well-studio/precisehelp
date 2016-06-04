@@ -3,17 +3,18 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * Todolist entity. @author MyEclipse Persistence Tools
+ * 管理员待处理实体
+ * @author huhong
+ *
  */
-
 public class Todolist implements java.io.Serializable {
 
 	// Fields
 
-	private Integer todoId;
-	private OrderDoing orderDoing;
-	private Admins admins;
-	private Date todoTime;
+	private Integer todoId; // id
+	private OrderDoing orderDoing; // 1:1关联正在处理的订单
+	private Admins admins; // 关联处理的管理员
+	private Date todoTime; // 处理的时间
 
 	// Constructors
 
