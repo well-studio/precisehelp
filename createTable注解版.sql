@@ -31,7 +31,7 @@ create table usersfavorite(
 	goods_id varchar(60), -- 收藏的商品id
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
-)
+);
 
 
 -- 购物券表
@@ -53,6 +53,7 @@ create table couponstype (
 	type_id int primary key auto_increment,
 	type_name varchar(30), -- 购物券名称
 	type_goods varchar(80), -- 该类购物券使用范围
+	type_candis int default 1, -- 能否用于折扣商品(1 能 0 不能)
 	type_require double, -- 门槛金额
 	type_value double, -- 抵用金额
 	type_percent double -- 抵用折扣率
@@ -80,9 +81,9 @@ create table toaddress (
 
 -- 购物车表 (这个没讨论 暂时不知道！)(商品用户多对多)
 create table shoppingcart(
-	user_id varchar(60),
-	goods_id varchar(60),
-	goods_num int default 0,
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 关联商品
+	goods_num int default 0, -- 物品数量
 	primary key(user_id,goods_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
@@ -93,13 +94,14 @@ create table shoppingcart(
 -- 订单表(待处理订单表 - 处理中的订单表 - 处理完毕的订单表)
 
 
--- 待处理订单表(必须要已付款的订单)
+-- 待处理订单表(订单未付款 + 付款了但是并没有处理)
 create table order_todo (
 	ordertodo_id int primary key auto_increment, -- 订单id
 	order_number varchar(30), -- 订单编号
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
-	order_pay int, -- 是否付款(0 未付款 1 已付款  -- 肯定为1 -- 所以去掉)
+	order_pay int default 0, -- 是否付款(0 未付款 1 已付款)
+	order_cancel int default 0, -- 是否退款取消(0 没 1 是)
 	user_id varchar(60), -- 关联用户表
 	goods_id varchar(60), -- 关联商品
 	constraint foreign key(user_id) references users(user_id),
@@ -108,7 +110,7 @@ create table order_todo (
 
 
 
--- 处理中订单表(已有管理员后台接手处理的订单  ~ 确认收货之前)
+-- 处理中订单表(必须要已付款的订单 - 已有管理员后台接手处理的订单  ~ 确认收货之前)
 create table order_doing (
 	orderdoing_id int primary key auto_increment, -- 订单id
 	order_num varchar(30), -- 订单编号
@@ -210,10 +212,24 @@ create table goodsquestion (
 	ques_title varchar(50), -- 问题标题
 	ques_content text, -- 问题内容
 	ques_time date, -- 提问时间
+	ques_close int default 0, -- 是否关闭(0 不 1 是)
 	user_id varchar(60), -- 关联用户
 	goods_id varchar(60), -- 关联商品
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
+);
+
+
+-- 提问回答表
+create table questionreply (
+	reply_id int primary key auto_increment, -- 回答id
+	reply_content varchar(200) not null, -- 回答内容
+	reply_time date, -- 回答时间
+	reply_adm int default 0, -- 是否是管理员回答(0 不是 1是)
+	ques_id varchar(60), -- 关联问题
+	user_id varchar(60), -- 关联用户
+	constraint foreign key(ques_id) references goodsquestion(ques_id),
+	constraint foreign key(user_id) references users(user_id)
 );
 
 
@@ -240,13 +256,14 @@ create table comments (
 
 
 
--- 站内信表
+-- 站内信表(消息通知)
 create table letters (
 	let_id int primary key auto_increment, -- 信id
 	let_title varchar(30), -- 信标题
 	let_content text, -- 信内容
 	let_time date, -- 发信时间
-	let_stat int, -- 是否已读 (0 收信人未读  1 收信人已读)
+	let_stat int default 0, -- 是否已读 (0 收信人未读  1 收信人已读)
+	let_sys int default 0, -- 是否是系统消息(0 不是 1 是)
 	let_from varchar(60), -- 发信人 关联用户
 	let_to varchar(60), -- 收信人 关联用户
 	constraint foreign key(let_from) references users(user_id),
