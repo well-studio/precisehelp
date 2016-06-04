@@ -81,7 +81,7 @@ create table order_doing (
 	constraint foreign key(goods_id) references goodsinfo(goods_id),
 	constraint foreign key(adm_id) references admins(adm_id),
 	constraint foreign key(express_id) references express(express_id)
-	
+
 );
 
 
@@ -159,6 +159,17 @@ create table goodsarea (
 );
 
 
+-- 商品提问表
+create table goodsquestion (
+	ques_id varchar(60) primary key, -- 问题id
+	ques_title varchar(50), -- 问题标题
+	ques_content text, -- 问题内容
+	ques_time date, -- 提问时间
+	user_id varchar(60), -- 关联用户
+	goods_id varchar(60), -- 关联商品
+	constraint foreign key(user_id) references users(user_id),
+	constraint foreign key(goods_id) references goodsinfo(goods_id)
+);
 
 
 
@@ -168,8 +179,9 @@ create table comments (
 	com_id int primary key auto_increment, -- 评论id
 	com_content varchar(250), -- 评论内容
 	com_time date, -- 评论时间
-	orderdone_id int, -- 关联已完成订单表
-	com_parent int,
+	com_ups int default 0, -- 点赞人数
+	orderdone_id int, -- 关联已完成订单
+	com_parent int, -- 父级评论
 	user_id varchar(60), -- 关联用户
 	goods_id varchar(60), -- 关联商品
 	constraint foreign key(orderdone_id) references order_done(orderdone_id),
@@ -230,6 +242,8 @@ create table adminsinfo (
 create table todolist (
 	todo_id int primary key auto_increment, -- 任务id
 	todo_time date, -- 加入队列的时间(队列按时间排序优先处理) 方便程序处理超时
-	orderdoing_id int, -- 关联订单 
+	adm_id varchar(60), -- 关联管理员
+	orderdoing_id int, -- 关联订单
+	constraint foreign key(adm_id) references admins(adm_id),
 	constraint foreign key(orderdoing_id) references order_doing(orderdoing_id)
 );
