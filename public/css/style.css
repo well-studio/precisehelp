@@ -1,0 +1,268 @@
+* {
+	font-family: "Microsoft Yahei",sans-serif;
+}
+
+.float-right {
+	float: right;
+}
+nav .container {
+	padding: 10px;
+}
+.container {
+	max-width: 768px;
+	padding-top: 10px;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+body {
+	margin: 0px;
+}
+nav {
+	background: #eee;
+	margin: 0px;
+	border-bottom: 1px #ccc solid
+}
+nav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+nav ul li {
+	display: inline-block;
+}
+nav ul li+li::before {
+	content: "|";
+	margin:0px 6px 0px 1px;
+}
+nav ul li .fa {
+	margin-right: 3px;
+}
+.cate-box a,
+nav a {
+	color: #000;
+}
+.cate-box a:focus,
+.cate-box a:hover,
+nav a:focus,
+nav a:hover {
+	color: #000;
+	text-decoration: none;
+}
+.cate-box {
+	padding-top: 10px;
+	background: #eee;
+	overflow: hidden;
+}
+.cate-innerbox {
+	text-align: center;
+}
+.cate-innerbox a {
+	text-align: center;
+}
+.cate-img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #D9EDF7;
+	display: block;
+	margin: 0 auto;
+}
+.item {
+	height: 300px;
+	margin-top: 10px;
+}
+
+.mask {
+	/* 以后这里要用图片 */
+	background: url("../images/me-mask.png");
+	background-size: cover;
+	text-align: center;
+	display: table;
+	vertical-align: middle;
+	height: 350px;
+	width: 100%;
+}
+.mask .head-box {
+	vertical-align: middle;
+	display: table-cell;
+}
+.head-pic-box {
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 1px solid #eee;
+}
+.head-pic-box img {
+	height: 100px;
+	width: 100px;
+}
+.mask span {
+	display: block;
+	margin-top: 10px;
+}
+.user-item-container {
+	overflow: hidden;
+}
+.user-item {
+	text-align: center;
+	border:1px solid #eee;
+	border-top: 0px;
+}
+.user-item a {
+	color: #000;
+	font-size: 1.5em;
+}
+.user-item a:focus,
+.user-item a:hover {
+	color: #000;
+	text-decoration: none;
+}
+.user-item-text {
+	height: 80px;
+	display: block;
+	line-height: 80px;
+	position: relative;
+}
+.user-item-text:hover {
+	background: #eee;
+}
+.userinfo-item-container {
+	width: 100%;
+}
+.userinfo-item {
+	display: block;
+	padding: 10px;
+	background: #eee;
+	border-top: 1px solid #fff;
+}
+.search-box {
+	background: #eee;
+	margin: 10px 0px;
+	padding: 10px;
+}
+.search-in {
+	float: left;
+	width: 90%;
+}
+.search-btn {
+	font-size: 1.5em;
+	width: 10%;
+	float: left;
+}
+
+.cart-item-select-checkbox {
+	text-align: center;
+	line-height: 100px;
+	border-right: 1px solid #fff;
+}
+
+.cart-item {
+	background: #eee;
+	overflow: hidden;
+}
+.cart-item-shopname {
+	border-bottom: 1px solid #fff;
+	padding: 5px;
+}
+.cart-item-shopitem {
+	overflow: hidden;
+	margin: 10px 0px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #fff;
+}
+.cart-item-select {
+	text-align: center;
+	float:left;
+	height: 100px;
+	width: 200px;
+	line-height: 100px;
+	background: #eee;
+}
+.cart-item-select-button {
+	display: inline-block;
+}
+.cart-item-img {
+	display: inline-block;
+	width: 150px;
+	height: 100px;
+}
+.cart-item-img img {
+	max-width: 150px;
+	height: 100px;
+}
+.cart-item-description {
+	display: inline-block;
+	position: relative;
+	height: 100px;
+	vertical-align: top;
+}
+.cart-item-des-price {
+	position: absolute;
+	left: 15px;
+	bottom: 0px;
+}
+.cart-item-des-title {
+	font-size:16px;
+}
+.cart-item-right {
+	float:right;
+	position: relative;
+	width: 120px;
+	margin-right: 15px;
+	height: 100px;
+	font-size: 20px;
+}
+.cart-item-right i {
+	cursor: pointer;
+	float: right;
+}
+.cart-item-right .input-group{
+	position: absolute;
+	bottom: 0px;
+}
+.cart-item-bottom {
+	margin: 20px 0px 20px 17px;
+}
+
+.cart-item-bottom button {
+	float: right;
+	margin: 0px 15px;
+}
+.item-signin {
+	background: #eee;
+	padding-top: 30px;
+}
+.item-signin .item-signin-box {
+	overflow: hidden;
+	padding:30px;
+}
+.item-add2cart {
+	width:100%;
+	overflow: hidden;
+	padding: 20px;
+}
+
+.item-add2cart-img img {
+	max-width: 150px;
+	max-height: 100px;
+}
+.item-add2cart-img {
+	display: inline-block;
+}
+.item-add2cart-btn {
+	position: absolute;
+	bottom: 0px;
+}
+.item-add2cart .input-group{
+	position: absolute;
+	top: 0px;
+}
+.good-mask {
+	height: 500px;
+	background: #eee;
+}
+.good-details {
+	margin-top: 10px;
+	background: #eee;
+	height: 900px;
+}

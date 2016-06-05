@@ -1,9 +1,9 @@
 var router = require('koa-router')();
 
-var DETAIL = 'detail.html';
+var DETAIL = './view-html/detail.html';
 //商品详情页
 router.get('/:id',function *(next){
-  this.body = '<h1>detail page</h1>';
+  yield this.render(DETAIL);
 });
 
 module.exports = router;

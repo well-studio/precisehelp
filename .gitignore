@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 node_modules
 node_modules/*
+=======
+WebRoot/WEB-INF/lib/
+>>>>>>> d4843b4654d7e9a1546f8201436e5e1011ecb3e3

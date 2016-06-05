@@ -1,12 +1,13 @@
 var router = require('koa-router')();
 
-var RESULT = 'result.html';
+var SEARCH = './view-html/search.html',
+RESULT     = './view-html/result.html';
 //搜索页
 router.get('/',function *(next){
-  this.body = '<h1>result page</h1>';
+  yield this.render(SEARCH);
 });
 //搜索结果页
 router.get('/result', function *(next){
-  this.body = '<h1>result page</h1>';
+  yield this.render(RESULT);
 });
 module.exports = router;
