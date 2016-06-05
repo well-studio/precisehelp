@@ -8,7 +8,7 @@ create table users (
 
 
 
--- 用户个人资料表
+-- 用户个人资料表(1:1用户)
 create table usersinfo (
 	usersinfo_id int primary key auto_increment, -- 用户资料id
 	user_img varchar(100), -- 用户头像
@@ -24,22 +24,23 @@ create table usersinfo (
 
 
 
--- 收藏夹
+-- 收藏夹(n:m 用户)
 create table usersfavorite(
-	favo_id int primary key auto_increment, -- 收藏id
 	user_id varchar(60), -- 关联用户
 	goods_id varchar(60), -- 收藏的商品id
+	add_time date, -- 添加的时间
+	primary key(user_id,goods_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
 );
 
 
--- 购物券表
+-- 购物券表(n:1 用户 n:1 购物券类型)
 create table coupons (
 	cou_id varchar(60) primary key, -- 购物券编号/主键
 	cou_number varchar(30), -- 购物券编号
-	cou_start_time date, -- 购物券开始时间
-	cou_end_time date, -- 购物券结束时间
+	cou_start_time date, -- 购物券开始时间(判断能否使用)
+	cou_end_time date, -- 购物券结束时间(判断是否失效)
 	cou_use_time date, -- 购物券使用时间
 	user_id varchar(60), -- 关联用户
 	cou_typeid int, -- 关联购物券类型
@@ -48,11 +49,12 @@ create table coupons (
 );
 
 
--- 购物券类型
+-- 购物券类型(1:n 购物券)
 create table couponstype (
 	type_id int primary key auto_increment,
 	type_name varchar(30), -- 购物券名称
 	type_goods varchar(80), -- 该类购物券使用范围
+	type_invalid int default 1, -- 该购物券是否有效(0 无效 1 有效)
 	type_candis int default 1, -- 能否用于折扣商品(1 能 0 不能)
 	type_require double, -- 门槛金额
 	type_value double, -- 抵用金额
@@ -62,7 +64,7 @@ create table couponstype (
 
 
 
--- 用户收货地址表
+-- 用户收货地址表(n:1 用户)
 create table toaddress (
 	address_id int primary key auto_increment, -- 收货地址id
 	address_province varchar(20), -- 省份
@@ -79,7 +81,7 @@ create table toaddress (
 
 
 
--- 购物车表 (这个没讨论 暂时不知道！)(商品用户多对多)
+-- 购物车表 (这个没讨论 暂时不知道！)(商品 n:m 用户)
 create table shoppingcart(
 	user_id varchar(60), -- 关联用户
 	goods_id varchar(60), -- 关联商品
@@ -94,7 +96,7 @@ create table shoppingcart(
 -- 订单表(待处理订单表 - 处理中的订单表 - 处理完毕的订单表)
 
 
--- 待处理订单表(订单未付款 + 付款了但是并没有处理)
+-- 待处理订单表(订单未付款 + 付款了但是并没有处理)(n:1 用户 n:1 商品)
 create table order_todo (
 	ordertodo_id int primary key auto_increment, -- 订单id
 	order_number varchar(30), -- 订单编号
@@ -111,6 +113,7 @@ create table order_todo (
 
 
 -- 处理中订单表(必须要已付款的订单 - 已有管理员后台接手处理的订单  ~ 确认收货之前)
+-- (n:1 用户 n:1 商品 n:1 管理员 1:1 物流)
 create table order_doing (
 	orderdoing_id int primary key auto_increment, -- 订单id
 	order_num varchar(30), -- 订单编号
@@ -134,6 +137,7 @@ create table order_doing (
 
 
 -- 已完成订单表(已经确认收货的订单)
+-- (n:1 用户 n:1 商品 n:1 管理员 1:1 物流)
 create table order_done (
 	orderdone_id int primary key auto_increment, -- 订单id
 	order_num varchar(30), -- 订单编号
@@ -258,10 +262,11 @@ create table comments (
 
 -- 站内信表(消息通知)
 create table letters (
-	let_id int primary key auto_increment, -- 信id
+	let_id varchar(60) primary key, -- 信id
 	let_title varchar(30), -- 信标题
 	let_content text, -- 信内容
 	let_time date, -- 发信时间
+	let_draft int default 1, -- 是否是草稿(0 不是 1 是 )
 	let_stat int default 0, -- 是否已读 (0 收信人未读  1 收信人已读)
 	let_sys int default 0, -- 是否是系统消息(0 不是 1 是)
 	let_from varchar(60), -- 发信人 关联用户
