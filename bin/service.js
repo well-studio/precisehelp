@@ -13,27 +13,29 @@ var service = {
    * @param  {Function} fn   处理数据的回调函数
    * @return {null}          若参数错误，返回null
    */
-  get:function(path, fn){
-    if(!path || !fn){
+  get:function(path){
+    if(!path){
       return null;
     }
-    http.get('http://'+options.hostname+':'+options.port+'/'+path.replace('/',''), (res) => {
-      var data='';
-      res.setEncoding('utf8');
-      //接收返回的数据
-      res.on('data', (chunk) => {
-        data+=chunk;
-      });
-      //数据传输完毕后，调用回调函数进行操作
-      res.on('end', () => {
-        fn(null,data);
-      });
+    var get = new Promise((resolve,reject) => {
+      http.get('http://'+options.hostname+':'+options.port+'/'+path.replace('/',''), (res) => {
+        var data='';
+        res.setEncoding('utf8');
+        //接收返回的数据
+        res.on('data', (chunk) => {
+          data+=chunk;
+        });
+        //数据传输完毕后，调用回调函数进行操作
+        res.on('end', () => {
+          resolve(data);
+        });
 
-    }).on('error', (e) => {
-      //错误处理交给回调函数
-      fn(e);
+      }).on('error', (e) => {
+        //错误处理交给回调函数
+        reject(e);
+      });
     });
-
+    return get;
   },
   /**
    * 调取服务的post方法
