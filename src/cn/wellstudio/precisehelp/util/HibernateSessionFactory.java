@@ -27,7 +27,7 @@ public class HibernateSessionFactory {
      */
     private static String CONFIG_FILE_LOCATION = "hibernate.cfg.xml";
 	private static final ThreadLocal threadLocal = new ThreadLocal();
-    private  static Configuration configuration = new Configuration();
+    private static Configuration configuration = new Configuration();
     private static SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
 
@@ -69,8 +69,7 @@ public class HibernateSessionFactory {
 			configuration.configure(configFile);
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {
-			System.err
-					.println("%%%% Error Creating SessionFactory %%%%");
+			System.err.println("%%%% Error Creating SessionFactory %%%%");
 			e.printStackTrace();
 		}
 	}

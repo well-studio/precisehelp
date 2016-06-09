@@ -89,4 +89,11 @@ public class Questionreply implements java.io.Serializable {
 		this.replyAdm = replyAdm;
 	}
 
+	@Override
+	public String toString() {
+		return "Questionreply [replyId=" + replyId + ", replyContent="
+				+ replyContent + ", replyTime=" + replyTime + "]";
+	}
+	
+
 }

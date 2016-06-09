@@ -28,5 +28,8 @@
         <property name="letStat" type="java.lang.Integer">
             <column name="let_stat" />
         </property>
+        <property name="letSys" type="java.lang.Integer">
+            <column name="let_sys" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -1,69 +1,41 @@
 package cn.wellstudio.precisehelp.sqlhelp;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import java.util.List;
 
 import cn.wellstudio.precisehelp.entity.Admins;
-import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
+import cn.wellstudio.precisehelp.entity.Adminsinfo;
+import cn.wellstudio.precisehelp.util.Operation;
 
-/** 
- * @author xxmodd 
- * 管理员管理类
+/**
+ * 管理员管理类，增删改查
+ * @author xxmodd
  */
-public class AdminManage {
-	private static Session session;
-	
-	//删除管理员
-	public static boolean deleteAdmin(Admins admin){
-		Transaction tr = null;
-		try {
-			//获取session
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			session.delete(admin);
-			tr.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tr.rollback();
-			return false;
-		} finally{
-			try {
-				close();
-			} catch (Exception e2) {
-				return false;
-			}
-		}
+public class AdminManage extends ObjectManage{
+
+	// 根据管理员账号修改基本信息，（有些信息不能随意更改，待补充）  test true
+	public static boolean adminsinfoUpdate(Adminsinfo adminsinfo) {
+		return Operation.update(adminsinfo);
 	}
-	
-	//添加修改管理员
-	public static boolean addOrupdateAdmin(Admins admin){
-		Transaction tr = null;
-		try {
-			//获取session
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			session.saveOrUpdate(admin);
-			tr.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tr.rollback();
-			return false;
-		} finally{
-			try {
-				close();
-			} catch (Exception e2) {
-				return false;
-			}
+
+	// 根据管理员编号查询管理员基本信息，一个管理员对应一个基本信息表 test true
+	public static Adminsinfo adminInfoQuery(Admins adm) {
+		String hql = "from Adminsinfo as adm where adm.admins.admId = ?";
+		@SuppressWarnings("unchecked")
+		List<Adminsinfo> admList = Operation.hqlQuery(hql,adm.getAdmId());
+		if (admList.size() == 0) {
+			return null;
 		}
-		
+		return admList.get(0);
 	}
-	
-	
-	//关闭session
-		private static void close(){
-			HibernateSessionFactory.closeCurrentSession();
+
+	// 查询所有管理员账号信息,不包括密码 test true
+	@SuppressWarnings("unchecked")
+	public static List<Admins> adminsQuery() {
+		String hql = "from Admins";
+		List<Admins> admList = Operation.hqlQuery(hql);
+		if (admList.size() == 0) {
+			return null;
 		}
-		
+		return admList;
+	}
 }

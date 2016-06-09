@@ -1,9 +1,11 @@
 package cn.wellstudio.precisehelp.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * 完毕的订单
+ * 已完成的订单   管理员已处理完，用户已确认收货
  * @author huhong
  *
  */
@@ -11,30 +13,37 @@ public class OrderDone implements java.io.Serializable {
 
 	// Fields
 
-	private Integer orderdoneId; // id
-	private Users users; // 关联用户
-	private Express express; // 关联物流
-	private Admins admins; // 关联管理员
-	private Goodsinfo goodsinfo; // 关联商品
+	private static final long serialVersionUID = 1L;
+	private Integer orderdoneId; // 订单id
+	private Users users; // 下单用户
+	private Express express; // 物流信息
+	private Admins admins; // 处理的管理员
+	private Goodsinfo goodsinfo; // 商品信息
 	private String orderNum; // 订单编号
-	private String orderPs; // 订单备注
-	private Date orderTime; // 订单时间
+	private String orderPs; // 订单注释
+	private Date orderTime; // 订单下单时间
 	private String orderKcom; // 订单快递公司
 	private String orderKnum; // 订单快递单号
-	private Date orderDonetime; // 订单完成时间
-	private Integer orderComment; // 订单是否已经评论( 0 尚未评价 1 已评价)
+	private Date orderDonetime; // 订单完成的时间
+	private Integer orderComment; // 是否评价(++++) 0 尚未评价 1 已评价
+	private Set commentses = new HashSet(0); // 完成的订单对应的评论
 
 	// Constructors
-
+	
 	/** default constructor */
 	public OrderDone() {
+	}
+
+	public OrderDone(Integer orderdoneId) {
+		super();
+		this.orderdoneId = orderdoneId;
 	}
 
 	/** full constructor */
 	public OrderDone(Users users, Express express, Admins admins,
 			Goodsinfo goodsinfo, String orderNum, String orderPs,
 			Date orderTime, String orderKcom, String orderKnum,
-			Date orderDonetime, Integer orderComment) {
+			Date orderDonetime, Integer orderComment, Set commentses) {
 		this.users = users;
 		this.express = express;
 		this.admins = admins;
@@ -46,6 +55,7 @@ public class OrderDone implements java.io.Serializable {
 		this.orderKnum = orderKnum;
 		this.orderDonetime = orderDonetime;
 		this.orderComment = orderComment;
+		this.commentses = commentses;
 	}
 
 	// Property accessors
@@ -145,5 +155,24 @@ public class OrderDone implements java.io.Serializable {
 	public void setOrderComment(Integer orderComment) {
 		this.orderComment = orderComment;
 	}
+
+	public Set getCommentses() {
+		return this.commentses;
+	}
+
+	public void setCommentses(Set commentses) {
+		this.commentses = commentses;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDone [orderdoneId=" + orderdoneId + ", goodsinfo="
+				+ goodsinfo + ", orderNum=" + orderNum + ", orderPs=" + orderPs
+				+ ", orderTime=" + orderTime + ", orderKcom=" + orderKcom
+				+ ", orderKnum=" + orderKnum + ", orderDonetime="
+				+ orderDonetime + ", orderComment=" + orderComment + "]";
+	}
+	
+	
 
 }

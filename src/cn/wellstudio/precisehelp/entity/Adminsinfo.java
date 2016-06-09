@@ -1,7 +1,7 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * 管理员信息
+ * 管理员资料实体
  * @author huhong
  *
  */
@@ -9,11 +9,11 @@ public class Adminsinfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer adminfoId; // id
-	private Admins admins; // 关联管理员
+	private Integer adminfoId; // 资料id
+	private Admins admins; // 管理员
 	private String admNum; // 管理员编号
 	private String admNickname; // 管理员昵称
-	private String admName; // 管理员名称
+	private String admName; // 管理姓名
 	private String admPhone; // 管理员电话号码
 	private String admIdnum; // 管理员身份证号码
 
@@ -22,6 +22,18 @@ public class Adminsinfo implements java.io.Serializable {
 	/** default constructor */
 	public Adminsinfo() {
 	}
+	
+	
+	public Adminsinfo(String admNum, String admNickname, String admName,
+			String admPhone, String admIdnum) {
+		super();
+		this.admNum = admNum;
+		this.admNickname = admNickname;
+		this.admName = admName;
+		this.admPhone = admPhone;
+		this.admIdnum = admIdnum;
+	}
+
 
 	/** full constructor */
 	public Adminsinfo(Admins admins, String admNum, String admNickname,
@@ -92,4 +104,13 @@ public class Adminsinfo implements java.io.Serializable {
 		this.admIdnum = admIdnum;
 	}
 
+	@Override
+	public String toString() {
+		return "Adminsinfo [adminfoId=" + adminfoId + ", admNum=" + admNum
+				+ ", admNickname=" + admNickname + ", admName=" + admName
+				+ ", admPhone=" + admPhone + ", admIdnum=" + admIdnum + "]";
+	}
+
+	
+	
 }

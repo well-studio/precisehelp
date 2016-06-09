@@ -1,10 +1,8 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * 物流实体
+ * 物流表
  * @author huhong
  *
  */
@@ -12,12 +10,13 @@ public class Express implements java.io.Serializable {
 
 	// Fields
 
-	private Integer expressId; // id
-	private String expressKcom; // 快递公司名称
-	private String expressKnum; // 快递单号
-	private String expressContent; // 快递物流信息
-	private Set orderDoings = new HashSet(0); // 1:1 正在处理中的订单
-	private Set orderDones = new HashSet(0); // 1:1 处理完的订单
+	private static final long serialVersionUID = 1L;
+	private Integer expressId; // 物流id
+	private String expressKcom; // 物流快递公司
+	private String expressKnum; // 物流快递单号
+	private String expressContent; // 物流具体内容
+	private OrderDoing orderDoing;// 正在进行的订单
+	private OrderDone orderDone; // 处理完的订单
 
 	// Constructors
 
@@ -27,12 +26,12 @@ public class Express implements java.io.Serializable {
 
 	/** full constructor */
 	public Express(String expressKcom, String expressKnum,
-			String expressContent, Set orderDoings, Set orderDones) {
+			String expressContent, OrderDoing orderDoing, OrderDone orderDone) {
 		this.expressKcom = expressKcom;
 		this.expressKnum = expressKnum;
 		this.expressContent = expressContent;
-		this.orderDoings = orderDoings;
-		this.orderDones = orderDones;
+		this.orderDoing = orderDoing;
+		this.orderDone = orderDone;
 	}
 
 	// Property accessors
@@ -69,20 +68,28 @@ public class Express implements java.io.Serializable {
 		this.expressContent = expressContent;
 	}
 
-	public Set getOrderDoings() {
-		return this.orderDoings;
+	public OrderDoing getOrderDoing() {
+		return orderDoing;
 	}
 
-	public void setOrderDoings(Set orderDoings) {
-		this.orderDoings = orderDoings;
+	public void setOrderDoing(OrderDoing orderDoing) {
+		this.orderDoing = orderDoing;
 	}
 
-	public Set getOrderDones() {
-		return this.orderDones;
+	public OrderDone getOrderDone() {
+		return orderDone;
 	}
 
-	public void setOrderDones(Set orderDones) {
-		this.orderDones = orderDones;
+	public void setOrderDone(OrderDone orderDone) {
+		this.orderDone = orderDone;
 	}
 
+	@Override
+	public String toString() {
+		return "Express [expressId=" + expressId + ", expressKcom="
+				+ expressKcom + ", expressKnum=" + expressKnum
+				+ ", expressContent=" + expressContent + "]";
+	}
+
+	
 }

@@ -1,7 +1,7 @@
 package cn.wellstudio.precisehelp.entity;
 
 /**
- * 用户收货地址实体
+ * 收货地址实体
  * @author huhong
  *
  */
@@ -9,16 +9,16 @@ public class Toaddress implements java.io.Serializable {
 
 	// Fields
 
-	private Integer addressId; // id
-	private Users users; // 关联用户
+	private Integer addressId; // 地址id
+	private Users users; // 用户
 	private String addressProvince; // 省份
 	private String addressCity; // 城市
 	private String addressArea; // 区域
 	private String addressRoad; // 街道
-	private String addressDetail; // 详细地址
+	private String addressDetail; // 地址详情
 	private String addressPostcode; // 邮编
-	private String addressName; // 收货人姓名
-	private String addressPhone; // 收货人电话号码
+	private String addressName; // 收货地址人姓名
+	private String addressPhone; // 收货地址人电话
 
 	// Constructors
 
@@ -122,5 +122,16 @@ public class Toaddress implements java.io.Serializable {
 	public void setAddressPhone(String addressPhone) {
 		this.addressPhone = addressPhone;
 	}
+
+	@Override
+	public String toString() {
+		return "Toaddress [addressId=" + addressId + ", addressProvince="
+				+ addressProvince + ", addressCity=" + addressCity
+				+ ", addressArea=" + addressArea + ", addressRoad="
+				+ addressRoad + ", addressDetail=" + addressDetail
+				+ ", addressPostcode=" + addressPostcode + ", addressName="
+				+ addressName + ", addressPhone=" + addressPhone + "]";
+	}
+	
 
 }

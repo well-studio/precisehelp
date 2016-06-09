@@ -7,8 +7,8 @@
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Users" table="users" catalog="precisehelp">
         <id name="userId" type="java.lang.String">
-            <column name="user_id" length="60" />
-            <generator class="native" />
+            <column name="user_id" />
+            <generator class="uuid" />
         </id>
         <property name="userAccount" type="java.lang.String">
             <column name="user_account" length="30" />
@@ -16,9 +16,78 @@
         <property name="userPsw" type="java.lang.String">
             <column name="user_psw" length="30" />
         </property>
-        <property name="userPayPsw" type="java.lang.String">
+        <property name="userZfPsw" type="java.lang.String">
             <column name="user_pay_psw" length="30" />
         </property>
+        <set name="lettersesForLetTo" inverse="true">
+            <key>
+                <column name="let_to" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Letters" />
+        </set>
+        <set name="lettersesForLetFrom" inverse="true">
+            <key>
+                <column name="let_from" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Letters" />
+        </set>
+        <set name="orderDoings" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
+        </set>
+        <set name="commentses" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
+        </set>
+        <set name="usersinfos" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Usersinfo" />
+        </set>
+        <set name="orderDones" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
+        </set>
+        <set name="toaddresses" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Toaddress" />
+        </set>
+        <set name="orderTodos" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
+        </set>
+         <!-- +++ -->
+        <set name="goodsquestions" inverse="true">
+            <key>
+                <column name="user_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsquestion" />
+        </set>
+         <set name="usersfavorites" inverse="true">
+            <key>
+                <column name="user_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Usersfavorite" />
+        </set>
+        
+        <set name="questionreplies" inverse="true">
+            <key>
+                <column name="user_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Questionreply" />
+        </set>
+       
         <set name="couponses" inverse="true">
             <key>
                 <column name="user_id" length="60" />
@@ -30,66 +99,6 @@
                 <column name="user_id" length="60" not-null="true" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Shoppingcart" />
-        </set>
-        <set name="lettersesForLetTo" inverse="true">
-            <key>
-                <column name="let_to" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Letters" />
-        </set>
-        <set name="lettersesForLetFrom" inverse="true">
-            <key>
-                <column name="let_from" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Letters" />
-        </set>
-        <set name="orderDoings" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
-        </set>
-        <set name="goodsquestions" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsquestion" />
-        </set>
-        <set name="usersinfos" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Usersinfo" />
-        </set>
-        <set name="orderDones" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
-        </set>
-        <set name="usersfavorites" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Usersfavorite" />
-        </set>
-        <set name="toaddresses" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Toaddress" />
-        </set>
-        <set name="orderTodos" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
-        </set>
-        <set name="questionreplies" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Questionreply" />
         </set>
     </class>
 </hibernate-mapping>

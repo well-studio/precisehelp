@@ -11,16 +11,17 @@
             <generator class="native" />
         </id>
         <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="user_id" length="60" />
+            <column name="user_id" />
         </many-to-one>
-        <many-to-one name="express" class="cn.wellstudio.precisehelp.entity.Express" fetch="select">
+        <!-- 用unique="true"限制一对一的关系 -->
+        <many-to-one name="express" class="cn.wellstudio.precisehelp.entity.Express" unique="true" fetch="select" >
             <column name="express_id" />
         </many-to-one>
         <many-to-one name="admins" class="cn.wellstudio.precisehelp.entity.Admins" fetch="select">
-            <column name="adm_id" length="60" />
+            <column name="adm_id" />
         </many-to-one>
         <many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo" fetch="select">
-            <column name="goods_id" length="60" />
+            <column name="goods_id" />
         </many-to-one>
         <property name="orderNum" type="java.lang.String">
             <column name="order_num" length="30" />
@@ -31,9 +32,6 @@
         <property name="orderTime" type="java.util.Date">
             <column name="order_time" length="10" />
         </property>
-        <property name="orderHandleTime" type="java.util.Date">
-            <column name="order_handle_time" length="10" />
-        </property>
         <property name="orderStat" type="java.lang.Integer">
             <column name="order_stat" />
         </property>
@@ -43,11 +41,17 @@
         <property name="orderKnum" type="java.lang.String">
             <column name="order_knum" length="50" />
         </property>
+        <property name="orderHandleTime" type="java.util.Date">
+            <column name="order_handle_time" length="10" />
+        </property>
+        <!--  
         <set name="todolists" inverse="true">
             <key>
                 <column name="orderdoing_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Todolist" />
         </set>
+        -->
+        <one-to-one name="todolist" class="cn.wellstudio.precisehelp.entity.Todolist" property-ref="orderDoing" ></one-to-one>
     </class>
 </hibernate-mapping>

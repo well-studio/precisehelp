@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 用户实体
+ * 用户
  * @author huhong
  *
  */
@@ -12,50 +12,54 @@ public class Users implements java.io.Serializable {
 
 	// Fields
 
-	private String userId; // id
-	private String userAccount; // 账号
-	private String userPsw; // 登录密码
-	private String userPayPsw; // 支付密码
+	private String userId; // 用户id
+	private String userAccount; // 用户账号
+	private String userPsw; // 用户密码
+	private String userZfPsw; // 用户支付密码
+	private Set lettersesForLetTo = new HashSet(0); // 发出去的信
+	private Set lettersesForLetFrom = new HashSet(0); // 收到的信
+	private Set orderDoings = new HashSet(0); // 正在处理的订单
+	private Set commentses = new HashSet(0); // 发出的评论列表
+	private Set usersinfos = new HashSet(0); // 用户信息
+	private Set orderDones = new HashSet(0); // 该用户已完成的订单
+	private Set toaddresses = new HashSet(0); // 该用户的收货地址
+	private Set orderTodos = new HashSet(0); // 该用户待处理的订单
+
+	//+++
 	private Set couponses = new HashSet(0); // 关联购物券
 	private Set shoppingcarts = new HashSet(0); // 关联购物车 
-	private Set lettersesForLetTo = new HashSet(0); // 关联发件箱
-//	private Set lettersesForLetFrom = new HashSet(0); // 关联收件箱
-	private Set orderDoings = new HashSet(0); // 关联正在处理的订单
 	private Set goodsquestions = new HashSet(0); // 关联商品提问
-	private Set usersinfos = new HashSet(0); // 关联用户信息
-	private Set orderDones = new HashSet(0); // 关联已完成的订单
-	private Set usersfavorites = new HashSet(0); // 关联商品收藏夹
-	private Set toaddresses = new HashSet(0); // 关联收货地址
-	private Set orderTodos = new HashSet(0); // 关联待处理的订单
 	private Set questionreplies = new HashSet(0); // 关联提问回答
-
+	private Set usersfavorites = new HashSet(0); // 关联商品收藏夹
 	// Constructors
 
 	/** default constructor */
 	public Users() {
 	}
 
+	
+	public Users(String userId) {
+		super();
+		this.userId = userId;
+	}
+
+
 	/** full constructor */
-	public Users(String userAccount, String userPsw, String userPayPsw,
-			Set couponses, Set shoppingcarts, Set lettersesForLetTo,
-			Set lettersesForLetFrom, Set orderDoings, Set goodsquestions,
-			Set usersinfos, Set orderDones, Set usersfavorites,
-			Set toaddresses, Set orderTodos, Set questionreplies) {
+	public Users(String userAccount, String userPsw, String userZfPsw,
+			Set lettersesForLetTo, Set lettersesForLetFrom, Set orderDoings,
+			Set commentses, Set usersinfos, Set orderDones, Set toaddresses,
+			Set orderTodos) {
 		this.userAccount = userAccount;
 		this.userPsw = userPsw;
-		this.userPayPsw = userPayPsw;
-		this.couponses = couponses;
-		this.shoppingcarts = shoppingcarts;
+		this.userZfPsw = userZfPsw;
 		this.lettersesForLetTo = lettersesForLetTo;
 		this.lettersesForLetFrom = lettersesForLetFrom;
 		this.orderDoings = orderDoings;
-		this.goodsquestions = goodsquestions;
+		this.commentses = commentses;
 		this.usersinfos = usersinfos;
 		this.orderDones = orderDones;
-		this.usersfavorites = usersfavorites;
 		this.toaddresses = toaddresses;
 		this.orderTodos = orderTodos;
-		this.questionreplies = questionreplies;
 	}
 
 	// Property accessors
@@ -84,28 +88,12 @@ public class Users implements java.io.Serializable {
 		this.userPsw = userPsw;
 	}
 
-	public String getUserPayPsw() {
-		return this.userPayPsw;
+	public String getUserZfPsw() {
+		return this.userZfPsw;
 	}
 
-	public void setUserPayPsw(String userPayPsw) {
-		this.userPayPsw = userPayPsw;
-	}
-
-	public Set getCouponses() {
-		return this.couponses;
-	}
-
-	public void setCouponses(Set couponses) {
-		this.couponses = couponses;
-	}
-
-	public Set getShoppingcarts() {
-		return this.shoppingcarts;
-	}
-
-	public void setShoppingcarts(Set shoppingcarts) {
-		this.shoppingcarts = shoppingcarts;
+	public void setUserZfPsw(String userZfPsw) {
+		this.userZfPsw = userZfPsw;
 	}
 
 	public Set getLettersesForLetTo() {
@@ -132,12 +120,12 @@ public class Users implements java.io.Serializable {
 		this.orderDoings = orderDoings;
 	}
 
-	public Set getGoodsquestions() {
-		return this.goodsquestions;
+	public Set getCommentses() {
+		return this.commentses;
 	}
 
-	public void setGoodsquestions(Set goodsquestions) {
-		this.goodsquestions = goodsquestions;
+	public void setCommentses(Set commentses) {
+		this.commentses = commentses;
 	}
 
 	public Set getUsersinfos() {
@@ -156,14 +144,6 @@ public class Users implements java.io.Serializable {
 		this.orderDones = orderDones;
 	}
 
-	public Set getUsersfavorites() {
-		return this.usersfavorites;
-	}
-
-	public void setUsersfavorites(Set usersfavorites) {
-		this.usersfavorites = usersfavorites;
-	}
-
 	public Set getToaddresses() {
 		return this.toaddresses;
 	}
@@ -180,12 +160,63 @@ public class Users implements java.io.Serializable {
 		this.orderTodos = orderTodos;
 	}
 
-	public Set getQuestionreplies() {
-		return this.questionreplies;
+
+	public Set getCouponses() {
+		return couponses;
 	}
+
+
+	public void setCouponses(Set couponses) {
+		this.couponses = couponses;
+	}
+
+
+	public Set getShoppingcarts() {
+		return shoppingcarts;
+	}
+
+
+	public void setShoppingcarts(Set shoppingcarts) {
+		this.shoppingcarts = shoppingcarts;
+	}
+
+
+	public Set getGoodsquestions() {
+		return goodsquestions;
+	}
+
+
+	public void setGoodsquestions(Set goodsquestions) {
+		this.goodsquestions = goodsquestions;
+	}
+
+
+	public Set getQuestionreplies() {
+		return questionreplies;
+	}
+
 
 	public void setQuestionreplies(Set questionreplies) {
 		this.questionreplies = questionreplies;
 	}
+
+
+	public Set getUsersfavorites() {
+		return usersfavorites;
+	}
+
+
+	public void setUsersfavorites(Set usersfavorites) {
+		this.usersfavorites = usersfavorites;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Users [userId=" + userId + ", userAccount=" + userAccount
+				+ ", userPsw=" + userPsw + ", userZfPsw=" + userZfPsw + "]";
+	}
+	
+	
 
 }

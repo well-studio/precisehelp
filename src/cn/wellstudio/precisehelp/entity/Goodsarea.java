@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 商品产地
+ * 产地实体
  * @author huhong
  *
  */
@@ -12,11 +12,11 @@ public class Goodsarea implements java.io.Serializable {
 
 	// Fields
 
-	private Integer areaId; // id
+	private Integer areaId; // 产地id
 	private String areaName; // 产地名称
-	private String areaLocation; // 产地地理位置
-	private String areaStat; // 产地的详细描述
-	private Set goodsinfos = new HashSet(0); // 关联的商品信息
+	private String areaLocation; // 产地具体地址
+	private String areaStat; // 产地描述
+	private Set goodsinfos = new HashSet(0); // 商品信息集合
 
 	// Constructors
 
@@ -75,4 +75,12 @@ public class Goodsarea implements java.io.Serializable {
 		this.goodsinfos = goodsinfos;
 	}
 
+	@Override
+	public String toString() {
+		return "Goodsarea [areaId=" + areaId + ", areaName=" + areaName
+				+ ", areaLocation=" + areaLocation + ", areaStat=" + areaStat
+				+ "]";
+	}
+
+	
 }

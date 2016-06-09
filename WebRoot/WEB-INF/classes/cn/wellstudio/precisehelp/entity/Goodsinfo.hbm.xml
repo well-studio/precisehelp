@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Goodsinfo" table="goodsinfo" catalog="precisehelp">
-        <id name="goodsId" type="java.lang.Integer">
+        <id name="goodsId" type="java.lang.String">
             <column name="goods_id" />
-            <generator class="native" />
+            <generator class="uuid.hex" />
         </id>
         <many-to-one name="goodstype" class="cn.wellstudio.precisehelp.entity.Goodstype" fetch="select">
             <column name="goodstype_id" />
@@ -23,10 +23,13 @@
             <column name="goods_stat" length="65535" />
         </property>
         <property name="goodsLastPrice" type="java.lang.Double">
-            <column name="goods_last_price" precision="20" scale="0" />
+            <column name="goods_last_price" precision="22" scale="0" />
         </property>
         <property name="goodsNowPrice" type="java.lang.Double">
-            <column name="goods_now_price" precision="20" scale="0" />
+            <column name="goods_now_price" precision="22" scale="0" />
+        </property>
+        <property name="goodsDiscount" type="java.lang.Double">
+            <column name="goods_discount" precision="22" scale="0" />
         </property>
         <property name="goodsPriceUnit" type="java.lang.String">
             <column name="goods_price_unit" length="10" />
@@ -54,6 +57,26 @@
                 <column name="goods_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
+        </set>
+        
+        <set name="goodsquestions" inverse="true">
+            <key>
+                <column name="goods_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsquestion" />
+        </set>
+        
+        <set name="usersfavorites" inverse="true">
+            <key>
+                <column name="goods_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Usersfavorite" />
+        </set>
+        <set name="shoppingcarts" inverse="true">
+            <key>
+                <column name="goods_id" length="60" not-null="true" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Shoppingcart" />
         </set>
     </class>
 </hibernate-mapping>

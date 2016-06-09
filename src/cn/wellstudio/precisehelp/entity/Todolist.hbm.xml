@@ -10,14 +10,14 @@
             <column name="todo_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="orderDoing" class="cn.wellstudio.precisehelp.entity.OrderDoing" fetch="select">
+        <many-to-one name="orderDoing" class="cn.wellstudio.precisehelp.entity.OrderDoing" unique="true" fetch="select">
             <column name="orderdoing_id" />
-        </many-to-one>
-        <many-to-one name="admins" class="cn.wellstudio.precisehelp.entity.Admins" fetch="select">
-            <column name="adm_id" length="60" />
         </many-to-one>
         <property name="todoTime" type="java.util.Date">
             <column name="todo_time" length="10" />
         </property>
+        <many-to-one name="admins" class="cn.wellstudio.precisehelp.entity.Admins" fetch="select">
+            <column name="adm_id" length="60" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

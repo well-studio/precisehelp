@@ -104,8 +104,10 @@ create table order_todo (
 	order_time date, -- 订单下单时间
 	order_pay int default 0, -- 是否付款(0 未付款 1 已付款)
 	order_cancel int default 0, -- 是否退款取消(0 没 1 是)
+	address_id int, -- 关联收获地址
 	user_id varchar(60), -- 关联用户表
 	goods_id varchar(60), -- 关联商品
+	constraint foreign key(address_id) references toaddress(address_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id)
 );
@@ -119,6 +121,7 @@ create table order_doing (
 	order_num varchar(30), -- 订单编号
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
+	address_id int, -- 关联收获地址
 	order_handle_time date, -- 订单处理时间(+++)
 	order_stat int, -- 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)(++++)
 	order_kcom varchar(20), -- 快递公司名称(+++)
@@ -127,6 +130,7 @@ create table order_doing (
 	goods_id varchar(60), -- 关联商品
 	adm_id varchar(60), -- 关联处理人员(+++)
 	express_id int, -- 关联快递(物流)表(+++)
+	constraint foreign key(address_id) references toaddress(address_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id),
 	constraint foreign key(adm_id) references admins(adm_id),
@@ -143,6 +147,7 @@ create table order_done (
 	order_num varchar(30), -- 订单编号
 	order_ps varchar(200), -- 订单备注
 	order_time date, -- 订单下单时间
+	address_id int, -- 关联收获地址
 	order_kcom varchar(20), -- 快递公司名称
 	order_knum varchar(50), -- 快递单号
 	order_donetime date, -- 订单完成时间(++++)  订单完成后  即可评价该商品
@@ -152,6 +157,7 @@ create table order_done (
 	adm_id varchar(60), -- 关联处理人员
 	express_id int, -- 关联快递(物流)表
 	-- comment_id int, -- 关联评论表(++++)
+	constraint foreign key(address_id) references toaddress(address_id),
 	constraint foreign key(user_id) references users(user_id),
 	constraint foreign key(goods_id) references goodsinfo(goods_id),
 	constraint foreign key(adm_id) references admins(adm_id),
@@ -229,9 +235,10 @@ create table questionreply (
 	reply_id int primary key auto_increment, -- 回答id
 	reply_content varchar(200) not null, -- 回答内容
 	reply_time date, -- 回答时间
-	reply_adm int default 0, -- 是否是管理员回答(0 不是 1是)
+	adm_id varchar(60) default null, -- 关联管理员(非NULL则是管理员回答)
 	ques_id varchar(60), -- 关联问题
 	user_id varchar(60), -- 关联用户
+	constraint foreign key(adm_id) references admins(adm_id),
 	constraint foreign key(ques_id) references goodsquestion(ques_id),
 	constraint foreign key(user_id) references users(user_id)
 );
@@ -245,6 +252,7 @@ create table comments (
 	com_content varchar(250), -- 评论内容
 	com_time date, -- 评论时间
 	com_ups int default 0, -- 点赞人数
+	com_res int default 3, -- 好评 3 中评 2 差评 1
 	orderdone_id int, -- 关联已完成订单
 	com_parent int, -- 父级评论
 	user_id varchar(60), -- 关联用户

@@ -43,8 +43,15 @@ public class Goodsquestion implements java.io.Serializable {
 
 	// Property accessors
 
+	
+
 	public String getQuesId() {
 		return this.quesId;
+	}
+
+	public Goodsquestion(String quesId) {
+		super();
+		this.quesId = quesId;
 	}
 
 	public void setQuesId(String quesId) {
@@ -106,5 +113,14 @@ public class Goodsquestion implements java.io.Serializable {
 	public void setQuestionreplies(Set questionreplies) {
 		this.questionreplies = questionreplies;
 	}
+
+	@Override
+	public String toString() {
+		return "Goodsquestion [quesId=" + quesId + ", quesTitle=" + quesTitle
+				+ ", quesContent=" + quesContent + ", quesTime=" + quesTime
+				+ ", quesClose=" + quesClose + "]";
+	}
+	
+	
 
 }

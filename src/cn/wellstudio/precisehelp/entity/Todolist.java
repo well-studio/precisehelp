@@ -3,7 +3,7 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * 管理员待处理实体
+ * 处理订单列表
  * @author huhong
  *
  */
@@ -11,11 +11,10 @@ public class Todolist implements java.io.Serializable {
 
 	// Fields
 
-	private Integer todoId; // id
-	private OrderDoing orderDoing; // 1:1关联正在处理的订单
+	private Integer todoId; // 待做订单id
+	private OrderDoing orderDoing; // 处理中订单
+	private Date todoTime; // 管理员接单时间
 	private Admins admins; // 关联处理的管理员
-	private Date todoTime; // 处理的时间
-
 	// Constructors
 
 	/** default constructor */
@@ -23,9 +22,8 @@ public class Todolist implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Todolist(OrderDoing orderDoing, Admins admins, Date todoTime) {
+	public Todolist(OrderDoing orderDoing, Date todoTime) {
 		this.orderDoing = orderDoing;
-		this.admins = admins;
 		this.todoTime = todoTime;
 	}
 
@@ -47,14 +45,6 @@ public class Todolist implements java.io.Serializable {
 		this.orderDoing = orderDoing;
 	}
 
-	public Admins getAdmins() {
-		return this.admins;
-	}
-
-	public void setAdmins(Admins admins) {
-		this.admins = admins;
-	}
-
 	public Date getTodoTime() {
 		return this.todoTime;
 	}
@@ -63,4 +53,20 @@ public class Todolist implements java.io.Serializable {
 		this.todoTime = todoTime;
 	}
 
+	public Admins getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(Admins admins) {
+		this.admins = admins;
+	}
+
+	@Override
+	public String toString() {
+		return "Todolist [todoId=" + todoId + ", todoTime=" + todoTime + "]";
+	}
+
+	
+
+	
 }

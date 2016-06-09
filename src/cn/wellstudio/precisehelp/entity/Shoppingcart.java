@@ -10,7 +10,11 @@ public class Shoppingcart implements java.io.Serializable {
 	// Fields
 
 	private ShoppingcartId id; // id
+	
 	private Integer goodsNum; // 商品数量
+	//+++
+//	private Goodsinfo goodsinfo; // 关联商品
+//	private Users users; // 关联用户
 
 	// Constructors
 
@@ -19,15 +23,15 @@ public class Shoppingcart implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Shoppingcart(ShoppingcartId id) {
-		this.id = id;
-	}
+//	public Shoppingcart(ShoppingcartId id) {
+//		this.id = id;
+//	}
 
 	/** full constructor */
-	public Shoppingcart(ShoppingcartId id, Integer goodsNum) {
-		this.id = id;
-		this.goodsNum = goodsNum;
-	}
+//	public Shoppingcart(ShoppingcartId id, Integer goodsNum) {
+//		this.id = id;
+//		this.goodsNum = goodsNum;
+//	}
 
 	// Property accessors
 
@@ -46,5 +50,14 @@ public class Shoppingcart implements java.io.Serializable {
 	public void setGoodsNum(Integer goodsNum) {
 		this.goodsNum = goodsNum;
 	}
+
+	@Override
+	public String toString() {
+		return "Shoppingcart [id=" + id + ", goodsNum=" + goodsNum + "]";
+	}
+
+	
+	
+	
 
 }

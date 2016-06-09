@@ -11,10 +11,10 @@
             <generator class="native" />
         </id>
         <many-to-one name="usersByLetFrom" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="let_from" length="60" />
+            <column name="let_from" />
         </many-to-one>
         <many-to-one name="usersByLetTo" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="let_to" length="60" />
+            <column name="let_to" />
         </many-to-one>
         <property name="letTitle" type="java.lang.String">
             <column name="let_title" length="30" />

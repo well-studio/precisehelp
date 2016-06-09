@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 正在处理的订单
+ * 正在进行的订单  管理员处理中
  * @author huhong
  *
  */
@@ -13,19 +13,20 @@ public class OrderDoing implements java.io.Serializable {
 
 	// Fields
 
-	private Integer orderdoingId; // id
-	private Users users; // 关联用户
-	private Express express; // 关联物流
-	private Admins admins; // 关联管理员
-	private Goodsinfo goodsinfo; // 关联商品
+	private static final long serialVersionUID = 1L;
+	private Integer orderdoingId; // 正在进行的订单id
+	private Users users; // 关联的用户
+	private Express express; // 关联的物流信息
+	private Admins admins; // 处理订单的管理员
+	private Goodsinfo goodsinfo; // 关联的商品类型
 	private String orderNum; // 订单编号
-	private String orderPs; // 订单备注
+	private String orderPs; // 订单注释
 	private Date orderTime; // 订单下单时间
-	private Date orderHandleTime; // 订单开始处理时间
-	private Integer orderStat; // 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)(++++)
+	private Date orderHandleTime; // 订单开始处理时间+++
+	private Integer orderStat; // 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)
 	private String orderKcom; // 订单快递公司
-	private String orderKnum; // 订单快递单号
-	private Set todolists = new HashSet(0); // 1:1 管理员处理list
+	private String orderKnum; // 订单快递订单
+	private Todolist todolist; //1:1 管理员处理list
 
 	// Constructors
 
@@ -33,11 +34,16 @@ public class OrderDoing implements java.io.Serializable {
 	public OrderDoing() {
 	}
 
+	public OrderDoing(Integer orderdoingId) {
+		super();
+		this.orderdoingId = orderdoingId;
+	}
+
 	/** full constructor */
 	public OrderDoing(Users users, Express express, Admins admins,
 			Goodsinfo goodsinfo, String orderNum, String orderPs,
-			Date orderTime, Date orderHandleTime, Integer orderStat,
-			String orderKcom, String orderKnum, Set todolists) {
+			Date orderTime, Integer orderStat, String orderKcom,
+			String orderKnum, Todolist todolist) {
 		this.users = users;
 		this.express = express;
 		this.admins = admins;
@@ -45,11 +51,10 @@ public class OrderDoing implements java.io.Serializable {
 		this.orderNum = orderNum;
 		this.orderPs = orderPs;
 		this.orderTime = orderTime;
-		this.orderHandleTime = orderHandleTime;
 		this.orderStat = orderStat;
 		this.orderKcom = orderKcom;
 		this.orderKnum = orderKnum;
-		this.todolists = todolists;
+		this.todolist = todolist;
 	}
 
 	// Property accessors
@@ -118,14 +123,6 @@ public class OrderDoing implements java.io.Serializable {
 		this.orderTime = orderTime;
 	}
 
-	public Date getOrderHandleTime() {
-		return this.orderHandleTime;
-	}
-
-	public void setOrderHandleTime(Date orderHandleTime) {
-		this.orderHandleTime = orderHandleTime;
-	}
-
 	public Integer getOrderStat() {
 		return this.orderStat;
 	}
@@ -150,12 +147,32 @@ public class OrderDoing implements java.io.Serializable {
 		this.orderKnum = orderKnum;
 	}
 
-	public Set getTodolists() {
-		return this.todolists;
+	public Todolist getTodolist() {
+		return todolist;
 	}
 
-	public void setTodolists(Set todolists) {
-		this.todolists = todolists;
+	public void setTodolist(Todolist todolist) {
+		this.todolist = todolist;
 	}
 
+	public Date getOrderHandleTime() {
+		return orderHandleTime;
+	}
+
+	public void setOrderHandleTime(Date orderHandleTime) {
+		this.orderHandleTime = orderHandleTime;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDoing [orderdoingId=" + orderdoingId + ", orderNum="
+				+ orderNum + ", orderPs=" + orderPs + ", orderTime="
+				+ orderTime + ", orderStat=" + orderStat + ", orderKcom="
+				+ orderKcom + ", orderKnum=" + orderKnum + "]";
+	}
+
+	
+
+	
+	
 }

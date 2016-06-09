@@ -3,7 +3,7 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * 站内信箱(系统消息)
+ * 站内信实体
  * @author huhong
  *
  */
@@ -11,15 +11,14 @@ public class Letters implements java.io.Serializable {
 
 	// Fields
 
-	private Integer letId; //id
-	private Users usersByLetFrom; // 信从哪儿来
-	private Users usersByLetTo; // 信要去哪儿
-	private String letTitle; // 信的标题
-	private String letContent; // 信的内容
-	private Date letTime; // 信的时间
-	private Integer letStat; // 信的描述
+	private Integer letId; // 信id
+	private Users usersByLetFrom; // 信来自哪
+	private Users usersByLetTo; // 信去哪
+	private String letTitle; // 信标题
+	private String letContent; // 信内容
+	private Date letTime; // 信时间
+	private Integer letStat; // 信的状态(0 未看 1已看)
 	private Integer letSys; // 是否是系统消息(0 不是 1 是)
-
 	// Constructors
 
 	/** default constructor */
@@ -28,14 +27,13 @@ public class Letters implements java.io.Serializable {
 
 	/** full constructor */
 	public Letters(Users usersByLetFrom, Users usersByLetTo, String letTitle,
-			String letContent, Date letTime, Integer letStat, Integer letSys) {
+			String letContent, Date letTime, Integer letStat) {
 		this.usersByLetFrom = usersByLetFrom;
 		this.usersByLetTo = usersByLetTo;
 		this.letTitle = letTitle;
 		this.letContent = letContent;
 		this.letTime = letTime;
 		this.letStat = letStat;
-		this.letSys = letSys;
 	}
 
 	// Property accessors
@@ -96,12 +94,21 @@ public class Letters implements java.io.Serializable {
 		this.letStat = letStat;
 	}
 
+	
 	public Integer getLetSys() {
-		return this.letSys;
+		return letSys;
 	}
 
 	public void setLetSys(Integer letSys) {
 		this.letSys = letSys;
 	}
 
+	@Override
+	public String toString() {
+		return "Letters [letId=" + letId + ", letTitle=" + letTitle
+				+ ", letContent=" + letContent + ", letTime=" + letTime
+				+ ", letStat=" + letStat + ", letSys=" + letSys + "]";
+	}
+
+	
 }

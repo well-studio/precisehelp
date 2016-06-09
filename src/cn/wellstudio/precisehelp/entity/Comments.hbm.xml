@@ -13,9 +13,6 @@
         <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
             <column name="user_id" length="60" />
         </many-to-one>
-        <many-to-one name="comments" class="cn.wellstudio.precisehelp.entity.Comments" fetch="select">
-            <column name="com_parent" />
-        </many-to-one>
         <many-to-one name="orderDone" class="cn.wellstudio.precisehelp.entity.OrderDone" fetch="select">
             <column name="orderdone_id" />
         </many-to-one>
@@ -31,11 +28,17 @@
         <property name="comUps" type="java.lang.Integer">
             <column name="com_ups" />
         </property>
+        <!-- 
         <set name="commentses" inverse="true">
             <key>
                 <column name="com_parent" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
         </set>
+        -->
+        <many-to-one name="comParent" class="cn.wellstudio.precisehelp.entity.Comments" unique="true" fetch="select">
+            <column name="com_parent" />
+        </many-to-one>
+        <one-to-one name="comChild" class="cn.wellstudio.precisehelp.entity.Comments" property-ref="comParent"></one-to-one>
     </class>
 </hibernate-mapping>

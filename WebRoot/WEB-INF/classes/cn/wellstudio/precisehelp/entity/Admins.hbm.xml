@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Admins" table="admins" catalog="precisehelp">
-        <id name="admId" type="java.lang.Integer">
+        <id name="admId" type="java.lang.String">
             <column name="adm_id" />
-            <generator class="native" />
+            <generator class="uuid.hex"/>
         </id>
         <property name="admAccount" type="java.lang.String">
             <column name="adm_account" length="20" />
@@ -22,12 +22,24 @@
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
         </set>
+        
+         <set name="todolists" inverse="true">
+            <key>
+                <column name="adm_id" length="60" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Todolist" />
+        </set>
+        <!-- 
         <set name="adminsinfos" inverse="true">
             <key>
                 <column name="adm_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Adminsinfo" />
         </set>
+         -->
+        
+         <one-to-one name="adminsinfo" class="cn.wellstudio.precisehelp.entity.Adminsinfo" property-ref="admins"/>
+         
         <set name="orderDones" inverse="true">
             <key>
                 <column name="adm_id" />

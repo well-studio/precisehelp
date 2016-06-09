@@ -9,13 +9,13 @@ public class Usersinfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer usersinfoId; // id
-	private Users users; // 关联用户
+	private Integer usersinfoId; // 用户资料id
+	private Users users; // 该资料属于哪一个用户
 	private String userImg; // 用户头像
 	private String userSex; // 用户性别
 	private String userNickname; // 用户昵称
 	private String userSign; // 用户个性签名
-	private String userPhone; // 用户电话号码
+	private String userPhone; // 用户手机号码
 	private String userIdnum; // 用户身份证号码
 	private String userRname; // 用户真实姓名
 
@@ -112,5 +112,15 @@ public class Usersinfo implements java.io.Serializable {
 	public void setUserRname(String userRname) {
 		this.userRname = userRname;
 	}
+
+	@Override
+	public String toString() {
+		return "Usersinfo [usersinfoId=" + usersinfoId + ", userImg=" + userImg
+				+ ", userSex=" + userSex + ", userNickname=" + userNickname
+				+ ", userSign=" + userSign + ", userPhone=" + userPhone
+				+ ", userIdnum=" + userIdnum + ", userRname=" + userRname + "]";
+	}
+	
+	
 
 }

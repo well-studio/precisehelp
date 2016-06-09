@@ -12,33 +12,59 @@ public class Admins implements java.io.Serializable {
 
 	// Fields
 
-	private String admId; // id
-	private String admAccount; // 账号
+	private String admId; // 用户id
+	private String admAccount; // 管理员账号
 	private Integer admPower; // 权限标记
-	private String admPsw; // 密码
-	private Set orderDoings = new HashSet(0); // 接的订单
-	private Set adminsinfos = new HashSet(0); // 关联管理员信息
+	private String admPsw; // 管理员密码
+	private Adminsinfo adminsinfo; // 管理员资料
+	private Set orderDoings = new HashSet(0); // 正在处理的订单
 	private Set todolists = new HashSet(0); // 该管理员正在处理的订单
-	private Set orderDones = new HashSet(0); // 该管理员完成的订单
+	private Set orderDones = new HashSet(0); // 管理员处理过的订单
 
 	// Constructors
 
+	
+	
 	/** default constructor */
 	public Admins() {
 	}
+	
+	public Admins(Integer admId,String admPsw) {
+		super();
+		this.admPsw = admPsw;
+	}
 
-	/** full constructor */
-	public Admins(String admAccount, Integer admPower, String admPsw,
-			Set orderDoings, Set adminsinfos, Set todolists, Set orderDones) {
+	//admId,admAccount,admPsw
+	public Admins(String admId, String admAccount, String admPsw) {
+		super();
+		this.admId = admId;
 		this.admAccount = admAccount;
-		this.admPower = admPower;
+		this.admPsw = admPsw;
+	}
+	//admAccount,admPsw
+	public Admins(String admAccount, String admPsw) {
+		super();
+		this.admAccount = admAccount;
+		this.admPsw = admPsw;
+	}
+	//admId
+	public Admins(String admId) {
+		super();
+		this.admId = admId;
+	}
+
+	
+	/** full constructor */
+	public Admins(String admAccount, String admPsw, Set orderDoings,
+			Adminsinfo adminsinfo, Set orderDones) {
+		this.admAccount = admAccount;
 		this.admPsw = admPsw;
 		this.orderDoings = orderDoings;
-		this.adminsinfos = adminsinfos;
-		this.todolists = todolists;
+		this.adminsinfo = adminsinfo;
 		this.orderDones = orderDones;
 	}
 
+	
 	// Property accessors
 
 	public String getAdmId() {
@@ -57,14 +83,6 @@ public class Admins implements java.io.Serializable {
 		this.admAccount = admAccount;
 	}
 
-	public Integer getAdmPower() {
-		return this.admPower;
-	}
-
-	public void setAdmPower(Integer admPower) {
-		this.admPower = admPower;
-	}
-
 	public String getAdmPsw() {
 		return this.admPsw;
 	}
@@ -81,28 +99,52 @@ public class Admins implements java.io.Serializable {
 		this.orderDoings = orderDoings;
 	}
 
-	public Set getAdminsinfos() {
-		return this.adminsinfos;
+//	public Set getAdminsinfos() {
+//		return this.adminsinfos;
+//	}
+//
+//	public void setAdminsinfos(Set adminsinfos) {
+//		this.adminsinfos = adminsinfos;
+//	}
+	
+	public Set getOrderDones() {
+		return this.orderDones;
 	}
 
-	public void setAdminsinfos(Set adminsinfos) {
-		this.adminsinfos = adminsinfos;
+
+	public Adminsinfo getAdminsinfo() {
+		return adminsinfo;
+	}
+
+	public void setAdminsinfo(Adminsinfo adminsinfo) {
+		this.adminsinfo = adminsinfo;
+	}
+
+	public void setOrderDones(Set orderDones) {
+		this.orderDones = orderDones;
+	}
+
+	public Integer getAdmPower() {
+		return admPower;
+	}
+
+	public void setAdmPower(Integer admPower) {
+		this.admPower = admPower;
 	}
 
 	public Set getTodolists() {
-		return this.todolists;
+		return todolists;
 	}
 
 	public void setTodolists(Set todolists) {
 		this.todolists = todolists;
 	}
 
-	public Set getOrderDones() {
-		return this.orderDones;
+	@Override
+	public String toString() {
+		return "Admins [admId=" + admId + ", admAccount=" + admAccount + "]";
 	}
-
-	public void setOrderDones(Set orderDones) {
-		this.orderDones = orderDones;
-	}
+	
+	
 
 }

@@ -70,4 +70,12 @@ public class ShoppingcartId implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "ShoppingcartId [users=" + users + ", goodsinfo=" + goodsinfo
+				+ "]";
+	}
+	
+	
+
 }

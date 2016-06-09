@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 商品种类
+ * 商品类型实体
  * @author huhong
  *
  */
@@ -12,10 +12,10 @@ public class Goodstype implements java.io.Serializable {
 
 	// Fields
 
-	private Integer typeId; // id
+	private Integer typeId; // 类型id
 	private String typeName; // 类型名称
 	private String typeStat; // 类型描述
-	private Set goodsinfos = new HashSet(0); // 关联商品信息
+	private Set goodsinfos = new HashSet(0); // 该商品类型对应的商品信息列表
 
 	// Constructors
 
@@ -64,4 +64,11 @@ public class Goodstype implements java.io.Serializable {
 		this.goodsinfos = goodsinfos;
 	}
 
+	@Override
+	public String toString() {
+		return "Goodstype [typeId=" + typeId + ", typeName=" + typeName
+				+ ", typeStat=" + typeStat + "]";
+	}
+
+	
 }

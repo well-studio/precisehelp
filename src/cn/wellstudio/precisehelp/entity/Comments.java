@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * 评论实体
+ * 
  * @author huhong
  *
  */
@@ -15,13 +16,14 @@ public class Comments implements java.io.Serializable {
 
 	private Integer comId; // id
 	private Users users; // 关联用户
-	private Comments comments; // 关联评论
+	private Comments comChild; // 关联儿子评论
 	private OrderDone orderDone; // 关联已完成的订单
 	private Goodsinfo goodsinfo; // 关联商品信息
 	private String comContent; // 评论内容
 	private Date comTime; // 评论时间
 	private Integer comUps; // 评论赞数
-	private Set commentses = new HashSet(0); // 关联父亲
+	// private Set commentses = new HashSet(0); // 关联父亲
+	private Comments comParent; // 关联父亲
 
 	// Constructors
 
@@ -29,18 +31,23 @@ public class Comments implements java.io.Serializable {
 	public Comments() {
 	}
 
+	public Comments(Integer comId) {
+		super();
+		this.comId = comId;
+	}
+
 	/** full constructor */
-	public Comments(Users users, Comments comments, OrderDone orderDone,
+	public Comments(Users users, Comments comChild, OrderDone orderDone,
 			Goodsinfo goodsinfo, String comContent, Date comTime,
-			Integer comUps, Set commentses) {
+			Integer comUps, Comments comParent) {
 		this.users = users;
-		this.comments = comments;
+		this.comChild = comChild;
 		this.orderDone = orderDone;
 		this.goodsinfo = goodsinfo;
 		this.comContent = comContent;
 		this.comTime = comTime;
 		this.comUps = comUps;
-		this.commentses = commentses;
+		this.comParent = comParent;
 	}
 
 	// Property accessors
@@ -59,14 +66,6 @@ public class Comments implements java.io.Serializable {
 
 	public void setUsers(Users users) {
 		this.users = users;
-	}
-
-	public Comments getComments() {
-		return this.comments;
-	}
-
-	public void setComments(Comments comments) {
-		this.comments = comments;
 	}
 
 	public OrderDone getOrderDone() {
@@ -109,12 +108,34 @@ public class Comments implements java.io.Serializable {
 		this.comUps = comUps;
 	}
 
-	public Set getCommentses() {
-		return this.commentses;
+	public Comments getComParent() {
+		return comParent;
 	}
 
-	public void setCommentses(Set commentses) {
-		this.commentses = commentses;
+	public void setComParent(Comments comParent) {
+		this.comParent = comParent;
 	}
+
+	public Comments getComChild() {
+		return comChild;
+	}
+
+	public void setComChild(Comments comChild) {
+		this.comChild = comChild;
+	}
+
+	@Override
+	public String toString() {
+		return "Comments [comId=" + comId + ", comContent=" + comContent
+				+ ", comTime=" + comTime + ", comUps=" + comUps + "]";
+	}
+
+	// public Set getCommentses() {
+	// return this.commentses;
+	// }
+	//
+	// public void setCommentses(Set commentses) {
+	// this.commentses = commentses;
+	// }
 
 }

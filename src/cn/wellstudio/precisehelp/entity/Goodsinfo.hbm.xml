@@ -7,8 +7,8 @@
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Goodsinfo" table="goodsinfo" catalog="precisehelp">
         <id name="goodsId" type="java.lang.String">
-            <column name="goods_id" length="60" />
-            <generator class="native" />
+            <column name="goods_id" />
+            <generator class="uuid.hex" />
         </id>
         <many-to-one name="goodstype" class="cn.wellstudio.precisehelp.entity.Goodstype" fetch="select">
             <column name="goodstype_id" />
@@ -34,24 +34,38 @@
         <property name="goodsPriceUnit" type="java.lang.String">
             <column name="goods_price_unit" length="10" />
         </property>
+        <set name="orderDoings" inverse="true">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
+        </set>
+        <set name="commentses" inverse="true">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
+        </set>
+        <set name="orderDones" inverse="true">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
+        </set>
+        <set name="orderTodos" inverse="true">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
+        </set>
+        
         <set name="goodsquestions" inverse="true">
             <key>
                 <column name="goods_id" length="60" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsquestion" />
         </set>
-        <set name="orderDoings" inverse="true">
-            <key>
-                <column name="goods_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
-        </set>
-        <set name="orderDones" inverse="true">
-            <key>
-                <column name="goods_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
-        </set>
+        
         <set name="usersfavorites" inverse="true">
             <key>
                 <column name="goods_id" length="60" />
@@ -63,12 +77,6 @@
                 <column name="goods_id" length="60" not-null="true" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Shoppingcart" />
-        </set>
-        <set name="orderTodos" inverse="true">
-            <key>
-                <column name="goods_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
         </set>
     </class>
 </hibernate-mapping>

@@ -3,7 +3,7 @@ package cn.wellstudio.precisehelp.entity;
 import java.util.Date;
 
 /**
- * 待处理订单
+ * 待做的订单    管理员还未接单，需标记用户是否已付款
  * @author huhong
  *
  */
@@ -11,15 +11,15 @@ public class OrderTodo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer ordertodoId; //id
-	private Users users; // 关联用户
-	private Goodsinfo goodsinfo; // 关联商品
+	private Integer ordertodoId; // 待做订单id
+	private Users users; // 下单用户
+	private Goodsinfo goodsinfo; // 商品信息
 	private String orderNumber; // 订单编号
-	private String orderPs; // 订单备注
-	private Date orderTime; // 订单时间
-	private Integer orderPay; // 订单是否支付(0 未付款 1 已付款)
-	private Integer orderCancel; // 是否退款取消(0 没 1 是)
-
+	private String orderPs; // 订单注释
+	private Date orderTime; // 订单下单时间
+	private Integer orderPay;//是订单是否支付(0 未付款 1 已付款)
+	private Integer orderCancel;//是否退款取消(0 没 1 是)
+	
 	// Constructors
 
 	/** default constructor */
@@ -28,15 +28,12 @@ public class OrderTodo implements java.io.Serializable {
 
 	/** full constructor */
 	public OrderTodo(Users users, Goodsinfo goodsinfo, String orderNumber,
-			String orderPs, Date orderTime, Integer orderPay,
-			Integer orderCancel) {
+			String orderPs, Date orderTime) {
 		this.users = users;
 		this.goodsinfo = goodsinfo;
 		this.orderNumber = orderNumber;
 		this.orderPs = orderPs;
 		this.orderTime = orderTime;
-		this.orderPay = orderPay;
-		this.orderCancel = orderCancel;
 	}
 
 	// Property accessors
@@ -90,7 +87,7 @@ public class OrderTodo implements java.io.Serializable {
 	}
 
 	public Integer getOrderPay() {
-		return this.orderPay;
+		return orderPay;
 	}
 
 	public void setOrderPay(Integer orderPay) {
@@ -98,11 +95,21 @@ public class OrderTodo implements java.io.Serializable {
 	}
 
 	public Integer getOrderCancel() {
-		return this.orderCancel;
+		return orderCancel;
 	}
 
 	public void setOrderCancel(Integer orderCancel) {
 		this.orderCancel = orderCancel;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderTodo [ordertodoId=" + ordertodoId + ", orderNumber="
+				+ orderNumber + ", orderPs=" + orderPs + ", orderTime="
+				+ orderTime + ", orderPay=" + orderPay + ", orderCancel="
+				+ orderCancel + "]";
+	}
+	
+	
 
 }

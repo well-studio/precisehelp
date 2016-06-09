@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="sessionFactory">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.useUnicode">true</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Admins.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Adminsinfo.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Comments.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Express.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Goodsarea.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Goodsinfo.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Goodstype.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Letters.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/OrderDoing.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/OrderDone.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/OrderTodo.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Toaddress.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Todolist.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Users.hbm.xml"/>
+  <mapping resource="cn/wellstudio/precisehelp/entity/Usersinfo.hbm.xml"/>
+
+<!-- +++ --> 	
+ <mapping resource="cn/wellstudio/precisehelp/entity/Coupons.hbm.xml"/>
+ <mapping resource="cn/wellstudio/precisehelp/entity/Couponstype.hbm.xml"/>
+ <mapping resource="cn/wellstudio/precisehelp/entity/Goodsquestion.hbm.xml"/>
+ <mapping resource="cn/wellstudio/precisehelp/entity/Questionreply.hbm.xml"/>
+ <mapping resource="cn/wellstudio/precisehelp/entity/Shoppingcart.hbm.xml"/>
+ <mapping resource="cn/wellstudio/precisehelp/entity/Usersfavorite.hbm.xml"/>
+
+ 
+ 
+ 
+ 
+ 
+ </session-factory>
+</hibernate-configuration>
