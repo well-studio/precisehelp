@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IGoodsQuestionService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 商品提问控制器
@@ -8,6 +10,11 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class GoodsQuestionAction extends ActionSupport{
 	
+	IGoodsQuestionService goodsQuestionService;
+	public void setGoodsQuestionService(
+			IGoodsQuestionService goodsQuestionService) {
+		this.goodsQuestionService = goodsQuestionService;
+	}
 
 	/**
 	 * 添加一个商品提问

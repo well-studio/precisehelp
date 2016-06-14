@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IOrderService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 订单控制器
@@ -8,7 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class OrderAction extends ActionSupport{
 	
-	
+	IOrderService orderService;
+	public void setOrderService(IOrderService orderService) {
+		this.orderService = orderService;
+	}
 	
 	/**
 	 * 创建订单

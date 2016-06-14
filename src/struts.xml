@@ -18,11 +18,55 @@
 			<result name="input">/WEB-INF/jsp/error.jsp</result>
 		</global-results>
 		
-		<action name="User" method="{1}" class="cn.wellstudio.precisehelp.action.UserAction">
+		<action name="user_*" method="{1}" class="cn.wellstudio.precisehelp.action.UserAction">
 			<result></result>
 		</action>
 		
-		<action name=""></action>
+		<action name="admin_*" method="{1}" class="cn.wellstudio.precisehelp.action.AdminAction">
+			
+		</action>
+		
+		<action name="comments_*" method="{1}" class="cn.wellstudio.precisehelp.action.CommentAction">
+		
+		</action>
+		
+		<action name="express_*" method="{1}" class="cn.wellstudio.precisehelp.action.ExpressAction">
+		
+		</action>
+		
+		<action name="goods_*" method="{1}" class="cn.wellstudio.precisehelp.action.GoodsAction">
+		
+		</action>
+		
+		<action name="goodsArea_*" method="{1}" class="cn.wellstudio.precisehelp.action.GoodsAreaAction">
+		
+		</action>
+		
+		<action name="goodsType_*" method="{1}" class="cn.wellstudio.precisehelp.action.GoodsTypeAction">
+		
+		</action>
+		
+		<action name="goodsQuestion_*" method="{1}" class="cn.wellstudio.precisehelp.action.GoodsQuestionAction">
+		
+		</action>
+		
+		<action name="letter_*" method="{1}" class="cn.wellstudio.precisehelp.action.LetterAction">
+		
+		</action>
+		
+		<action name="order_*" method="{1}" class="cn.wellstudio.precisehelp.action.OrderAction">
+		
+		</action>
+		
+		<action name="shoppingCart_*" method="{1}" class="cn.wellstudio.precisehelp.action.ShoppingCartAction">
+		
+		</action>
+		
+		<action name="toAddress_*" method="{1}" class="cn.wellstudio.precisehelp.action.ToAddressAction">
+		
+		</action>
+		
+		
 	</package>
 	
 	

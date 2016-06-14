@@ -19,9 +19,9 @@
 		</global-results>
 		
 		<action name="User" method="{1}" class="cn.wellstudio.precisehelp.action.UserAction">
-			<result></result>
+			<result>
+			</result>
 		</action>
-		
 		<action name=""></action>
 	</package>
 	

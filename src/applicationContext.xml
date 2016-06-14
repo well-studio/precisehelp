@@ -1,0 +1,213 @@
+<beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"	 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+	default-lazy-init = "true"
+	>
+	<!-- 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="root"></property>
+		<property name="initialPoolSize" value="10"></property>
+		<property name="maxPoolSize" value="200"></property>
+	</bean>
+	
+	
+	<!-- 添加hibernate的框架，参照外部数据源 -->
+	<bean id="hbConfig" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 配置映射文件 -->
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:cn/edu/hnuc/volunteer_Sys_S2H/entity/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- 配置数据库方言 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<!-- 配置是否在控制台输出 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 定义注释驱动 -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	<!-- 添加事物管理器 -->
+	
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hbConfig" />
+	</bean>
+
+	<!-- dao层的bean管理 -->
+	<bean id="adminManage" class="cn.wellstudio.precisehelp.dao.impl.AdminManage">
+	</bean>
+	<bean id="commentsManage" class="cn.wellstudio.precisehelp.dao.impl.CommentsManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="couponsManage" class="cn.wellstudio.precisehelp.dao.impl.CouponsManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="couponsTypeManage" class="cn.wellstudio.precisehelp.dao.impl.CouponstypeManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="expressManage" class="cn.wellstudio.precisehelp.dao.impl.ExpressManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="goodsAreaManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsareaManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="goodsInfoManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsinfoManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="goodsQuestionManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsquestionManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="goodsTypeManage" class="cn.wellstudio.precisehelp.dao.impl.GoodstypeManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="lettersManage" class="cn.wellstudio.precisehelp.dao.impl.LettersManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="orderDoingManage" class="cn.wellstudio.pricesehelp.dao.impl.OrderDoingManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="objectManage" class="cn.wellstudio.precisehelp.dao.impl.ObjectManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="orderDoneManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoneManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="orderTodoManage" class="cn.wellstudio.precisehelp.dao.impl.OrdertodoManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="questionReplyManage" class="cn.wellstudio.precisehelp.dao.impl.QuestionreplyManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="shoppingCartManage" class="cn.wellstudio.precisehelp.dao.impl.ShoppingcartManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="toAddressManage" class="cn.wellstudio.precisehelp.dao.impl.ToaddressManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	
+	<bean id="todoListManage" class="cn.wellstudio.precisehelp.dao.impl.TodolistManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="usersFavoriteManage" class="cn.wellstudio.precisehelp.dao.impl.UsersFavoriteManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	<bean id="usersInfoManage" class="cn.wellstudio.precisehelp.dao.impl.UsersinfoManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+	
+	<bean id="usersManage" class="cn.wellstudio.precisehelp.dao.impl.UsersManage">
+		<property name="sessionFactory" ref="hbConfig"></property>
+	</bean>
+
+	
+	<!-- service层的bean管理 -->
+	<bean id="adminService" class="cn.wellstudio.precisehelp.service.impl.AdminService">
+		<property name="adminDao" ref="adminManage"></property>
+	</bean>
+	<bean id="commentService" class="cn.wellstudio.precisehelp.service.impl.CommentService">
+		<property name="commentDao" ref="commentsManage"></property>
+	</bean>
+	<bean id="couponService" class="cn.wellstudio.precisehelp.service.impl.CouponService">
+		<property name="couponDao" ref="couponsManage"></property>
+	</bean>
+	<bean id="couponTypeService" class="cn.wellstudio.precisehelp.service.impl.CouponTypeService">
+		<property name="couponTypeDao" ref="couponsTypeManage"></property>
+	</bean>
+	<bean id="expressService" class="cn.wellstudio.precisehelp.service.impl.ExpressService">
+		<property name="expressDao" ref="expressManage"></property>
+	</bean>
+	<bean id="goodsService" class="cn.wellstudio.precisehelp.service.impl.GoodsService">
+		<property name="goodsDao" ref="goodsInfoManage"></property>
+	</bean>
+	<bean id="goodsAreaService" class="cn.wellstudio.precisehelp.service.impl.GoodsAreaService">
+		<property name="goodsAreaDao" ref="goodsAreaManage"></property>
+	</bean>
+	<bean id="goodsTypeService" class="cn.wellstudio.precisehelp.service.impl.GoodsTypeService">
+		<property name="goodsTypeDao" ref="goodsTypeManage"></property>
+	</bean>
+	<bean id="goodsQuestionService" class="cn.wellstudio.precisehelp.service.impl.GoodsQuestionService">
+		<property name="goodsQuestionDao" ref="goodsQuestionManage"></property>
+	</bean>
+	<bean id="letterService" class="cn.wellstudio.precisehelp.service.impl.LetterService">
+		<property name="letterDao" ref="lettersManage"></property>
+	</bean>
+	<bean id="orderService" class="cn.wellstudio.precisehelp.service.impl.OrderService">
+		<property name="orderTodoDao" ref="orderTodoManage"></property>
+		<property name="orderDoingDao" ref="orderDoingManage"></property>
+		<property name="orderDoneDao" ref="orderDoneManage"></property>
+	</bean>
+	
+	<bean id="shoppingCartService" class="cn.wellstudio.precisehelp.service.impl.ShoppingCartService">
+		<property name="shoppingCartDao" ref="shoppingCartManage"></property>
+	</bean>
+	<bean id="toAddressService" class="cn.wellstudio.precisehelp.service.impl.ToAddressService">
+		<property name="toAddressDao" ref="toAddressManage"></property>
+	</bean>
+	<bean id="usersService" class="cn.wellstudio.precisehelp.service.impl.UserService">
+		<property name="usersDao" ref="usersManage"></property>
+	</bean>
+	
+	<!-- action层的bean管理 -->
+	<bean id="adminAction" class="cn.wellstudio.precisehelp.action.AdminAction" scope="prototype">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="commentsAction" class="cn.wellstudio.precisehelp.action.CommentAction" scope="prototype">
+		<property name="commentService" ref="commentService"></property>
+	</bean>
+	<bean id="couponAction" class="cn.wellstudio.precisehelp.action.CouponAction" scope="prototype">
+		<property name="couponService" ref="couponService"></property>
+	</bean>
+	<bean id="couponTypeAction" class="cn.wellstudio.precisehelp.action.CouponTypeAction" scope="prototype">
+		<property name="couponTypeService" ref="couponTypeService"></property>
+	</bean>
+	<bean id="expressAction" class="cn.wellstudio.precisehelp.action.ExpressAction" scope="prototype">
+		<property name="expressService" ref="expressService"></property>
+	</bean>
+	<bean id="goodsInfoAction" class="cn.wellstudio.precisehelp.action.GoodsAction" scope="prototype">
+		<property name="goodsService" ref="goodsService"></property>
+	</bean>
+	<bean id="goodsAreaAction" class="cn.wellstudio.precisehelp.action.GoodsAreaAction" scope="prototype">
+		<property name="goodsAreaService" ref="goodsAreaService"></property>
+	</bean>
+	<bean id="goodsQuestionAction" class="cn.wellstudio.precisehelp.action.GoodsQuestionAction" scope="prototype">
+		<property name="goodsQuestionService" ref="goodsQuestionService"></property>
+	</bean>
+	<bean id="goodsTypeAction" class="cn.wellstudio.precisehelp.action.GoodsTypeAction" scope="prototype">
+		<property name="goodsTypeService" ref="goodsTypeService"></property>
+	</bean>
+	<bean id="lettersAction" class="cn.wellstudio.precisehelp.action.LetterAction" scope="prototype">
+		<property name="letterService" ref="letterService"></property>
+	</bean>
+	<bean id="orderAction" class="cn.wellstudio.precisehelp.action.OrderAction" scope="prototype">
+		<property name="orderService" ref="orderService"></property>
+	</bean>
+	<bean id="shoppingCartAction" class="cn.wellstudio.precisehelp.action.ShoppingCartAction" scope="prototype">
+		<property name="shoppingCartService" ref="shoppingCartService"></property>
+	</bean>
+	<bean id="toAddressAction" class="cn.wellstudio.precisehelp.action.ToAddressAction" scope="prototype">
+		<property name="toAddressService" ref="toAddressService"></property>
+	</bean>
+	<bean id="userAction" class="cn.wellstudio.precisehelp.action.UserAction" scope="prototype">
+		<property name="usersService" ref="usersService"></property>
+	</bean>
+	
+</beans>

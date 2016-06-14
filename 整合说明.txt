@@ -1,0 +1,35 @@
+目前核心工作：完成最基础的商城流程
+
+用户登录 -> 浏览商品 -> 下订单 -> 付款 -> 处理订单 -> 订单完成 -> 评论
+
+
+目前设计出来的21张表中:
+couponstype
+coupons
+questionreply
+goodsquestion
+letters
+usersfavorite
+6个表不需要用到
+
+控制层提供  给 nodejs 的 统一访问接口
+
+目的：根据标记，要什么数据，后台返回什么数据给nodejs
+(json格式)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

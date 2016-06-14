@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IAdminService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 管理员控制器
@@ -8,6 +10,11 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class AdminAction extends ActionSupport{
 	
+	
+	IAdminService adminService;
+	public void setAdminService(IAdminService adminService) {
+		this.adminService = adminService;
+	}
 	
 	/**
 	 * 管理员登录

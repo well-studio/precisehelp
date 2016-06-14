@@ -1,6 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
 import cn.wellstudio.precisehelp.entity.Users;
+import cn.wellstudio.precisehelp.service.IUserService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -12,7 +13,12 @@ import com.opensymphony.xwork2.ModelDriven;
  */
 public class UserAction extends ActionSupport{
 	
-	// UserService
+	
+	IUserService usersService;
+	public void setUsersService(IUserService usersService) {
+		this.usersService = usersService;
+	}
+	
 	// User
 	private Users user;
 	public void setUser(Users user) {

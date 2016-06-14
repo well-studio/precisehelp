@@ -232,7 +232,8 @@ create table order_todo (
 	order_cancel int default 0, -- 是否退款取消(0 没 1 是)
 	address_id int, -- 关联收获地址
 	user_id varchar(60), -- 关联用户表
-	goods_id varchar(60), -- 关联商品
+	-- goods_id varchar(60), -- 关联商品
+	order_content varchar(250), -- 订单内容(商品1的id 数量，商品2的id 数量，商品3的id 数量 .........) 拿出来再解析
 	goods_num int default 1, -- 商品数量
 	constraint foreign key(address_id) references toaddress(address_id),
 	constraint foreign key(user_id) references users(user_id),
@@ -254,7 +255,8 @@ create table order_doing (
 	order_kcom varchar(20), -- 快递公司名称(+++)
 	order_knum varchar(50), -- 快递单号(+++)
 	user_id varchar(60), -- 关联用户
-	goods_id varchar(60), -- 关联商品
+	-- goods_id varchar(60), -- 关联商品
+	order_content varchar(250), -- 订单内容(商品1的id 数量，商品2的id 数量，商品3的id 数量 .........) 拿出来再解析
 	goods_num int default 1, -- 商品数量
 	adm_id varchar(60), -- 关联处理人员(+++)
 	express_id int, -- 关联快递(物流)表(+++)
@@ -281,8 +283,9 @@ create table order_done (
 	order_donetime timestamp, -- 订单完成时间(++++)  订单完成后  即可评价该商品
 	order_comment int default 0, -- 是否评价(++++) 0 尚未评价 1 已评价
 	user_id varchar(60), -- 关联用户
-	goods_id varchar(60), -- 关联商品
-	goods_num int default 1, -- 商品数量
+	-- goods_id varchar(60), -- 关联商品
+	order_content varchar(250), -- 订单内容(商品1的id 数量，商品2的id 数量，商品3的id 数量 .........) 拿出来再解析
+	-- goods_num int default 1, -- 商品数量
 	adm_id varchar(60), -- 关联处理人员
 	express_id int, -- 关联快递(物流)表
 	-- comment_id int, -- 关联评论表(++++)

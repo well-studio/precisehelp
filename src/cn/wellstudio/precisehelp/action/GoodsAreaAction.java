@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IGoodsAreaService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 商品产地控制器
@@ -8,6 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class GoodsAreaAction extends ActionSupport{
 	
+	IGoodsAreaService goodsAreaService;
+	public void setGoodsAreaService(IGoodsAreaService goodsAreaService) {
+		this.goodsAreaService = goodsAreaService;
+	}
 	
 	/**
 	 * 添加商品产地

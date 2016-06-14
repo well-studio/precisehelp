@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IShoppingCartService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 购物车控制器
@@ -7,6 +9,11 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  */
 public class ShoppingCartAction extends ActionSupport{
+	
+	IShoppingCartService shoppingCartService;
+	public void setShoppingCartService(IShoppingCartService shoppingCartService) {
+		this.shoppingCartService = shoppingCartService;
+	}
 	
 	/**
 	 * 商品加入购物车

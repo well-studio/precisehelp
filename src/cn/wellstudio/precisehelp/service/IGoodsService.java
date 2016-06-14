@@ -1,5 +1,56 @@
 package cn.wellstudio.precisehelp.service;
 
-public interface IGoodsService {
+import java.util.List;
 
+import cn.wellstudio.precisehelp.entity.Goodsarea;
+import cn.wellstudio.precisehelp.entity.Goodsinfo;
+
+/**
+ * 商品业务接口
+ * @author huhong
+ *
+ */
+public interface IGoodsService {
+	/**
+	 * 查询全部商品
+	 * @return
+	 */
+	public List<Goodsinfo> findAllGoods();
+	
+	/**
+	 * 根据名称查询商品信息
+	 * @param goodName
+	 * @return
+	 */
+	public List<Goodsinfo> findGoodsByName(String goodName);
+	
+	/**
+	 * 根据商品类型查询商品信息
+	 * @param goodType
+	 * @return
+	 */
+	public List<Goodsinfo> findGoodsByType(String goodType);
+	
+	/**
+	 * 根据地区查询商品信息
+	 * @param goodArea
+	 * @return
+	 */
+	public List<Goodsinfo> findGoodsByArea(String goodArea);
+	
+	/**
+	 * 添加商品
+	 * @param goodsInfo
+	 * @param goodsArea
+	 * @return
+	 */
+	public  boolean createGoods(Goodsinfo goodsInfo);
+
+	/**
+	 * 更新商品信息
+	 * @param goodsInfo
+	 * @param goodsArea
+	 * @return
+	 */
+	public boolean updateGoods(Goodsinfo goodsInfo);
 }

@@ -1,14 +1,19 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IToAddressService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 收货地址控制器
  * @author huhong
  *
  */
-public class ToAdressAction extends ActionSupport{
+public class ToAddressAction extends ActionSupport{
 	
-	
+	IToAddressService toAddressService;
+	public void setToAddressService(IToAddressService toAddressService) {
+		this.toAddressService = toAddressService;
+	}
 	
 	/**
 	 * 添加一个收货地址

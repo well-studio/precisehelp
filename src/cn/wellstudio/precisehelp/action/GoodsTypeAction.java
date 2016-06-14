@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IGoodsTypeService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 商品类型控制器
@@ -7,6 +9,11 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  */
 public class GoodsTypeAction extends ActionSupport{
+	
+	IGoodsTypeService goodsTypeService;
+	public void setGoodsTypeService(IGoodsTypeService goodsTypeService) {
+		this.goodsTypeService = goodsTypeService;
+	}
 	
 	/**
 	 * 添加商品种类

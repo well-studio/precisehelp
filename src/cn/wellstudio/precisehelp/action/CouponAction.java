@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.ICouponService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 购物券控制器
@@ -7,6 +9,11 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  */
 public class CouponAction extends ActionSupport{
+	
+	ICouponService couponService;
+	public void setCouponService(ICouponService couponService) {
+		this.couponService = couponService;
+	}
 	
 	/**
 	 * 添加一张购物券

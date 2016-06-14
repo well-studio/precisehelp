@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.ILetterService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 站内信箱控制器
@@ -7,6 +9,12 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  */
 public class LetterAction extends ActionSupport{
+	
+	
+	ILetterService letterService;
+	public void setLetterService(ILetterService letterService) {
+		this.letterService = letterService;
+	}
 	
 	/**
 	 * 新建一个站内信

@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.ICommentService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 评论控制器
@@ -8,6 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class CommentAction extends ActionSupport{
 	
+	ICommentService commentsAction;
+	public void setCommentsAction(ICommentService commentsAction) {
+		this.commentsAction = commentsAction;
+	}
 	
 	/**
 	 * 添加评论

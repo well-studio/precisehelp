@@ -1,5 +1,7 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IGoodsService;
+
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 商品控制器
@@ -8,6 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class GoodsAction extends ActionSupport{
 	
+	IGoodsService goodsService;
+	public void setGoodsService(IGoodsService goodsService) {
+		this.goodsService = goodsService;
+	}
 	
 	
 	/**

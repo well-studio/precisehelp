@@ -1,9 +1,15 @@
 package cn.wellstudio.precisehelp.action;
 
+import cn.wellstudio.precisehelp.service.IFavoriteService;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FavoriteAction extends ActionSupport{
 	
+	IFavoriteService favoriteService;
+	public void setFavoriteService(IFavoriteService favoriteService) {
+		this.favoriteService = favoriteService;
+	}
 	
 	/**
 	 * 添加商品进入收藏夹
