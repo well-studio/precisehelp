@@ -1,0 +1,25 @@
+extends ../layout
+  
+block content 
+  .container
+    .mask
+      .head-box
+        .head-pic-box
+          // src放用户头像url
+          img(src='head-pic.jpg', alt='头像')
+        // 昵称
+        span 你我帮扶:用户xxx
+    .userinfo-item-container
+      .userinfo-item 用户信息
+      .userinfo-item
+        form(action='')
+          .form-group
+            label(for='username') 昵称
+            // value放昵称
+            input#username.form-control(type='text', value='你我帮扶:用户xxx')
+          .form-group
+            label(for='phonenumber') 手机号
+            // value放手机号
+            input#phonenumber.form-control(type='tel', value='13333333333')
+          .form-group
+            input.btn.btn-default.btn-block(type='submit', value='提交修改')

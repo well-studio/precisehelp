@@ -1,0 +1,15 @@
+extends ../layout
+
+block content 
+  .container
+    .search-box
+      // 搜索表单
+      form(action='')
+        .input-group(style='overflow:hidden')
+          input.form-control(type='text', name='search', value='', placeholder='请输入你要搜索的商品关键字')
+          span.input-group-btn
+            button.btn.btn-default.btn-block
+              i.fa.fa-search
+    span 以下是为您推荐的商品
+    // 推荐一些商品
+    .item(style='background:#eee')

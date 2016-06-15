@@ -1,0 +1,70 @@
+extends ../layout
+
+block content 
+  .container
+    // 商户
+    .cart-item
+      // 商户名
+      .cart-item-shopname 商户1
+      // 商户的商品
+      .cart-item-shopitem
+        .cart-item-select
+          .cart-item-select-button
+            input(type='checkbox', name='good_id')
+            .cart-item-img
+              img(src='/images/素材/车厘子.jpg')
+        .cart-item-description
+          .cart-item-des-title
+            | 这是商品的标题
+          .cart-item-des-price
+            | ¥ 12.56
+        .cart-item-right
+          i.fa.fa-times-circle-o(aria-hidden='true')
+          .input-group
+            span.input-group-btn
+              button.btn.btn-default(type='button') -
+            input.form-control(type='tel', value='100')
+            span.input-group-btn
+              button.btn.btn-default(type='button') +
+      .cart-item-shopitem
+        .cart-item-select
+          .cart-item-select-button
+            input(type='checkbox', name='good_id')
+            .cart-item-img
+              img(src='/images/素材/车厘子.jpg')
+        .cart-item-description
+          .cart-item-des-title
+            | 这是商品的标题
+          .cart-item-des-price
+            | ¥ 12.56
+        .cart-item-right
+          i.fa.fa-times-circle-o(aria-hidden='true')
+          .input-group
+            span.input-group-btn
+              button.btn.btn-default(type='button') -
+            input.form-control(type='tel', value='100')
+            span.input-group-btn
+              button.btn.btn-default(type='button') +
+      .cart-item-shopitem
+        .cart-item-select
+          .cart-item-select-button
+            input(type='checkbox', name='good_id')
+            .cart-item-img
+              img(src='/images/素材/车厘子.jpg')
+        .cart-item-description
+          .cart-item-des-title
+            | 这是商品的标题
+          .cart-item-des-price
+            | ¥ 12.56
+        .cart-item-right
+          i.fa.fa-times-circle-o(aria-hidden='true')
+          .input-group
+            span.input-group-btn
+              button.btn.btn-default(type='button') -
+            input.form-control(type='tel', value='100')
+            span.input-group-btn
+              button.btn.btn-default(type='button') +
+      .cart-item-bottom
+        input(type='checkbox', name='good_id')
+        span ¥ 123.45
+        button.btn.btn-default 结算

@@ -1,0 +1,21 @@
+extends ../layout
+
+block content 
+  .container
+    .mask
+      .head-box(style='font-size: 30px')
+        | 用户登录
+    .item-signin
+      .item-signin-box
+        form.form-horizontal
+          .form-group
+            label.col-sm-2.control-label(for='phonenumber') 手机号
+            .col-sm-10
+              input#phonenumber.form-control(type='tel')
+          .form-group
+            label.col-sm-2.control-label(for='pass') 密码
+            .col-sm-10
+              input#pass.form-control(type='password')
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-default.btn-block(type='submit') 登录

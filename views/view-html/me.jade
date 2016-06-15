@@ -1,0 +1,24 @@
+extends ../layout
+
+block content 
+  .container
+    .mask
+      .head-box
+        .head-pic-box
+          // src放用户头像url
+          img(src='head-pic.jpg', alt='头像')
+        // 用户名
+        span 你我帮扶:用户xxx
+    .user-item-container
+      .user-item
+        a(href='#')
+          span.user-item-text 订单
+      .user-item
+        a(href='#')
+          span.user-item-text 购物车
+      .user-item
+        a(href='#')
+          span.user-item-text 个人资料
+      .user-item
+        a(href='#')
+          span.user-item-text 消息通知

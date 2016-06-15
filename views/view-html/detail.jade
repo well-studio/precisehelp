@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .container
+    // 商品信息(图片什么的)
+    .good-mask
+    // 商品详情
+    .good-details
+    button.btn.btn-default.btn-block(style='margin-top: 30px;', onclick='openAdd2Cart()') 购买
+  script(type='text/javascript', src='/plugins/jquery/2.2.3/jquery.min.js')
+  script(type='text/javascript', src='/plugins/layer/layer.js')
+  script.
+    function openAdd2Cart(){
+    layer.open({
+    type: 1,
+    area: ['768px', '200px'],
+    title: '添加到购物车',
+    content: '<div class="item-add2cart row"><div class="item-add2cart-img col-xs-3"><img src="/images/素材/车厘子.jpg" alt=""></div><div class="cart-item-description col-xs-6"><div class="cart-item-des-title">这是商品的标题</div><div class="cart-item-des-price">¥ 12.56</div></div><div class="col-xs-3"><div class="cart-item-right"><div class="input-group"><span class="input-group-btn"><button class="btn btn-default" type="button">-</button></span> <input type="tel" class="form-control" value="100"> <span class="input-group-btn"><button class="btn btn-default" type="button">+</button></span></div><div class="item-add2cart-btn"><button class="btn btn-default">添加到购物车</button></div></div></div></div>' //这里content是一个普通的String
+    });
+    }

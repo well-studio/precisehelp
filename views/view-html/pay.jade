@@ -1,0 +1,48 @@
+extends ../layout
+//
+  接收POST后输出的页面
+block content
+  .container
+    .cart-item
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      // 放商品的简要信息
+      div(style='padding:20px')
+        | some goods info
+    .cart-item.cart-item-userinfo
+      form(action='')
+        .form-group
+          label(for='name') 收件人
+          // value放收件人
+          input#name.form-control(type='text', value='张三')
+        .form-group
+          label(for='phonenumber') 手机号
+          // value放手机号
+          input#phonenumber.form-control(type='tel', value='13333333333')
+        .form-group
+          label(for='address') 收件地址
+          // value放收件地址
+          input#address.form-control(type='tel', value='太阳系火星')
+        .form-group
+          label(for='express') 配送快递
+          // value放手机号
+          select#express.form-control
+            // 放一些快递名
+            option 顺丰
+            option EMS
+            option 中通
+            option ...
+            option ...
+    .cart-item-bottom
+      input(type='checkbox', name='good_id')
+      span ¥ 123.45
+      // button添加监听
+      button.btn.btn-default 提交订单
