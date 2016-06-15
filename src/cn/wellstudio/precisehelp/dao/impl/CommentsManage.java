@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import cn.wellstudio.precisehelp.dao.ICommentDAO;
 import cn.wellstudio.precisehelp.entity.Comments;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.OrderDone;
@@ -16,7 +17,7 @@ import cn.wellstudio.precisehelp.util.Operation;
  * 评论的增删改查(之后再讨论)
  * @author xxmodd
  */
-public class CommentsManage extends ObjectManage {
+public class CommentsManage extends ObjectManage implements ICommentDAO {
 
 	// 查询父亲评论
 	public static Comments comParentQuery(Comments comments) {
@@ -93,6 +94,66 @@ public class CommentsManage extends ObjectManage {
 		String sql = "select * from comments where orderdone_id = " + orderDone.getOrderdoneId();
 		comList = Operation.sqlQuery(sql, new Comments());
 		return comList;
+	}
+
+	@Override
+	public boolean addComment(Comments comment) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean upComment(int comId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean up2Comment(int comId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateCommentById(int comId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCommentById(int comId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteAllCommentByUser(int userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Comments findCommentById(int comId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Comments> findCommentsByUser(int usersId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Comments> findCommentsByGoods(String goodsName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Comments> findAllComments() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

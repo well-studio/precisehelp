@@ -2,70 +2,97 @@ package cn.wellstudio.precisehelp.service.impl;
 
 import java.util.List;
 
+import cn.wellstudio.precisehelp.dao.IAdminDAO;
 import cn.wellstudio.precisehelp.entity.Admins;
 import cn.wellstudio.precisehelp.entity.Adminsinfo;
 import cn.wellstudio.precisehelp.entity.Todolist;
 import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.service.IAdminService;
+
 /**
- * 
- * @author Administrator
- *	这是管理员的业务具体实现类
+ * 管理员业务实现类
+ * @author huhong
+ *
  */
 public class AdminService implements IAdminService {
 
+	IAdminDAO adminDao;
+	public void setAdminDao(IAdminDAO adminDao) {
+		this.adminDao = adminDao;
+	}
+	
 	@Override
-	public boolean adminLogin(String admAccount, int admPower, String admPsw) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean adminLogin(Admins admin) {
+		// TODO  (后台表单校验)
+		
+		boolean res = adminDao.adminLogin(admin);
+		
+		return res;
 	}
 
 	@Override
 	public List<Admins> adminsQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// 判断权限？
+		List<Admins> admList = adminDao.adminsQuery();
+		
+		return admList;
 	}
 
 	@Override
 	public boolean updateAdmInfo(Adminsinfo admin) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = adminDao.updateAdmInfo(admin);
+		
+		return res;
 	}
 
 	@Override
 	public List<Todolist> findTodoListByAdm(Admins admin) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Todolist> todoList = adminDao.findTodoListByAdm(admin);
+		
+		return todoList;
 	}
 
 	@Override
 	public List<Todolist> findTodoListByAdmNum(Admins admins) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Todolist> todoList = adminDao.findTodoListByAdmNum(admins);
+		
+		return todoList;
 	}
 
 	@Override
 	public List<Usersinfo> findAllUsersinfo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Usersinfo> usersInfoList = adminDao.findAllUsersinfo();
+		
+		return usersInfoList;
 	}
 
 	@Override
 	public List<Users> findAllUsers() {
-		// TODO Auto-generated method stub
+		
+		List<Users> userList = adminDao.findAllUsers();
+		
 		return null;
 	}
 
 	@Override
 	public boolean addOrderTolist(Todolist list) {
-		// TODO Auto-generated method stub
+		
+		boolean res = adminDao.addOrderTolist(list);
+		
 		return false;
 	}
 
 	@Override
 	public boolean deleteOrderInlist(int ordersId) {
-		// TODO Auto-generated method stub
+		
+		boolean res = adminDao.deleteOrderInlist(ordersId);
+		
 		return false;
 	}
 	

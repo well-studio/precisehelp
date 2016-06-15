@@ -21,6 +21,24 @@ public class UsersFavoriteManage extends ObjectManage implements IUsersFavoriteD
 		 favoriteList = Operation.hqlQuery(hql, users.getUserId());	 
 		 return favoriteList;
 	}
+
+	@Override
+	public boolean addGoods(Goodsinfo goods) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeGoods(int goodsId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Goodsinfo> findGoodsByUser(Users users) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

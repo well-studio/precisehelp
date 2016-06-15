@@ -1,53 +1,63 @@
 package cn.wellstudio.precisehelp.service.impl;
 
+import cn.wellstudio.precisehelp.dao.IUsersDAO;
 import cn.wellstudio.precisehelp.dao.factory.DaoFactory;
 import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.service.IUserService;
 
+/**
+ * 用户业务实现
+ * @author huhong
+ *
+ */
 public class UserService implements IUserService{
-
-	public boolean addUser(Users users) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
-	/**
-	 * 通过用户id查询某个用户的资料
-	 */
-	public Usersinfo queryUsersinfo(Users users) {
-		Usersinfo usersinfo = DaoFactory.getUsersinfo().userinfoQuery(users);
-		return usersinfo;
-	}
-
-	public boolean updateInfo(Users user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean userLogin(String userAccount, String userPsw,
-			String userPaypsw) {
-		// TODO Auto-generated method stub
-		return false;
+	IUsersDAO usersDao;
+	public void setUsersDao(IUsersDAO usersDao) {
+		this.usersDao = usersDao;
 	}
 
 	@Override
 	public boolean userLogin(Users user) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = usersDao.userLogin(user);
+		
+		return res;
 	}
 
 	@Override
 	public boolean userPay(Users user) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = usersDao.userPay(user);
+		return res;
 	}
 
 	@Override
 	public Usersinfo queryUsersinfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Usersinfo info =  usersDao.queryUsersinfo(id);
+		
+		return info;
 	}
+
+	@Override
+	public boolean updateInfo(Users user) {
+		
+		boolean res = usersDao.updateInfo(user);
+		
+		return res;
+	}
+
+	@Override
+	public boolean addUser(Users users) {
+		
+		boolean res = usersDao.addUser(users);
+		
+		return false;
+	}
+
+
 
 	
 }

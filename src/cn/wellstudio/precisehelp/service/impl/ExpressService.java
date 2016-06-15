@@ -1,34 +1,46 @@
 package cn.wellstudio.precisehelp.service.impl;
 
 
+import cn.wellstudio.precisehelp.dao.IExpressDAO;
 import cn.wellstudio.precisehelp.entity.Express;
 import cn.wellstudio.precisehelp.service.IExpressService;
 
+/**
+ * 物流业务接口设计
+ * @author huhong
+ *
+ */
 public class ExpressService implements IExpressService{
 
+	IExpressDAO expressDao;
+	public void setExpressDao(IExpressDAO expressDao) {
+		this.expressDao = expressDao;
+	}
+	
 	public Express queryAllExpressInfo() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public boolean addExpress(Express express) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = expressDao.addExpress(express);
+		
+		return res;
 	}
 
 	public Express findExpressByOrder(String expressNum) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Express express = expressDao.findExpressByOrder(expressNum);
+		
+		return express;
 	}
 
 	public boolean updateExpress(Express express) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean updateExpress(int expressId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = expressDao.updateExpress(express);
+		
+		return res;
 	}
 
 }

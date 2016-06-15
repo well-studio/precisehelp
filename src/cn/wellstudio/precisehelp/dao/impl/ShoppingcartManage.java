@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import cn.wellstudio.precisehelp.dao.IShoppingCartDAO;
+import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.Shoppingcart;
 import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
@@ -59,5 +60,29 @@ public class ShoppingcartManage extends ObjectManage implements IShoppingCartDAO
 			}
 		}
 		return shoppingList;
+	}
+
+	@Override
+	public boolean addGoodsToCart(Goodsinfo goods) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateGoodsNum(String goodsNumInCart) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeGoods(int gooodsId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Shoppingcart> findCartByUser(Users users) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

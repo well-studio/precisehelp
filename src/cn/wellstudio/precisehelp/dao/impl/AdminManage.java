@@ -7,6 +7,9 @@ import org.hibernate.SessionFactory;
 import cn.wellstudio.precisehelp.dao.IAdminDAO;
 import cn.wellstudio.precisehelp.entity.Admins;
 import cn.wellstudio.precisehelp.entity.Adminsinfo;
+import cn.wellstudio.precisehelp.entity.Todolist;
+import cn.wellstudio.precisehelp.entity.Users;
+import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.util.Operation;
 
 /**
@@ -48,5 +51,53 @@ public class AdminManage extends ObjectManage implements IAdminDAO{
 			return null;
 		}
 		return admList;
+	}
+
+	@Override
+	public boolean adminLogin(Admins admin) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateAdmInfo(Adminsinfo admin) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Todolist> findTodoListByAdm(Admins admin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Todolist> findTodoListByAdmNum(Admins admins) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Usersinfo> findAllUsersinfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Users> findAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addOrderTolist(Todolist list) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteOrderInlist(int ordersId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

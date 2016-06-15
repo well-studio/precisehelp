@@ -2,59 +2,90 @@ package cn.wellstudio.precisehelp.service.impl;
 
 import java.util.List;
 
+import cn.wellstudio.precisehelp.dao.ICommentDAO;
 import cn.wellstudio.precisehelp.entity.Comments;
 import cn.wellstudio.precisehelp.service.ICommentService;
 
+/**
+ * 评论业务实现类
+ * @author huhong
+ *
+ */
 public class CommentService implements ICommentService{
+	
+	ICommentDAO commentDao;
+	public void setCommentDao(ICommentDAO commentDao) {
+		this.commentDao = commentDao;
+	}
 
 	public boolean addComment(Comments comment) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.addComment(comment);
+		
+		return res;
 	}
 
 	public boolean deleteAllCommentByUser(int userId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.deleteAllCommentByUser(userId);
+		
+		return res;
 	}
 
 	public boolean deleteCommentById(int comId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.deleteCommentById(comId);
+		
+		return res;
 	}
 
 	public List<Comments> findAllComments() {
-		// TODO Auto-generated method stub
+		
+		List<Comments> comList = commentDao.findAllComments();
+		
 		return null;
 	}
 
 	public Comments findCommentById(int comId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Comments com = commentDao.findCommentById(comId);
+		
+		return com;
 	}
 
 	public List<Comments> findCommentsByGoods(String goodsName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<Comments> comList = commentDao.findCommentsByGoods(goodsName);
+		
+		return comList;
 	}
 
 	public List<Comments> findCommentsByUser(int usersId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Comments> comList = commentDao.findCommentsByUser(usersId);
+		
+		return comList;
 	}
 
 	public boolean up2Comment(int comId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.up2Comment(comId);
+		
+		return res;
 	}
 
 	public boolean upComment(int comId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.upComment(comId);
+		
+		return res;
 	}
 
 	public boolean updateCommentById(int comId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = commentDao.updateCommentById(comId);
+		
+		return res;
 	}
 
 }

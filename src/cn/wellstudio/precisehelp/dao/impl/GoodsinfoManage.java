@@ -1,9 +1,12 @@
 package cn.wellstudio.precisehelp.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import cn.wellstudio.precisehelp.dao.IGoodsDAO;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.OrderDoing;
 import cn.wellstudio.precisehelp.entity.OrderDone;
@@ -15,7 +18,7 @@ import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
  * 
  * @author xxmodd
  */
-public class GoodsinfoManage extends ObjectManage {
+public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 	// 根据正在进行的订单查询商品信息 test true
 	public static Goodsinfo goodsinfoByOrderDoingQuery(OrderDoing orderDoing) {
 		Goodsinfo goodsinfo = null;
@@ -110,6 +113,42 @@ public class GoodsinfoManage extends ObjectManage {
 			}
 		}
 		return goodsinfo;
+	}
+
+	@Override
+	public List<Goodsinfo> findAllGoods() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Goodsinfo> findGoodsByName(String goodName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Goodsinfo> findGoodsByType(String goodType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Goodsinfo> findGoodsByArea(String goodArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean createGoods(Goodsinfo goodsInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateGoods(Goodsinfo goodsInfo) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

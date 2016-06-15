@@ -21,6 +21,42 @@ public class ToaddressManage extends ObjectManage implements IToaddressDAO{
 		toaddress = Operation.sqlQuery(sql,new Toaddress(),user.getUserId());
 		return toaddress;
 	}
+
+	@Override
+	public boolean addAddress(Toaddress toAddress) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAddress(int addressId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAllAddress(Users user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateAddress(Toaddress toAddress) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Toaddress findAddressById(int addressId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Toaddress> findAddressByUser(String userAccount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

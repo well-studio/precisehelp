@@ -46,7 +46,6 @@
 	<!-- 定义注释驱动 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
 	<!-- 添加事物管理器 -->
-	
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hbConfig" />
@@ -56,64 +55,43 @@
 	<bean id="adminManage" class="cn.wellstudio.precisehelp.dao.impl.AdminManage">
 	</bean>
 	<bean id="commentsManage" class="cn.wellstudio.precisehelp.dao.impl.CommentsManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="couponsManage" class="cn.wellstudio.precisehelp.dao.impl.CouponsManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="couponsTypeManage" class="cn.wellstudio.precisehelp.dao.impl.CouponstypeManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="expressManage" class="cn.wellstudio.precisehelp.dao.impl.ExpressManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="goodsAreaManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsareaManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="goodsInfoManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsinfoManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="goodsQuestionManage" class="cn.wellstudio.precisehelp.dao.impl.GoodsquestionManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="goodsTypeManage" class="cn.wellstudio.precisehelp.dao.impl.GoodstypeManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="lettersManage" class="cn.wellstudio.precisehelp.dao.impl.LettersManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
-	<bean id="orderDoingManage" class="cn.wellstudio.pricesehelp.dao.impl.OrderDoingManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
+	<bean id="orderDoingManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoingManage">
 	</bean>
 	<bean id="objectManage" class="cn.wellstudio.precisehelp.dao.impl.ObjectManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="orderDoneManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoneManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
-	<bean id="orderTodoManage" class="cn.wellstudio.precisehelp.dao.impl.OrdertodoManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
+	<bean id="orderTodoManage" class="cn.wellstudio.precisehelp.dao.impl.OrderTodoManage">
 	</bean>
 	<bean id="questionReplyManage" class="cn.wellstudio.precisehelp.dao.impl.QuestionreplyManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="shoppingCartManage" class="cn.wellstudio.precisehelp.dao.impl.ShoppingcartManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="toAddressManage" class="cn.wellstudio.precisehelp.dao.impl.ToaddressManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
-	
 	<bean id="todoListManage" class="cn.wellstudio.precisehelp.dao.impl.TodolistManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="usersFavoriteManage" class="cn.wellstudio.precisehelp.dao.impl.UsersFavoriteManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 	<bean id="usersInfoManage" class="cn.wellstudio.precisehelp.dao.impl.UsersinfoManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
-	
 	<bean id="usersManage" class="cn.wellstudio.precisehelp.dao.impl.UsersManage">
 		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>

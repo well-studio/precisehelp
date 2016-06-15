@@ -4,6 +4,10 @@ import java.util.List;
 
 
 
+
+import java.util.Set;
+
+import cn.wellstudio.precisehelp.dao.IOrderDAO;
 import cn.wellstudio.precisehelp.dao.factory.DaoFactory;
 import cn.wellstudio.precisehelp.entity.Admins;
 import cn.wellstudio.precisehelp.entity.OrderDoing;
@@ -12,120 +16,171 @@ import cn.wellstudio.precisehelp.entity.OrderTodo;
 import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.service.IOrderService;
 
+/**
+ * 订单业务实现类
+ * @author huhong
+ *
+ */
 public class OrderService implements IOrderService {
 
+	
+	IOrderDAO orderTodoDao;
+	IOrderDAO orderDoingDao;
+	IOrderDAO orderDoneDao;
+	public void setOrderDoingDao(IOrderDAO orderDoingDao) {
+		this.orderDoingDao = orderDoingDao;
+	}
+	public void setOrderDoneDao(IOrderDAO orderDoneDao) {
+		this.orderDoneDao = orderDoneDao;
+	}
+	public void setOrderTodoDao(IOrderDAO orderTodoDao) {
+		this.orderTodoDao = orderTodoDao;
+	}
+	
+	
+	
 	public boolean canceMoney(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.cancelMoney(orderNum);
+		
+		return res;
 	}
 
 	public boolean canceOrder(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.cancelOrder(orderNum);
+		
+		return res;
 	}
 
 	public boolean confirmOrder(OrderDone order) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderDoingDao.confirmOrder(order);
+		
+		return res;
 	}
 
 	public boolean createDoingOrder(OrderDoing order) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.createDoingOrder(order);
+		
+		return res;
 	}
 
 	public boolean createDoneOrder(OrderDone order) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderDoingDao.createDoneOrder(order);
+		
+		return res;
 	}
 
 	public boolean createTodoOrder(OrderTodo order) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.createTodoOrder(order);
+		
+		return res;
 	}
-	/**
-	 * 用户查询自己已付款的订单
-	 */
-	public List<OrderDoing> findAllDoingOrderByUser(Users users) {
-		List<OrderDoing> doingList  = DaoFactory.getOrderDoing().OrderDoingByUser(users);
-		return doingList;
+	
+	@Override
+	public List<OrderTodo> findAllTodoOrders() {
+		
+		List<OrderTodo> todoList = orderTodoDao.findAllTodoOrders();
+		
+		return todoList;
 	}
-	/**
-	 * 管理员查询自己正在处理的订单
-	 */
-	public List<OrderDoing> findAllDoingOrderByAdmin(Admins admins) {
-		List<OrderDoing> doingList2 = DaoFactory.getOrderDoing().OrderDoingByAdmin(admins);
-		return doingList2;
+	
+	
+	@Override
+	public List<OrderTodo> findAllTodoOrderByUser(Users users) {
+		
+		List<OrderTodo> todoList = orderTodoDao.findAllTodoOrderByUser(users);
+		
+		return todoList;
 	}
-	public List<OrderDoing> findAllDoingOrders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	/**
-	 * 
-	 */
-	public List<OrderDone> findAllDoneOrderByUser(Users users) {
-		List<OrderDone> doneList = DaoFactory.getOrderDone().OrderDoneByUser(users);
+	
+	@Override
+	public List<OrderDone> findAllDoneOrders() {
+		
+		List<OrderDone> doneList = orderDoneDao.findAllDoneOrders();
+		
 		return doneList;
 	}
-	/**
-	 * 管理员查看自己完成的订单
-	 */
+	
+	
+	@Override
+	public List<OrderDone> findAllDoneOrderByUser(Users users) {
+		
+		List<OrderDone> doneList = orderDoneDao.findAllDoneOrderByUser(users);
+		
+		return doneList;
+	}
+	
+	
+	@Override
 	public List<OrderDone> findAllDoneOrderByAdmin(Admins admins) {
-		List<OrderDone> doneList2 = DaoFactory.getOrderDone().OrderDoneByAdmin(admins);
-		return doneList2;
+		
+		List<OrderDone> doneList = orderDoneDao.findAllDoneOrderByAdmin(admins);
+		
+		return doneList;
 	}
-	public List<OrderDone> findAllDoneOrders() {
-		return findAllDoneOrderByAdmin(new Admins());
+	
+	
+	@Override
+	public List<OrderDoing> findAllDoingOrders() {
+		
+		List<OrderDoing> doingList = orderDoingDao.findAllDoingOrders();
+		
+		return doingList;
 	}
-
-	public List<?> findAllOrdersByUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	@Override
+	public List<OrderDoing> findAllDoingOrderByUser(Users users) {
+		
+		List<OrderDoing> doingList = orderDoingDao.findAllDoingOrderByUser(users);
+		
+		return doingList;
 	}
-
-	public List<?> findAllOrdersByUser(String userAccount) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	@Override
+	public List<OrderDoing> findAllDoingOrderByAdmin(Admins admins) {
+		
+		List<OrderDoing> doingList = orderDoingDao.findAllDoingOrderByAdmin(admins);
+		
+		return doingList;
 	}
-	/**
-	 * 用户查看自己未支付的订单，即未做任何处理的订单
-	 */
-	public List<OrderTodo> findAllTodoOrderByUser(Users users) {
-		return null;
-	}
-
-	public List<OrderTodo> findAllTodoOrders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	@Override
 	public Object findOrderByNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		OrderDone orderDone = (OrderDone) orderDoneDao.findOrderByNum(orderNum);
+		
+		return orderDone;
 	}
-
-	public int getOrderByNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	@Override
 	public Object updateOrderByNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		boolean res = (Boolean) orderDoneDao.updateOrderByNum(orderNum);
+		
+		return res;
 	}
-
 	@Override
 	public boolean cancelOrder(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.cancelOrder(orderNum);
+		
+		return res;
 	}
-
 	@Override
 	public boolean cancelMoney(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean res = orderTodoDao.cancelMoney(orderNum);
+		
+		return res;
 	}
+	
+	
+	
 
 	
 }

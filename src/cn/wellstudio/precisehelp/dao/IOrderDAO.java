@@ -1,4 +1,4 @@
-package cn.wellstudio.precisehelp.service;
+package cn.wellstudio.precisehelp.dao;
 
 import java.util.List;
 
@@ -9,11 +9,12 @@ import cn.wellstudio.precisehelp.entity.OrderTodo;
 import cn.wellstudio.precisehelp.entity.Users;
 
 /**
- * 订单业务接口设计
+ * 订单DAO接口设计
  * @author huhong
  *
  */
-public interface IOrderService {
+public interface IOrderDAO {
+	
 	
 	/**
 	 * 创建todo订单
@@ -91,6 +92,14 @@ public interface IOrderService {
 	public List<OrderDoing> findAllDoingOrderByAdmin(Admins admins);
 	
 	
+	/**
+	 * 根据userid查询全部订单
+	 * @param userId
+	 * @return
+	 */
+	public List<?> findAllOrdersByUser(int userId);
+	
+
 	
 	/**
 	 * 根据订单编号查询订单
@@ -126,4 +135,5 @@ public interface IOrderService {
 	 * @return
 	 */
 	public boolean confirmOrder(OrderDone order);
+	
 }

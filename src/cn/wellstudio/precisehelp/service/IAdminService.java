@@ -20,7 +20,7 @@ public interface IAdminService {
 	 * @param admPsw
 	 * @return
 	 */
-	public boolean adminLogin(String admAccount,int admPower,String admPsw);
+	public boolean adminLogin(Admins admin);
 	
 	/**
 	 * 查询全部管理员
