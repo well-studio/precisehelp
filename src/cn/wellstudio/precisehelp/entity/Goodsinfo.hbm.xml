@@ -34,18 +34,22 @@
         <property name="goodsPriceUnit" type="java.lang.String">
             <column name="goods_price_unit" length="10" />
         </property>
+        <!--  old
         <set name="orderDoings" inverse="true">
             <key>
                 <column name="goods_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
         </set>
-        <set name="commentses" inverse="true">
+        -->
+        <set name="commentses" inverse="true" lazy="true">
             <key>
                 <column name="goods_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
         </set>
+        
+        <!-- old
         <set name="orderDones" inverse="true">
             <key>
                 <column name="goods_id" />
@@ -59,20 +63,22 @@
             <one-to-many class="cn.wellstudio.precisehelp.entity.OrderTodo" />
         </set>
         
-        <set name="goodsquestions" inverse="true">
+         -->
+        
+        <set name="goodsquestions" inverse="true" lazy="true">
             <key>
                 <column name="goods_id" length="60" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsquestion" />
         </set>
         
-        <set name="usersfavorites" inverse="true">
+        <set name="usersfavorites" inverse="true" lazy="true">
             <key>
                 <column name="goods_id" length="60" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Usersfavorite" />
         </set>
-        <set name="shoppingcarts" inverse="true">
+        <set name="shoppingcarts" inverse="true" lazy="true">
             <key>
                 <column name="goods_id" length="60" not-null="true" />
             </key>

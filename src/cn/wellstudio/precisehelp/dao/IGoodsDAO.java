@@ -18,6 +18,13 @@ public interface IGoodsDAO {
 	public List<Goodsinfo> findAllGoods();
 	
 	/**
+	 * 根据商品id查询商品信息
+	 * @param goodId
+	 * @return
+	 */
+	public Goodsinfo findGoodsById(String goodId);
+	
+	/**
 	 * 根据名称查询商品信息
 	 * @param goodName
 	 * @return

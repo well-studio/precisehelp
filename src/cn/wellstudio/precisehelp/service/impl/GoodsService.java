@@ -5,8 +5,8 @@ import java.util.List;
 
 
 
+
 import cn.wellstudio.precisehelp.dao.IGoodsDAO;
-import cn.wellstudio.precisehelp.entity.Goodsarea;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.service.IGoodsService;
 
@@ -69,6 +69,14 @@ public class GoodsService implements IGoodsService {
 		boolean res = goodsDao.updateGoods(goodsInfo);
 		
 		return res;
+	}
+
+	@Override
+	public Goodsinfo findGoodsById(String goodId) {
+		
+		Goodsinfo goodsinfo = goodsDao.findGoodsById(goodId);
+		
+		return null;
 	}
 	
 	

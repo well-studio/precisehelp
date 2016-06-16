@@ -10,7 +10,7 @@
             <column name="usersinfo_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
+        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" unique="true"  fetch="select">
             <column name="user_id" />
         </many-to-one>
         <property name="userImg" type="java.lang.String">

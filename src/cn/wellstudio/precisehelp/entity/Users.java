@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * 用户
+ * 
  * @author huhong
  *
  */
@@ -16,38 +17,41 @@ public class Users implements java.io.Serializable {
 	private String userAccount; // 用户账号
 	private String userPsw; // 用户密码
 	private String userZfPsw; // 用户支付密码
+	private String userPsw2;// 重复密码
 	private Set lettersesForLetTo = new HashSet(0); // 发出去的信
 	private Set lettersesForLetFrom = new HashSet(0); // 收到的信
 	private Set orderDoings = new HashSet(0); // 正在处理的订单
 	private Set commentses = new HashSet(0); // 发出的评论列表
-	private Set usersinfos = new HashSet(0); // 用户信息
+	
+//	private Set usersinfos = new HashSet(0); // 用户信息   old
+	private Usersinfo usersinfo;// 用户信息，一对一
+
 	private Set orderDones = new HashSet(0); // 该用户已完成的订单
 	private Set toaddresses = new HashSet(0); // 该用户的收货地址
 	private Set orderTodos = new HashSet(0); // 该用户待处理的订单
 
-	//+++
+	// +++
 	private Set couponses = new HashSet(0); // 关联购物券
-	private Set shoppingcarts = new HashSet(0); // 关联购物车 
+	private Set shoppingcarts = new HashSet(0); // 关联购物车
 	private Set goodsquestions = new HashSet(0); // 关联商品提问
 	private Set questionreplies = new HashSet(0); // 关联提问回答
 	private Set usersfavorites = new HashSet(0); // 关联商品收藏夹
+
 	// Constructors
 
 	/** default constructor */
 	public Users() {
 	}
 
-	
 	public Users(String userId) {
 		super();
 		this.userId = userId;
 	}
 
-
 	/** full constructor */
 	public Users(String userAccount, String userPsw, String userZfPsw,
 			Set lettersesForLetTo, Set lettersesForLetFrom, Set orderDoings,
-			Set commentses, Set usersinfos, Set orderDones, Set toaddresses,
+			Set commentses, Set orderDones, Set toaddresses,
 			Set orderTodos) {
 		this.userAccount = userAccount;
 		this.userPsw = userPsw;
@@ -56,7 +60,6 @@ public class Users implements java.io.Serializable {
 		this.lettersesForLetFrom = lettersesForLetFrom;
 		this.orderDoings = orderDoings;
 		this.commentses = commentses;
-		this.usersinfos = usersinfos;
 		this.orderDones = orderDones;
 		this.toaddresses = toaddresses;
 		this.orderTodos = orderTodos;
@@ -128,13 +131,6 @@ public class Users implements java.io.Serializable {
 		this.commentses = commentses;
 	}
 
-	public Set getUsersinfos() {
-		return this.usersinfos;
-	}
-
-	public void setUsersinfos(Set usersinfos) {
-		this.usersinfos = usersinfos;
-	}
 
 	public Set getOrderDones() {
 		return this.orderDones;
@@ -160,63 +156,67 @@ public class Users implements java.io.Serializable {
 		this.orderTodos = orderTodos;
 	}
 
-
 	public Set getCouponses() {
 		return couponses;
 	}
-
 
 	public void setCouponses(Set couponses) {
 		this.couponses = couponses;
 	}
 
-
 	public Set getShoppingcarts() {
 		return shoppingcarts;
 	}
-
 
 	public void setShoppingcarts(Set shoppingcarts) {
 		this.shoppingcarts = shoppingcarts;
 	}
 
-
 	public Set getGoodsquestions() {
 		return goodsquestions;
 	}
-
 
 	public void setGoodsquestions(Set goodsquestions) {
 		this.goodsquestions = goodsquestions;
 	}
 
-
 	public Set getQuestionreplies() {
 		return questionreplies;
 	}
-
 
 	public void setQuestionreplies(Set questionreplies) {
 		this.questionreplies = questionreplies;
 	}
 
-
 	public Set getUsersfavorites() {
 		return usersfavorites;
 	}
-
 
 	public void setUsersfavorites(Set usersfavorites) {
 		this.usersfavorites = usersfavorites;
 	}
 
+	public String getUserPsw2() {
+		return userPsw2;
+	}
+
+	public void setUserPsw2(String userPsw2) {
+		this.userPsw2 = userPsw2;
+	}
+	
+
+	public Usersinfo getUsersinfo() {
+		return usersinfo;
+	}
+
+	public void setUsersinfo(Usersinfo usersinfo) {
+		this.usersinfo = usersinfo;
+	}
 
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", userAccount=" + userAccount
 				+ ", userPsw=" + userPsw + ", userZfPsw=" + userZfPsw + "]";
 	}
-	
-	
 
 }

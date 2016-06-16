@@ -18,7 +18,8 @@ public class OrderDone implements java.io.Serializable {
 	private Users users; // 下单用户
 	private Express express; // 物流信息
 	private Admins admins; // 处理的管理员
-	private Goodsinfo goodsinfo; // 商品信息
+//	private Goodsinfo goodsinfo; // 商品信息 old
+	private String orderContent;//商品号以及商品数量
 	private String orderNum; // 订单编号
 	private String orderPs; // 订单注释
 	private Date orderTime; // 订单下单时间
@@ -41,13 +42,12 @@ public class OrderDone implements java.io.Serializable {
 
 	/** full constructor */
 	public OrderDone(Users users, Express express, Admins admins,
-			Goodsinfo goodsinfo, String orderNum, String orderPs,
+			 String orderNum, String orderPs,
 			Date orderTime, String orderKcom, String orderKnum,
 			Date orderDonetime, Integer orderComment, Set commentses) {
 		this.users = users;
 		this.express = express;
 		this.admins = admins;
-		this.goodsinfo = goodsinfo;
 		this.orderNum = orderNum;
 		this.orderPs = orderPs;
 		this.orderTime = orderTime;
@@ -92,13 +92,13 @@ public class OrderDone implements java.io.Serializable {
 		this.admins = admins;
 	}
 
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
-
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
+//	public Goodsinfo getGoodsinfo() {
+//		return this.goodsinfo;
+//	}
+//
+//	public void setGoodsinfo(Goodsinfo goodsinfo) {
+//		this.goodsinfo = goodsinfo;
+//	}
 
 	public String getOrderNum() {
 		return this.orderNum;
@@ -163,11 +163,18 @@ public class OrderDone implements java.io.Serializable {
 	public void setCommentses(Set commentses) {
 		this.commentses = commentses;
 	}
+	
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
 
 	@Override
 	public String toString() {
-		return "OrderDone [orderdoneId=" + orderdoneId + ", goodsinfo="
-				+ goodsinfo + ", orderNum=" + orderNum + ", orderPs=" + orderPs
+		return "OrderDone [orderdoneId=" + orderdoneId + ", orderNum=" + orderNum + ", orderPs=" + orderPs
 				+ ", orderTime=" + orderTime + ", orderKcom=" + orderKcom
 				+ ", orderKnum=" + orderKnum + ", orderDonetime="
 				+ orderDonetime + ", orderComment=" + orderComment + "]";

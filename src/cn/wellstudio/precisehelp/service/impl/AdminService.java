@@ -24,7 +24,9 @@ public class AdminService implements IAdminService {
 	
 	@Override
 	public boolean adminLogin(Admins admin) {
-		// TODO  (后台表单校验)
+		
+		String acount = admin.getAdmAccount();
+		String psw = admin.getAdmPsw();
 		
 		boolean res = adminDao.adminLogin(admin);
 		

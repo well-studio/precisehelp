@@ -1,10 +1,14 @@
 package cn.wellstudio.precisehelp.service.impl;
 
+import java.util.Set;
+import java.util.UUID;
+
 import cn.wellstudio.precisehelp.dao.IUsersDAO;
-import cn.wellstudio.precisehelp.dao.factory.DaoFactory;
 import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.service.IUserService;
+import cn.wellstudio.precisehelp.util.MD5Util;
+import cn.wellstudio.precisehelp.util.ValidateUtil;
 
 /**
  * 用户业务实现
@@ -17,13 +21,23 @@ public class UserService implements IUserService{
 	public void setUsersDao(IUsersDAO usersDao) {
 		this.usersDao = usersDao;
 	}
+	
 
 	@Override
 	public boolean userLogin(Users user) {
 		
-		boolean res = usersDao.userLogin(user);
+		String account = user.getUserAccount();
+		String userPsw = user.getUserPsw();
 		
-		return res;
+		if( account != null && account.trim() != "" && userPsw != null && userPsw.trim() != null) {
+			if( ValidateUtil.isValidMobileNo(account) && ValidateUtil.isRegUserPsw(userPsw) ) {
+				return usersDao.userLogin(user);
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -33,6 +47,7 @@ public class UserService implements IUserService{
 		return res;
 	}
 
+	
 	@Override
 	public Usersinfo queryUsersinfo(String id) {
 		
@@ -52,9 +67,20 @@ public class UserService implements IUserService{
 	@Override
 	public boolean addUser(Users users) {
 		
-		boolean res = usersDao.addUser(users);
+		String account = users.getUserAccount();
+		String userPsw = users.getUserPsw();
+//		String userPsw2 = users.getUserPsw2();
 		
-		return false;
+		if(  ValidateUtil.isValidMobileNo(account) && ValidateUtil.isRegUserPsw(userPsw) && userPsw.equals(userPsw)) {
+			users.setUserId(UUID.randomUUID().toString());
+			// MD5
+			String md5Psw = MD5Util.MD5(userPsw);
+			users.setUserPsw(md5Psw);
+			return usersDao.addUser(users);
+		} else {
+			return false;
+		}
+		
 	}
 
 

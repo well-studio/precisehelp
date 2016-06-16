@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * 商品信息的增删改查
+ * 
  * @author huhong
  *
  */
@@ -22,10 +23,10 @@ public class Goodsinfo implements java.io.Serializable {
 	private Double goodsNowPrice; // 商品现在的价格
 	private Double goodsDiscount; // 商品折扣率(默认为1)
 	private String goodsPriceUnit; // 商品单位
-	private Set orderDoings = new HashSet(0); // 该商品正在处理的订单
+	// private Set orderDoings = new HashSet(0); // 该商品正在处理的订单 old
 	private Set commentses = new HashSet(0); // 该商品对应的评论列表
-	private Set orderDones = new HashSet(0); // 该商品已完成的订单
-	private Set orderTodos = new HashSet(0); // 该商品待处理的订单
+	// private Set orderDones = new HashSet(0); // 该商品已完成的订单 old
+	// private Set orderTodos = new HashSet(0); // 该商品待处理的订单 old
 	// +++
 	private Set goodsquestions = new HashSet(0); // 关联商品提问
 	private Set usersfavorites = new HashSet(0); // 关联用户喜欢
@@ -57,7 +58,7 @@ public class Goodsinfo implements java.io.Serializable {
 	public Goodsinfo(Goodstype goodstype, Goodsarea goodsarea,
 			String goodsName, String goodsStat, Double goodsLastPrice,
 			Double goodsNowPrice, Double goodsDiscount, String goodsPriceUnit,
-			Set orderDoings, Set commentses, Set orderDones, Set orderTodos) {
+			Set commentses) {
 		this.goodstype = goodstype;
 		this.goodsarea = goodsarea;
 		this.goodsName = goodsName;
@@ -66,10 +67,7 @@ public class Goodsinfo implements java.io.Serializable {
 		this.goodsNowPrice = goodsNowPrice;
 		this.goodsDiscount = goodsDiscount;
 		this.goodsPriceUnit = goodsPriceUnit;
-		this.orderDoings = orderDoings;
 		this.commentses = commentses;
-		this.orderDones = orderDones;
-		this.orderTodos = orderTodos;
 	}
 
 	// Property accessors
@@ -146,13 +144,13 @@ public class Goodsinfo implements java.io.Serializable {
 		this.goodsPriceUnit = goodsPriceUnit;
 	}
 
-	public Set getOrderDoings() {
-		return this.orderDoings;
-	}
-
-	public void setOrderDoings(Set orderDoings) {
-		this.orderDoings = orderDoings;
-	}
+//	public Set getOrderDoings() {
+//		return this.orderDoings;
+//	}
+//
+//	public void setOrderDoings(Set orderDoings) {
+//		this.orderDoings = orderDoings;
+//	}
 
 	public Set getCommentses() {
 		return this.commentses;
@@ -161,22 +159,22 @@ public class Goodsinfo implements java.io.Serializable {
 	public void setCommentses(Set commentses) {
 		this.commentses = commentses;
 	}
+//
+//	public Set getOrderDones() {
+//		return this.orderDones;
+//	}
+//
+//	public void setOrderDones(Set orderDones) {
+//		this.orderDones = orderDones;
+//	}
 
-	public Set getOrderDones() {
-		return this.orderDones;
-	}
-
-	public void setOrderDones(Set orderDones) {
-		this.orderDones = orderDones;
-	}
-
-	public Set getOrderTodos() {
-		return this.orderTodos;
-	}
-
-	public void setOrderTodos(Set orderTodos) {
-		this.orderTodos = orderTodos;
-	}
+//	public Set getOrderTodos() {
+//		return this.orderTodos;
+//	}
+//
+//	public void setOrderTodos(Set orderTodos) {
+//		this.orderTodos = orderTodos;
+//	}
 
 	public Set getGoodsquestions() {
 		return goodsquestions;
@@ -208,6 +206,6 @@ public class Goodsinfo implements java.io.Serializable {
 				+ ", goodsStat=" + goodsStat + ", goodsLastPrice="
 				+ goodsLastPrice + ", goodsNowPrice=" + goodsNowPrice
 				+ ", goodsDiscount=" + goodsDiscount + ", goodsPriceUnit="
-				+ goodsPriceUnit + "]";
+				+ goodsPriceUnit + "]" + "\n";
 	}
 }

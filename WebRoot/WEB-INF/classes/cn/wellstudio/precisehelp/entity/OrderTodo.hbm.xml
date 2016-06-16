@@ -13,12 +13,21 @@
         <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
             <column name="user_id" />
         </many-to-one>
+        <!-- old 
         <many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo" fetch="select">
             <column name="goods_id" />
         </many-to-one>
+        -->
+        
+        <!-- new+++ -->
+         <property name="orderContent" type="java.lang.String">
+         	<column name="order_content"/>
+         </property>
+         
         <property name="orderNumber" type="java.lang.String">
             <column name="order_number" length="30" />
         </property>
+        
         <property name="orderPs" type="java.lang.String">
             <column name="order_ps" length="200" />
         </property>

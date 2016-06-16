@@ -43,12 +43,17 @@
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
         </set>
+        <!--  
         <set name="usersinfos" inverse="true">
             <key>
                 <column name="user_id" />
             </key>
             <one-to-many class="cn.wellstudio.precisehelp.entity.Usersinfo" />
         </set>
+        -->
+        <one-to-one name="usersinfo" class="cn.wellstudio.precisehelp.entity.Usersinfo" property-ref="users"/>
+        
+        
         <set name="orderDones" inverse="true">
             <key>
                 <column name="user_id" />

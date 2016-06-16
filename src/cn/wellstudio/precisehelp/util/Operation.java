@@ -136,6 +136,7 @@ public class Operation {
 		return list;
 	}
 
+	
 	// sql查询对象
 	public static List sqlQuery(String sql,Object obj,Object ...parms) {
 		List list;

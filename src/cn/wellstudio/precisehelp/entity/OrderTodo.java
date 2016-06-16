@@ -13,7 +13,8 @@ public class OrderTodo implements java.io.Serializable {
 
 	private Integer ordertodoId; // 待做订单id
 	private Users users; // 下单用户
-	private Goodsinfo goodsinfo; // 商品信息
+//	private Goodsinfo goodsinfo; // 商品信息 old
+	private String orderContent;//商品号以及商品数量
 	private String orderNumber; // 订单编号
 	private String orderPs; // 订单注释
 	private Date orderTime; // 订单下单时间
@@ -27,13 +28,18 @@ public class OrderTodo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public OrderTodo(Users users, Goodsinfo goodsinfo, String orderNumber,
+	public OrderTodo(Users users, String orderNumber,
 			String orderPs, Date orderTime) {
 		this.users = users;
-		this.goodsinfo = goodsinfo;
 		this.orderNumber = orderNumber;
 		this.orderPs = orderPs;
 		this.orderTime = orderTime;
+	}
+
+	
+	public OrderTodo(Integer ordertodoId) {
+		super();
+		this.ordertodoId = ordertodoId;
 	}
 
 	// Property accessors
@@ -54,13 +60,13 @@ public class OrderTodo implements java.io.Serializable {
 		this.users = users;
 	}
 
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
-
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
+//	public Goodsinfo getGoodsinfo() {
+//		return this.goodsinfo;
+//	}
+//
+//	public void setGoodsinfo(Goodsinfo goodsinfo) {
+//		this.goodsinfo = goodsinfo;
+//	}
 
 	public String getOrderNumber() {
 		return this.orderNumber;
@@ -100,6 +106,15 @@ public class OrderTodo implements java.io.Serializable {
 
 	public void setOrderCancel(Integer orderCancel) {
 		this.orderCancel = orderCancel;
+	}
+
+	
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
 	}
 
 	@Override

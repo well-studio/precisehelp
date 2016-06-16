@@ -5,20 +5,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 正在进行的订单  管理员处理中
+ * 正在进行的订单 管理员处理中
+ * 
  * @author huhong
  *
  */
 public class OrderDoing implements java.io.Serializable {
 
 	// Fields
-
 	private static final long serialVersionUID = 1L;
 	private Integer orderdoingId; // 正在进行的订单id
 	private Users users; // 关联的用户
 	private Express express; // 关联的物流信息
 	private Admins admins; // 处理订单的管理员
-	private Goodsinfo goodsinfo; // 关联的商品类型
+	// private Goodsinfo goodsinfo; // 关联的商品类型 old
+	private String orderContent;//商品号以及商品数量
 	private String orderNum; // 订单编号
 	private String orderPs; // 订单注释
 	private Date orderTime; // 订单下单时间
@@ -26,13 +27,20 @@ public class OrderDoing implements java.io.Serializable {
 	private Integer orderStat; // 订单受理状态(0 无人受理 1正在受理 2受理完毕 起初默认为0)
 	private String orderKcom; // 订单快递公司
 	private String orderKnum; // 订单快递订单
-	private Todolist todolist; //1:1 管理员处理list
+	private Todolist todolist; // 1:1 管理员处理list
 
 	// Constructors
 
 	/** default constructor */
 	public OrderDoing() {
 	}
+
+	
+	public OrderDoing(String orderContent) {
+		super();
+		this.orderContent = orderContent;
+	}
+
 
 	public OrderDoing(Integer orderdoingId) {
 		super();
@@ -41,13 +49,11 @@ public class OrderDoing implements java.io.Serializable {
 
 	/** full constructor */
 	public OrderDoing(Users users, Express express, Admins admins,
-			Goodsinfo goodsinfo, String orderNum, String orderPs,
-			Date orderTime, Integer orderStat, String orderKcom,
-			String orderKnum, Todolist todolist) {
+			String orderNum, String orderPs, Date orderTime, Integer orderStat,
+			String orderKcom, String orderKnum, Todolist todolist) {
 		this.users = users;
 		this.express = express;
 		this.admins = admins;
-		this.goodsinfo = goodsinfo;
 		this.orderNum = orderNum;
 		this.orderPs = orderPs;
 		this.orderTime = orderTime;
@@ -91,13 +97,14 @@ public class OrderDoing implements java.io.Serializable {
 		this.admins = admins;
 	}
 
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
-
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
+	// old
+	// public Goodsinfo getGoodsinfo() {
+	// return this.goodsinfo;
+	// }
+	//
+	// public void setGoodsinfo(Goodsinfo goodsinfo) {
+	// this.goodsinfo = goodsinfo;
+	// }
 
 	public String getOrderNum() {
 		return this.orderNum;
@@ -163,6 +170,15 @@ public class OrderDoing implements java.io.Serializable {
 		this.orderHandleTime = orderHandleTime;
 	}
 
+	
+	public String getOrderContent() {
+		return orderContent;
+	}
+
+	public void setOrderContent(String orderContent) {
+		this.orderContent = orderContent;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDoing [orderdoingId=" + orderdoingId + ", orderNum="
@@ -171,8 +187,4 @@ public class OrderDoing implements java.io.Serializable {
 				+ orderKcom + ", orderKnum=" + orderKnum + "]";
 	}
 
-	
-
-	
-	
 }

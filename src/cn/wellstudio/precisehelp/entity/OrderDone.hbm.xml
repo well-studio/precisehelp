@@ -20,9 +20,16 @@
         <many-to-one name="admins" class="cn.wellstudio.precisehelp.entity.Admins" fetch="select">
             <column name="adm_id" />
         </many-to-one>
+        <!-- old 
         <many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo" fetch="select">
             <column name="goods_id" />
         </many-to-one>
+        -->
+         <!-- new+++ -->
+         <property name="orderContent" type="java.lang.String">
+         	<column name="order_content"/>
+         </property>
+         
         <property name="orderNum" type="java.lang.String">
             <column name="order_num" length="30" />
         </property>

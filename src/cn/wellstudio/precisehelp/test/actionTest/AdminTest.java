@@ -8,7 +8,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.wellstudio.precisehelp.action.AdminAction;
 import cn.wellstudio.precisehelp.dao.impl.AdminManage;
+import cn.wellstudio.precisehelp.dao.impl.GoodsinfoManage;
 import cn.wellstudio.precisehelp.entity.Admins;
+import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.service.impl.AdminService;
 
 public class AdminTest {
@@ -34,6 +36,16 @@ public class AdminTest {
 		AdminManage manage = (AdminManage) context.getBean("adminManage");
 		List<Admins> adminsQuery = manage.adminsQuery();
 		System.out.println(adminsQuery.size());
+	}
+	
+	// DAO goodsInfo测试
+	@Test
+	public void test4(){
+		ApplicationContext context = 
+				new ClassPathXmlApplicationContext("applicationContext.xml");
+		GoodsinfoManage manage = (GoodsinfoManage) context.getBean("goodsInfoManage");
+		List<Goodsinfo> goods= manage.findAllGoods();
+		System.out.println(goods.get(0).getCommentses().size());
 	}
 }
 

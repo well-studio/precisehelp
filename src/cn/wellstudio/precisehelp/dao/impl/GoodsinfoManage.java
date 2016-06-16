@@ -8,147 +8,93 @@ import org.hibernate.Transaction;
 
 import cn.wellstudio.precisehelp.dao.IGoodsDAO;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
-import cn.wellstudio.precisehelp.entity.OrderDoing;
-import cn.wellstudio.precisehelp.entity.OrderDone;
-import cn.wellstudio.precisehelp.entity.OrderTodo;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
+import cn.wellstudio.precisehelp.util.Operation;
 
 /**
  * 商品信息的增删改查
- * 
  * @author xxmodd
  */
 public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
-	// 根据正在进行的订单查询商品信息 test true
-	public static Goodsinfo goodsinfoByOrderDoingQuery(OrderDoing orderDoing) {
-		Goodsinfo goodsinfo = null;
-		Session session;
-		Transaction tr = null;
-		try {
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			// 持久化orderDoing
-			orderDoing = (OrderDoing) session.get(OrderDoing.class,
-					orderDoing.getOrderdoingId());
-			goodsinfo = orderDoing.getGoodsinfo();
-			// 懒加载处理
-			goodsinfo.toString();
-			tr.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				tr.rollback();
-			} catch (HibernateException e1) {
-				e1.printStackTrace();
-			}
-		} finally {
-			try {
-				HibernateSessionFactory.closeCurrentSession();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-		return goodsinfo;
-	}
-
-	// 根据已完成的订单查询商品信息 test true
-	public static Goodsinfo goodsinfoByOrderDoneQuery(OrderDone orderDone) {
-		Goodsinfo goodsinfo = null;
-		Session session;
-		Transaction tr = null;
-		try {
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			// 持久化orderDoing
-			orderDone = (OrderDone) session.get(OrderDone.class,
-					orderDone.getOrderdoneId());
-			goodsinfo = orderDone.getGoodsinfo();
-			// 懒加载处理
-			goodsinfo.toString();
-			tr.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				tr.rollback();
-			} catch (HibernateException e1) {
-				e1.printStackTrace();
-			}
-		} finally {
-			try {
-				HibernateSessionFactory.closeCurrentSession();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-		return goodsinfo;
-	}
-
-	// 根据待处理的订单查询商品信息 test true
-	public static Goodsinfo goodsinfoByOrderTodoQuery(OrderTodo orderTodo) {
-		Goodsinfo goodsinfo = null;
-		Session session;
-		Transaction tr = null;
-		try {
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			// 持久化orderDoing
-			orderTodo = (OrderTodo) session.get(OrderTodo.class,
-					orderTodo.getOrdertodoId());
-			goodsinfo = orderTodo.getGoodsinfo();
-			// 懒加载处理
-			goodsinfo.toString();
-			tr.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				tr.rollback();
-			} catch (HibernateException e1) {
-				e1.printStackTrace();
-			}
-		} finally {
-			try {
-				HibernateSessionFactory.closeCurrentSession();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-		return goodsinfo;
-	}
 
 	@Override
 	public List<Goodsinfo> findAllGoods() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String hql = "from Goodsinfo";
+		@SuppressWarnings("unchecked")
+		List<Goodsinfo> goodList= Operation.hqlQuery(hql);
+		
+		return goodList;
 	}
 
 	@Override
+	public Goodsinfo findGoodsById(String goodId) {
+		String hql = "from Goodsinfo as gs where gs.goodsId = ?";
+		Goodsinfo goodsinfo;
+		Transaction tr = null;
+		try {
+			Session session = HibernateSessionFactory.getCurrentSession();
+			tr = session.beginTransaction();
+			goodsinfo = (Goodsinfo)session.createQuery(hql).setString(0,goodId).uniqueResult();
+			//懒加载处理
+//			goodsinfo.getCommentses().toString();
+			tr.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				tr.rollback();
+			} catch (HibernateException e1) {
+				e1.printStackTrace();
+				return null;
+			}
+			return null;
+		} finally {
+			try {
+				HibernateSessionFactory.closeCurrentSession();
+			} catch (Exception e2) {
+				return null;
+			}
+		}
+		return goodsinfo;
+	}
+	
+
+	@Override
 	public List<Goodsinfo> findGoodsByName(String goodName) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Goodsinfo as gs where gs.goodsName like ?";
+		@SuppressWarnings("unchecked")
+		List<Goodsinfo> goodList= Operation.hqlQuery(hql, "%"+goodName+"%");
+		return goodList;
 	}
 
 	@Override
 	public List<Goodsinfo> findGoodsByType(String goodType) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Goodsinfo as gs where gs.goodstype.typeName = ?";
+		@SuppressWarnings("unchecked")
+		List<Goodsinfo> goodList= Operation.hqlQuery(hql, goodType);
+		return goodList;
 	}
 
 	@Override
 	public List<Goodsinfo> findGoodsByArea(String goodArea) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Goodsinfo as gs where gs.goodsarea.areaName = ?";
+		@SuppressWarnings("unchecked")
+		List<Goodsinfo> goodList = Operation.hqlQuery(hql, goodArea);
+		return goodList;
 	}
 
 	@Override
 	public boolean createGoods(Goodsinfo goodsInfo) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return add(goodsInfo);
 	}
 
 	@Override
 	public boolean updateGoods(Goodsinfo goodsInfo) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return update(goodsInfo);
 	}
-
+	
+	
+	
 }

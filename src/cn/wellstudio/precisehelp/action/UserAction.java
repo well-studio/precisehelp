@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author huhong
  *
  */
-public class UserAction extends ActionSupport{
+public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	
 	IUserService usersService;
@@ -57,6 +57,10 @@ public class UserAction extends ActionSupport{
 	public String updateInfo() {
 	
 		return null;
+	}
+	@Override
+	public Users getModel() {
+		return user;
 	}
 	
 	
