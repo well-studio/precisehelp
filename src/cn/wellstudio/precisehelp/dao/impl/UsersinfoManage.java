@@ -22,8 +22,10 @@ public class UsersinfoManage extends ObjectManage implements IUsersinfoDAO{
 	@Override
 	public Usersinfo findUserInfo(String userId) {
 		String sql = "select * from usersinfo where user_id = ?";
+		@SuppressWarnings("unchecked")
 		List<Usersinfo> usersList = Operation.sqlQuery(sql,new Usersinfo(),userId);
-		System.out.println(usersList.size());
+//		System.out.println(usersList.size());
+		System.out.println(usersList.get(0));
 		return usersList.get(0);
 	}
 

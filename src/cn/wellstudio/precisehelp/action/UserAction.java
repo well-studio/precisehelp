@@ -38,9 +38,8 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 	public Users getUser() {
 		return user;
 	}
-	
-	private Usersinfo userInfoById;//返回用户信息
-	
+
+
 	IUserService usersService;
 	
 	
@@ -48,16 +47,16 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 		this.usersService = usersService;
 	}
 	
-	
 	/**
 	 * 注册 
 	 * @return
 	 */
 	public String register() {
+		System.out.println("test");
 		if(usersService.addUser(user)){
 			return "registerSuceess";
 		}
-		Msg = "error";
+		Msg = "Fail";
 		return "operationFail";
 	}
 	
@@ -70,12 +69,12 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 		if(usersService.userLogin(user)){
 			//登入成功，保存登入信息
 			session.put("loginInfo", user);
+			user.setUsersinfo(usersService.queryUsersinfo(user.getUserAccount()));
 			return "loginSuceess";
 		}
-		Msg = "Fail";
+		Msg = "用户名或密码错误！";
 		return "operationFail";
 	}
-	
 	
 	/**
 	 * 更新信息
@@ -89,20 +88,7 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 //		return "operationFail";
 //	}
 	
-	/**
-	 * 根据用户id查询用户信息 ok
-	 * @param users
-	 * @return
-	 */
-	public String queryUserinfo(){
-		userInfoById = usersService.queryUsersinfo(user.getUserId());
-		if(userInfoById!=null){
-			return "querySuccess";
-		}
-		Msg = "Fail";
-		return "operationFail";
-	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

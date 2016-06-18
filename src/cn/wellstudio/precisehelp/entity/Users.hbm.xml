@@ -19,11 +19,5 @@
         <property name="userPayPsw" type="java.lang.String">
             <column name="user_pay_psw" length="30" />
         </property>
-        <set name="couponses" inverse="true">
-            <key>
-                <column name="user_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Coupons" />
-        </set>
     </class>
 </hibernate-mapping>

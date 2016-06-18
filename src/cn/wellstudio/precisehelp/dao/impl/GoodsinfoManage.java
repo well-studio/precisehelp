@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import cn.wellstudio.precisehelp.dao.IGoodsDAO;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
+import cn.wellstudio.precisehelp.entity.Goodstype;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
 import cn.wellstudio.precisehelp.util.Operation;
 
@@ -74,6 +75,10 @@ public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 		String hql = "from Goodsinfo as gs where gs.goodstypeId = ?";
 		@SuppressWarnings("unchecked")
 		List<Goodsinfo> goodList= Operation.hqlQuery(hql, goodType);
+		for (Goodsinfo goodsinfo : goodList) {
+			goodsinfo.setGoodstype(new GoodstypeManage().findTypeBytypeId(goodsinfo.getGoodstypeId()));
+		}
+		
 		return goodList;
 	}
 

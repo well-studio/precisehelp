@@ -1,8 +1,13 @@
 package cn.wellstudio.precisehelp.action;
 
+import java.util.HashMap;
 import java.util.List;
 
 
+
+
+
+import java.util.Map;
 
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.service.IGoodsService;
@@ -21,10 +26,11 @@ public class GoodsAction extends ActionSupport implements
 	private static final long serialVersionUID = 1L;
 	// 接收的数据
 	private Goodsinfo goodsInfo = new Goodsinfo();
+	private String Msg;//返回操作信息
+	private Map<String, Object> findGoodsByType = new HashMap<String, Object>();//返回商品类型
 	
 	// 返回的数据
 	private List<Goodsinfo> goodsList;
-
 	public void setGoodsList(List<Goodsinfo> goodsList) {
 		this.goodsList = goodsList;
 	}
@@ -39,15 +45,24 @@ public class GoodsAction extends ActionSupport implements
 	public Goodsinfo getGoodsInfo() {
 		return goodsInfo;
 	}
-	
-	
+	public void setMsg(String msg) {
+		Msg = msg;
+	}
+	public String getMsg() {
+		return Msg;
+	}
 
-	/*
-	 * private Map<String, List<Goodsinfo>> mapRes = new HashMap<String,
-	 * List<Goodsinfo>>(); public void setMapRes(Map<String, List<Goodsinfo>>
-	 * mapRes) { this.mapRes = mapRes; } public Map<String, List<Goodsinfo>>
-	 * getMapRes() { return mapRes; }
-	 */
+	public Map<String, Object> getFindGoodsByType() {
+		return findGoodsByType;
+	}
+
+	public void setFindGoodsByType(Map<String, Object> findGoodsByType) {
+		this.findGoodsByType = findGoodsByType;
+	}
+
+
+
+
 
 	IGoodsService goodsService;
 
@@ -67,7 +82,8 @@ public class GoodsAction extends ActionSupport implements
 		if (goodsService.createGoods(goodsInfo)) {
 			return "createSuccess";
 		}
-		return "createFail";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -79,7 +95,8 @@ public class GoodsAction extends ActionSupport implements
 		if (goodsService.updateGoods(goodsInfo)) {
 			return "updateSuccess";
 		}
-		return "updateFail";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -88,15 +105,13 @@ public class GoodsAction extends ActionSupport implements
 	 * @return
 	 */
 	public String findGoodsById() {
-		
-		System.out.println(goodsInfo.getGoodsId());
-		
 		goodsInfo = goodsService.findGoodsById(goodsInfo.getGoodsId());
 		if (goodsInfo != null) {
 			System.out.println(goodsInfo);
 			return "goodsDetailInfo";
 		}
-		return "error";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -114,7 +129,8 @@ public class GoodsAction extends ActionSupport implements
 		if (goodsList != null) {
 			return "findAllGoods";
 		}
-		return "error";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -123,16 +139,14 @@ public class GoodsAction extends ActionSupport implements
 	 * @return
 	 */
 	public String findGoodsByType() {
-		
-		System.out.println("hahaha");
-		System.out.println("hahaha");
-		System.out.println("热不俗？？");
-		
 		this.goodsList = goodsService.findGoodsByType(goodsInfo.getGoodstypeId());
 		if (goodsList != null) {
+			findGoodsByType.put("goodType", goodsList.get(0).getGoodstype().getTypeName());
+			findGoodsByType.put("goodsList", goodsList);
 			return "findGoodsByType";
 		}
-		return "error";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -146,7 +160,8 @@ public class GoodsAction extends ActionSupport implements
 		if (goodsList != null) {
 			return "findGoodsByName";
 		}
-		return "error";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	/**
@@ -160,7 +175,8 @@ public class GoodsAction extends ActionSupport implements
 		if (goodsList != null) {
 			return "findGoodsByArea";
 		}
-		return "error";
+		Msg = "Fail";
+		return "operationFail";
 	}
 
 	@Override

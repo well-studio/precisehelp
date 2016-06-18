@@ -1,6 +1,5 @@
 package cn.wellstudio.precisehelp.service.impl;
 
-import java.util.Set;
 import java.util.UUID;
 
 import cn.wellstudio.precisehelp.dao.IUsersDAO;
@@ -31,6 +30,7 @@ public class UserService implements IUserService{
 		
 		if( account != null && account.trim() != "" && userPsw != null && userPsw.trim() != null) {
 			if( ValidateUtil.isValidMobileNo(account) && ValidateUtil.isRegUserPsw(userPsw) ) {
+				user.setUserPsw(MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+user.getUserPsw()+account));
 				return usersDao.userLogin(user);
 			} else {
 				return false;
@@ -49,41 +49,55 @@ public class UserService implements IUserService{
 
 	
 	@Override
-	public Usersinfo queryUsersinfo(String id) {
+	public Usersinfo queryUsersinfo(String account) {
 		
-		Usersinfo info =  usersDao.queryUsersinfo(id);
+		Usersinfo info =  usersDao.queryUsersinfo(account);
 		
 		return info;
 	}
 
 	@Override
-	public boolean updateInfo(Users user) {
+	public boolean updateInfo(Users users) {
+		String account = users.getUserAccount();
+		String userPsw = users.getUserPsw();
+		String userPsw2 = users.getUserPsw2();
+		String userPayPsw = users.getUserPayPsw();
 		
-		boolean res = usersDao.updateInfo(user);
-		
-		return res;
+		if(ValidateUtil.isRegUserPsw(userPsw) && userPsw.equals(userPsw2) ) {
+			String md5Psw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPsw + account);
+			users.setUserPsw(md5Psw);
+		}
+		if(ValidateUtil.isRegUserPsw(userPayPsw) ) {
+			String md5PayPsw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPayPsw + account);
+			users.setUserPayPsw(md5PayPsw);
+		}
+		return usersDao.updateInfo(users);
 	}
+
 
 	@Override
 	public boolean addUser(Users users) {
-		
 		String account = users.getUserAccount();
 		String userPsw = users.getUserPsw();
-//		String userPsw2 = users.getUserPsw2();
-		
-		if(  ValidateUtil.isValidMobileNo(account) && ValidateUtil.isRegUserPsw(userPsw) && userPsw.equals(userPsw)) {
+		String userPsw2 = users.getUserPsw2();
+		String userPayPsw = users.getUserPayPsw();
+//		System.out.println(account+","+userPsw);
+		if(  ValidateUtil.isValidMobileNo(account) 
+				&& ValidateUtil.isRegUserPsw(userPsw)
+				&& ValidateUtil.isRegUserPsw(userPayPsw)
+				&& userPsw.equals(userPsw2)) {
+			
 			users.setUserId(UUID.randomUUID().toString());
 			// MD5 +盐
-			String md5Psw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPsw);
+			String md5Psw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPsw + account);
+			String md5PayPsw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPayPsw+account);
 			users.setUserPsw(md5Psw);
+			users.setUserPayPsw(md5PayPsw);
+//			System.out.println("验证成功");
 			return usersDao.addUser(users);
 		} else {
+//			System.out.println("验证失败");
 			return false;
 		}
-		
 	}
-
-
-
-	
 }

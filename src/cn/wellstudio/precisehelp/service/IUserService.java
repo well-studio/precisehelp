@@ -31,7 +31,7 @@ public interface IUserService {
 	 * @param users
 	 * @return
 	 */
-	public Usersinfo queryUsersinfo(String id);
+	public Usersinfo queryUsersinfo(String account);
 	
 	/**
 	 * 更新用户信息

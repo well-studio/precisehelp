@@ -6,6 +6,8 @@ import java.util.List;
 
 
 
+import java.util.UUID;
+
 import cn.wellstudio.precisehelp.dao.IGoodsDAO;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.service.IGoodsService;
@@ -57,6 +59,8 @@ public class GoodsService implements IGoodsService {
 	
 	@Override
 	public boolean createGoods(Goodsinfo goodsInfo) {
+		
+		goodsInfo.setGoodsId(UUID.randomUUID().toString());
 		
 		boolean res = goodsDao.createGoods(goodsInfo);
 		

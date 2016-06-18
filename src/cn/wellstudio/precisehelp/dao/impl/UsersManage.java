@@ -31,6 +31,7 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 
 	@Override
 	public boolean userLogin(Users user) {
+		// System.out.println(user.toString());
 		// 先查询出原密码
 		String hql = "select u.userPsw from Users as u where u.userAccount = ?";
 		String psw = null;
@@ -39,7 +40,8 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 		try {
 			Session session = HibernateSessionFactory.getCurrentSession();
 			tr = session.beginTransaction();
-			psw = (String)session.createQuery(hql).setString(0, user.getUserAccount()).uniqueResult();
+			psw = (String) session.createQuery(hql)
+					.setString(0, user.getUserAccount()).uniqueResult();
 			tr.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,15 +59,18 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 				return false;
 			}
 		}
-		if(psw==null){
+		if (psw == null) {
 			return false;
-		}else{
-			if(psw.equals(user.getUserPsw())){
+		} else {
+			System.out.println(psw);
+			System.out.println(user.getUserPsw());
+			if (psw.equals(user.getUserPsw())) {
+				// System.out.println("登入成功");
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-			
+
 		}
 	}
 
@@ -77,12 +82,14 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 		return false;
 	}
 
+	// 根据账号查询用户基本信息
 	@Override
-	public Usersinfo queryUsersinfo(String id) {
-		String hql = "from Usersinfo as u where u.userId = ?";
+	public Usersinfo queryUsersinfo(String account) {
+		// String hql = "from Usersinfo as u where u.userId = ?";
+		String hql = "from Usersinfo as u where u.userId = (select userId from Users as us where us.userAccount=?)";
 		@SuppressWarnings("unchecked")
-		List<Usersinfo> usersinfos = Operation.hqlQuery(hql, id);
-		if (usersinfos != null) {
+		List<Usersinfo> usersinfos = Operation.hqlQuery(hql, account);
+		if (usersinfos.size() != 0) {
 			return usersinfos.get(0);
 		}
 		return null;
@@ -95,6 +102,21 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 
 	@Override
 	public boolean addUser(Users users) {
-		return add(users);
+		boolean flag1 = false;
+		boolean flag2 = false;
+		System.out.println(users.toString());
+		if (queryUsersinfo(users.getUserAccount()) != null) {
+			flag1 = false;
+		} else {
+			flag1 = add(users);
+			if (flag1) {
+				flag2 = add(new Usersinfo(
+						"http://xxmodd.com:8080/precisehelp/imgs/users/default.jpg",
+						"男", "有缘人", "快点来签名吧~", users.getUserAccount(), "", "",
+						users.getUserId()));
+			}
+		}
+		return flag1 && flag2;
 	}
+
 }

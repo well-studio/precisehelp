@@ -25,6 +25,7 @@ public class GoodstypeManage extends ObjectManage implements IGoodsTypeDAO{
 		List<Goodstype> goodstypes = Operation.hqlQuery(hql, goodstypeId);
 		return goodstypes.get(0);
 	}
+	
 
 	@Override
 	public boolean addType(Goodstype goods) {
@@ -43,7 +44,10 @@ public class GoodstypeManage extends ObjectManage implements IGoodsTypeDAO{
 
 	@Override
 	public List<Goodstype> findAllType() {
-		return null;
+		String hql ="from Goodstype";
+		@SuppressWarnings("unchecked")
+		List<Goodstype> typeList = Operation.hqlQuery(hql);
+		return typeList;
 	}
 
 	@Override //(unuse)

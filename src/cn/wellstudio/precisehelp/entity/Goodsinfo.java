@@ -21,7 +21,7 @@ public class Goodsinfo  implements java.io.Serializable {
 	private String goodsStat; // 商品描述
 	private Double goodsLastPrice; // 商品上一次价格
 	private Double goodsNowPrice; // 商品现在的价格
-	private Double goodsDiscount; // 商品折扣率(默认为1)
+	private Double goodsDiscount = 1.0; // 商品折扣率(默认为1)
 	private String goodsPriceUnit; // 商品单位
 	private String goodsImg;  // 商品展示圖片
 	private Integer goodsareaId;

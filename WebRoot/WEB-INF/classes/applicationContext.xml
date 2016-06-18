@@ -16,7 +16,7 @@
 		<property name="jdbcUrl" value="jdbc:mysql://115.159.68.237:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8"></property>
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="user" value="root"></property>
-		<property name="password" value="woshizhh123"></property>
+		<property name="password" value="root"></property>
 		<property name="initialPoolSize" value="10"></property>
 		<property name="maxPoolSize" value="200"></property>
 	</bean>

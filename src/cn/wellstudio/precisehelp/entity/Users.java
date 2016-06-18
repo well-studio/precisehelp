@@ -46,7 +46,6 @@ public class Users  implements java.io.Serializable {
     }
 
     
-    
 
    
     public Users(String userId, String userAccount, String userPsw,

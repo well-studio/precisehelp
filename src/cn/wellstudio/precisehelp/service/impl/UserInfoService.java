@@ -3,6 +3,7 @@ package cn.wellstudio.precisehelp.service.impl;
 import cn.wellstudio.precisehelp.dao.IUsersinfoDAO;
 import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.service.IUserInfoService;
+import cn.wellstudio.precisehelp.util.ValidateUtil;
 
 /**
  * 用户信息业务实现
@@ -19,9 +20,40 @@ public class UserInfoService implements IUserInfoService {
 	
 	@Override
 	public boolean updateUserInfo(Usersinfo usersinfo) {
+		boolean res = false;
+		String userIdnum = usersinfo.getUserIdnum();
+		String userImg = usersinfo.getUserImg();
+		String userNickname = usersinfo.getUserNickname();
+		String userPhone = usersinfo.getUserPhone();
+		String userRname = usersinfo.getUserRname();
+		String userSex = usersinfo.getUserSex();
+		String userSign = usersinfo.getUserSign();
+		String userId = usersinfo.getUserId();
+		Usersinfo usersInfo2 = userInfoDao.findUserInfo(userId);
+		if( userIdnum == null)
+			usersinfo.setUserIdnum(usersInfo2.getUserIdnum());
+		if( userImg == null)
+			usersinfo.setUserImg(usersInfo2.getUserImg());
+		if( userNickname == null)
+			usersinfo.setUserNickname(usersInfo2.getUserNickname());
+		if( userPhone == null)
+			usersinfo.setUserPhone(usersInfo2.getUserPhone());
+		if( userRname == null )
+			usersinfo.setUserRname(usersInfo2.getUserRname());
+		if( userSex == null)
+			usersinfo.setUserSex(usersInfo2.getUserSex());
+		if( userSign == null)
+			usersinfo.setUserSign(usersInfo2.getUserSign());
 		
-		boolean res = userInfoDao.updateUserInfo(usersinfo);
-		
+		// 校验
+		if(ValidateUtil.IsSignLength(userSign)
+				&& ValidateUtil.isValidNickName(userRname)
+				&& ValidateUtil.isValidName(userRname)
+				&& ValidateUtil.isValidIdCard(userIdnum )) {
+			
+			res = userInfoDao.updateUserInfo(usersinfo);
+			
+		}
 		return res;
 	}
 

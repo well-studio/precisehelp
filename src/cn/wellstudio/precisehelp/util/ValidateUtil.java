@@ -50,13 +50,34 @@ public class ValidateUtil
         // 2、[\u4E00-\u9FA5]* 汉字匹配 一次或者多次  
         boolean flag = false;  
         Pattern p = Pattern  
-                .compile("^([A-Za-z]+[\\/][A-Za-z]+)|[\u4E00-\u9FA5]*");  
+                .compile("^[\u4E00-\u9FA5]{2-4}");  
         if (str != null)  
         {  
             Matcher match = p.matcher(str);  
             flag = match.matches();  
         }  
         return flag;  
+    }  
+    
+    /*************************************************************************** 
+     * 匹配英中文姓名 与英文名 英文名格式为：姓与名之间用/隔开 例如Green/Jim King 
+     *  
+     * @param str 待匹配字符串 
+     * @return true 匹配通过 false 匹配失败 
+     */  
+    public static boolean isValidNickName(String str)  
+    {  
+    	// 1、[A-Za-z]* 英文字母的匹配 一次或者多次  
+    	// 2、[\u4E00-\u9FA5]* 汉字匹配 一次或者多次  
+    	boolean flag = false;  
+    	Pattern p = Pattern  
+    			.compile("^\\w{1-12}");  
+    	if (str != null)  
+    	{  
+    		Matcher match = p.matcher(str);  
+    		flag = match.matches();  
+    	}  
+    	return flag;  
     }  
   
     /*************************************************************************** 
@@ -184,7 +205,7 @@ public class ValidateUtil
         {  
             Matcher match = p.matcher(str);  
             flag = match.matches();  
-        }  
+        }
         return flag;  
     }  
   
@@ -304,7 +325,7 @@ public class ValidateUtil
         boolean flag = false;  
         // Pattern p = Pattern.compile("^(1[358][13567890])(\\d{8})$");  
         Pattern p = Pattern  
-                .compile("^((13[0-9])|(15[02789])|(18[679]))\\d{8}$");  
+                .compile("^((13[0-9])|(15[0-9])|(18[0-9]))\\d{8}$");  
         Matcher match = p.matcher(mobileNo);  
         if (mobileNo != null)  
         {  
@@ -563,7 +584,7 @@ public class ValidateUtil
         return flag;  
     }
 
-/**
+    /**
      * 验证输入密码长度 (6-18位)
      * 
      * @param 待验证的字符串
@@ -579,6 +600,24 @@ public class ValidateUtil
             flag = match.matches();  
         }  
         return flag;  
+    }
+    
+    /**
+     * 验证输入密码长度 (6-18位)
+     * 
+     * @param 待验证的字符串
+     * @return 如果是符合格式的字符串,返回 <b>true </b>,否则为 <b>false </b>
+     */
+    public static boolean IsSignLength(String str) {
+    	String regex = "^\\w{1,200}$";
+    	boolean flag = true;
+    	if (str != null)  
+    	{  
+    		Pattern p = Pattern.compile(regex);  
+    		Matcher match = p.matcher(str);  
+    		flag = match.matches();  
+    	}  
+    	return flag;  
     }
 
 }

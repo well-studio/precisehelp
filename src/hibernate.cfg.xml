@@ -2,43 +2,49 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="sessionFactory">
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8</property>
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">root</property>
-  <property name="hibernate.connection.useUnicode">true</property>
-  <property name="hibernate.show_sql">true</property>
-  <property name="hibernate.format_sql">true</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Admins.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Adminsinfo.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Comments.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Express.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Goodsarea.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Goodsinfo.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Goodstype.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Letters.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/OrderDoing.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/OrderDone.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/OrderTodo.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Toaddress.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Todolist.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Users.hbm.xml"/>
-  <mapping resource="cn/wellstudio/precisehelp/entity/Usersinfo.hbm.xml"/>
+	<session-factory name="sessionFactory">
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://121.42.159.207:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<property name="hibernate.connection.username">xxmodd</property>
+		<property name="hibernate.connection.password">3.14159xxmodd</property>
+		<property name="hibernate.connection.useUnicode">true</property>
+		<property name="connection.characterEncoding">UTF-8</property>
 
-<!-- +++ --> 	
- <mapping resource="cn/wellstudio/precisehelp/entity/Coupons.hbm.xml"/>
- <mapping resource="cn/wellstudio/precisehelp/entity/Couponstype.hbm.xml"/>
- <mapping resource="cn/wellstudio/precisehelp/entity/Goodsquestion.hbm.xml"/>
- <mapping resource="cn/wellstudio/precisehelp/entity/Questionreply.hbm.xml"/>
- <mapping resource="cn/wellstudio/precisehelp/entity/Shoppingcart.hbm.xml"/>
- <mapping resource="cn/wellstudio/precisehelp/entity/Usersfavorite.hbm.xml"/>
+		<!-- C3P0连接池设定 -->
 
- 
- 
- 
- 
- 
- </session-factory>
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider </property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.timeout">120</property>
+		<property name="hibernate.c3p0.max_statements">100</property>
+		<property name="hibernate.c3p0.idle_test_period">120</property>
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<mapping resource="cn/wellstudio/precisehelp/entity/Admins.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Adminsinfo.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Comments.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Express.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Goodsarea.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Goodsinfo.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Goodstype.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Letters.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/OrderDoing.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/OrderDone.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/OrderTodo.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Toaddress.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Todolist.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Users.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Usersinfo.hbm.xml" />
+
+		<!-- +++ -->
+		<mapping resource="cn/wellstudio/precisehelp/entity/Coupons.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Couponstype.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Goodsquestion.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Questionreply.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Shoppingcart.hbm.xml" />
+		<mapping resource="cn/wellstudio/precisehelp/entity/Usersfavorite.hbm.xml" />
+	</session-factory>
 </hibernate-configuration>

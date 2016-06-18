@@ -44,10 +44,17 @@ public class Usersinfo  implements java.io.Serializable {
         this.userId = userId;
     }
 
+    
    
     // Property accessors
 
-    public Integer getUsersinfoId() {
+    public Usersinfo(String userId) {
+		super();
+		this.userId = userId;
+	}
+
+
+	public Integer getUsersinfoId() {
         return this.usersinfoId;
     }
     
