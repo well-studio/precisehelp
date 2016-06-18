@@ -16,6 +16,9 @@
         <property name="typeGoods" type="java.lang.String">
             <column name="type_goods" length="80" />
         </property>
+        <property name="typeInvalid" type="java.lang.Integer">
+            <column name="type_invalid" />
+        </property>
         <property name="typeCandis" type="java.lang.Integer">
             <column name="type_candis" />
         </property>

@@ -13,10 +13,10 @@
 	>
 	<!-- 数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://115.159.68.237:3306/precisehelp?useUnicode=true&amp;characterEncoding=UTF-8"></property>
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="user" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="woshizhh123"></property>
 		<property name="initialPoolSize" value="10"></property>
 		<property name="maxPoolSize" value="200"></property>
 	</bean>
@@ -93,7 +93,6 @@
 	<bean id="usersInfoManage" class="cn.wellstudio.precisehelp.dao.impl.UsersinfoManage">
 	</bean>
 	<bean id="usersManage" class="cn.wellstudio.precisehelp.dao.impl.UsersManage">
-		<property name="sessionFactory" ref="hbConfig"></property>
 	</bean>
 
 	
@@ -143,6 +142,9 @@
 	<bean id="usersService" class="cn.wellstudio.precisehelp.service.impl.UserService">
 		<property name="usersDao" ref="usersManage"></property>
 	</bean>
+	<bean id="usersInfoService" class="cn.wellstudio.precisehelp.service.impl.UserInfoService">
+		<property name="userInfoDao" ref="usersInfoManage"></property>
+	</bean>
 	
 	<!-- action层的bean管理 -->
 	<bean id="adminAction" class="cn.wellstudio.precisehelp.action.AdminAction" scope="prototype">
@@ -186,6 +188,9 @@
 	</bean>
 	<bean id="userAction" class="cn.wellstudio.precisehelp.action.UserAction" scope="prototype">
 		<property name="usersService" ref="usersService"></property>
+	</bean>
+	<bean id="userInfoAction" class="cn.wellstudio.precisehelp.action.UserInfoAction" scope="prototype">
+		<property name="usersInfoService" ref="usersInfoService"></property>
 	</bean>
 	
 </beans>

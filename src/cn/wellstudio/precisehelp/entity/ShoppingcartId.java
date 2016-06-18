@@ -2,13 +2,16 @@ package cn.wellstudio.precisehelp.entity;
 
 /**
  * 用户 购物车 中间实体
+ * 
  * @author huhong
  *
  */
+@SuppressWarnings("serial")
 public class ShoppingcartId implements java.io.Serializable {
 
 	// Fields
-
+	private String userId;
+	private String goodsId;
 	private Users users; // 关联用户
 	private Goodsinfo goodsinfo; // 关联商品
 
@@ -19,15 +22,31 @@ public class ShoppingcartId implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ShoppingcartId(Users users, Goodsinfo goodsinfo) {
-		this.users = users;
-		this.goodsinfo = goodsinfo;
+	public ShoppingcartId(String userId, String goodsId) {
+		this.userId = userId;
+		this.goodsId = goodsId;
 	}
 
 	// Property accessors
 
+	public String getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getGoodsId() {
+		return this.goodsId;
+	}
+
+	public void setGoodsId(String goodsId) {
+		this.goodsId = goodsId;
+	}
+
 	public Users getUsers() {
-		return this.users;
+		return users;
 	}
 
 	public void setUsers(Users users) {
@@ -35,11 +54,17 @@ public class ShoppingcartId implements java.io.Serializable {
 	}
 
 	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
+		return goodsinfo;
 	}
 
 	public void setGoodsinfo(Goodsinfo goodsinfo) {
 		this.goodsinfo = goodsinfo;
+	}
+
+	@Override
+	public String toString() {
+		return "ShoppingcartId [userId=" + userId + ", goodsId=" + goodsId
+				+ "]";
 	}
 
 	public boolean equals(Object other) {
@@ -51,31 +76,22 @@ public class ShoppingcartId implements java.io.Serializable {
 			return false;
 		ShoppingcartId castOther = (ShoppingcartId) other;
 
-		return ((this.getUsers() == castOther.getUsers()) || (this.getUsers() != null
-				&& castOther.getUsers() != null && this.getUsers().equals(
-				castOther.getUsers())))
-				&& ((this.getGoodsinfo() == castOther.getGoodsinfo()) || (this
-						.getGoodsinfo() != null
-						&& castOther.getGoodsinfo() != null && this
-						.getGoodsinfo().equals(castOther.getGoodsinfo())));
+		return ((this.getUserId() == castOther.getUserId()) || (this
+				.getUserId() != null && castOther.getUserId() != null && this
+				.getUserId().equals(castOther.getUserId())))
+				&& ((this.getGoodsId() == castOther.getGoodsId()) || (this
+						.getGoodsId() != null && castOther.getGoodsId() != null && this
+						.getGoodsId().equals(castOther.getGoodsId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result
-				+ (getUsers() == null ? 0 : this.getUsers().hashCode());
+				+ (getUserId() == null ? 0 : this.getUserId().hashCode());
 		result = 37 * result
-				+ (getGoodsinfo() == null ? 0 : this.getGoodsinfo().hashCode());
+				+ (getGoodsId() == null ? 0 : this.getGoodsId().hashCode());
 		return result;
 	}
-
-	@Override
-	public String toString() {
-		return "ShoppingcartId [users=" + users + ", goodsinfo=" + goodsinfo
-				+ "]";
-	}
-	
-	
 
 }

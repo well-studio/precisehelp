@@ -19,23 +19,5 @@
         <property name="expressContent" type="java.lang.String">
             <column name="express_content" length="65535" />
         </property>
-        <!-- 
-        <set name="orderDoings" inverse="true">
-            <key>
-                <column name="express_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
-        </set>
-        <set name="orderDones" inverse="true">
-            <key>
-                <column name="express_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
-        </set>
-        -->
-        <one-to-one name="orderDoing" class="cn.wellstudio.precisehelp.entity.OrderDoing" property-ref="express"></one-to-one>
-   		<one-to-one name="orderDone" class="cn.wellstudio.precisehelp.entity.OrderDone" property-ref="express"></one-to-one>
-   
-   
     </class>
 </hibernate-mapping>

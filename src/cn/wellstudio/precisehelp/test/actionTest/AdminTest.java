@@ -45,7 +45,7 @@ public class AdminTest {
 				new ClassPathXmlApplicationContext("applicationContext.xml");
 		GoodsinfoManage manage = (GoodsinfoManage) context.getBean("goodsInfoManage");
 		List<Goodsinfo> goods= manage.findAllGoods();
-		System.out.println(goods.get(0).getCommentses().size());
+		System.out.println(goods);
 	}
 }
 

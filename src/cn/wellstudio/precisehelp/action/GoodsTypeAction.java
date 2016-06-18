@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author huhong
  *
  */
+@SuppressWarnings("serial")
 public class GoodsTypeAction extends ActionSupport{
 	
 	IGoodsTypeService goodsTypeService;

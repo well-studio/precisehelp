@@ -9,43 +9,23 @@ import org.hibernate.Transaction;
 import cn.wellstudio.precisehelp.dao.IGoodsAreaDAO;
 import cn.wellstudio.precisehelp.entity.Goodsarea;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
+import cn.wellstudio.precisehelp.entity.Goodstype;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
+import cn.wellstudio.precisehelp.util.Operation;
 
 /** 
  * 商品产地的增删改查
  * @author xxmodd 
  */
 public class GoodsareaManage extends ObjectManage implements IGoodsAreaDAO{
-	//根据商品查询产地信息 test true
-	public static Goodsarea goodsAreaQuery(Goodsinfo goodsinfo){
-		Goodsarea goodsarea = null;
-		Session session;
-		Transaction tr = null;
-		try{
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			//持久化goodsinfo
-			goodsinfo = (Goodsinfo)session.get(Goodsinfo.class, goodsinfo.getGoodsId());
-			goodsarea = goodsinfo.getGoodsarea();
-			//懒加载处理
-			goodsarea.toString();
-			tr.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			try {
-				tr.rollback();
-			} catch (HibernateException e1) {
-				e1.printStackTrace();
-			}
-		}finally{
-			try {
-				HibernateSessionFactory.closeCurrentSession();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-		return goodsarea;
+	// 根据商品产地id获取商品类型
+	public Goodsarea findAreaByareaId(int goodsareaId) {
+		String hql = "from Goodsarea as ga where ga.areaId = ?";
+		@SuppressWarnings("unchecked")
+		List<Goodsarea> goodsareas = Operation.hqlQuery(hql, goodsareaId);
+		return goodsareas.get(0);
 	}
+
 
 	@Override
 	public boolean addArea(Goodsarea goods) {

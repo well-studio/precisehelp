@@ -1,13 +1,14 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 商品类型实体
  * @author huhong
  *
  */
+@SuppressWarnings("serial")
 public class Goodstype implements java.io.Serializable {
 
 	// Fields
@@ -15,7 +16,7 @@ public class Goodstype implements java.io.Serializable {
 	private Integer typeId; // 类型id
 	private String typeName; // 类型名称
 	private String typeStat; // 类型描述
-	private Set goodsinfos = new HashSet(0); // 该商品类型对应的商品信息列表
+	private List<Goodsinfo> goodsinfos = new ArrayList<Goodsinfo>(); // 该商品类型对应的商品信息列表
 
 	// Constructors
 
@@ -23,12 +24,16 @@ public class Goodstype implements java.io.Serializable {
 	public Goodstype() {
 	}
 
-	/** full constructor */
-	public Goodstype(String typeName, String typeStat, Set goodsinfos) {
+	
+
+	public Goodstype(Integer typeId, String typeName, String typeStat) {
+		super();
+		this.typeId = typeId;
 		this.typeName = typeName;
 		this.typeStat = typeStat;
-		this.goodsinfos = goodsinfos;
 	}
+
+
 
 	// Property accessors
 
@@ -56,13 +61,17 @@ public class Goodstype implements java.io.Serializable {
 		this.typeStat = typeStat;
 	}
 
-	public Set getGoodsinfos() {
-		return this.goodsinfos;
+	
+
+	public List<Goodsinfo> getGoodsinfos() {
+		return goodsinfos;
 	}
 
-	public void setGoodsinfos(Set goodsinfos) {
+	public void setGoodsinfos(List<Goodsinfo> goodsinfos) {
 		this.goodsinfos = goodsinfos;
 	}
+
+
 
 	@Override
 	public String toString() {

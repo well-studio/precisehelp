@@ -36,14 +36,14 @@ public interface IGoodsService {
 	 * @param goodType
 	 * @return
 	 */
-	public List<Goodsinfo> findGoodsByType(String goodType);
+	public List<Goodsinfo> findGoodsByType(Integer goodType);
 	
 	/**
 	 * 根据地区查询商品信息
 	 * @param goodArea
 	 * @return
 	 */
-	public List<Goodsinfo> findGoodsByArea(String goodArea);
+	public List<Goodsinfo> findGoodsByArea(Integer goodArea);
 	
 	/**
 	 * 添加商品

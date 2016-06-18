@@ -10,35 +10,29 @@
             <column name="com_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="user_id" length="60" />
-        </many-to-one>
-        <many-to-one name="orderDone" class="cn.wellstudio.precisehelp.entity.OrderDone" fetch="select">
-            <column name="orderdone_id" />
-        </many-to-one>
-        <many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo" fetch="select">
-            <column name="goods_id" length="60" />
-        </many-to-one>
         <property name="comContent" type="java.lang.String">
             <column name="com_content" length="250" />
         </property>
-        <property name="comTime" type="java.util.Date">
-            <column name="com_time" length="10" />
+        <property name="comTime" type="java.sql.Timestamp">
+            <column name="com_time" length="19" />
         </property>
         <property name="comUps" type="java.lang.Integer">
             <column name="com_ups" />
         </property>
-        <!-- 
-        <set name="commentses" inverse="true">
-            <key>
-                <column name="com_parent" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Comments" />
-        </set>
-        -->
-        <many-to-one name="comParent" class="cn.wellstudio.precisehelp.entity.Comments" unique="true" fetch="select">
+        <property name="comRes" type="java.lang.Integer">
+            <column name="com_res" />
+        </property>
+        <property name="orderdoneId" type="java.lang.Integer">
+            <column name="orderdone_id" />
+        </property>
+        <property name="comParentId" type="java.lang.Integer">
             <column name="com_parent" />
-        </many-to-one>
-        <one-to-one name="comChild" class="cn.wellstudio.precisehelp.entity.Comments" property-ref="comParent"></one-to-one>
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="user_id" length="60" />
+        </property>
+        <property name="goodsId" type="java.lang.String">
+            <column name="goods_id" length="60" />
+        </property>
     </class>
 </hibernate-mapping>

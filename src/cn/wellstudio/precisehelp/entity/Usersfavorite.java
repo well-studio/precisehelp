@@ -1,54 +1,65 @@
 package cn.wellstudio.precisehelp.entity;
 
+import java.sql.Timestamp;
+
+
 /**
- * 用户收藏夹实体
+ * 用户收藏
  * @author huhong
  *
  */
-public class Usersfavorite implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Usersfavorite  implements java.io.Serializable {
 
-	// Fields
 
-	private Integer favoId; // id
-	private Users users; // 关联用户
-	private Goodsinfo goodsinfo; // 关联商品
+    // Fields    
 
-	// Constructors
+     private UsersfavoriteId id;
+     private Timestamp addTime;
 
-	/** default constructor */
-	public Usersfavorite() {
-	}
 
-	/** full constructor */
-	public Usersfavorite(Users users, Goodsinfo goodsinfo) {
-		this.users = users;
-		this.goodsinfo = goodsinfo;
-	}
+    // Constructors
 
-	// Property accessors
+    /** default constructor */
+    public Usersfavorite() {
+    }
 
-	public Integer getFavoId() {
-		return this.favoId;
-	}
+	/** minimal constructor */
+    public Usersfavorite(UsersfavoriteId id) {
+        this.id = id;
+    }
+    
+    /** full constructor */
+    public Usersfavorite(UsersfavoriteId id, Timestamp addTime) {
+        this.id = id;
+        this.addTime = addTime;
+    }
 
-	public void setFavoId(Integer favoId) {
-		this.favoId = favoId;
-	}
+   
+    // Property accessors
 
-	public Users getUsers() {
-		return this.users;
-	}
+    public UsersfavoriteId getId() {
+        return this.id;
+    }
+    
+    public void setId(UsersfavoriteId id) {
+        this.id = id;
+    }
 
-	public void setUsers(Users users) {
-		this.users = users;
-	}
+    public Timestamp getAddTime() {
+        return this.addTime;
+    }
+    
+    public void setAddTime(Timestamp addTime) {
+        this.addTime = addTime;
+    }
+   
 
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
 
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
+
+
+
+
+
 
 }

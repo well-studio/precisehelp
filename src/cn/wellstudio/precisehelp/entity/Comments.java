@@ -1,111 +1,130 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+
 
 /**
  * 评论实体
- * 
+ *
  * @author huhong
  *
  */
-public class Comments implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Comments  implements java.io.Serializable {
 
-	// Fields
 
-	private Integer comId; // id
-	private Users users; // 关联用户
-	private Comments comChild; // 关联儿子评论
-	private OrderDone orderDone; // 关联已完成的订单
-	private Goodsinfo goodsinfo; // 关联商品信息
-	private String comContent; // 评论内容
-	private Date comTime; // 评论时间
-	private Integer comUps; // 评论赞数
-	// private Set commentses = new HashSet(0); // 关联父亲
-	private Comments comParent; // 关联父亲
+    // Fields    
+ 	private Integer comId; // id
+    private Integer comRes;
+    private Integer orderdoneId;
+    private Integer comParentId;
+    private String userId;
+    private String goodsId;
+ 	private String comContent; // 评论内容
+ 	private Timestamp comTime; // 评论时间
+ 	private Integer comUps; // 评论赞数
+ 	private Users users; // 关联用户
+ 	private Comments comParent; // 关联父亲
+ 	private Comments comChild; // 关联儿子评论
+ 	private OrderDone orderDone; // 关联已完成的订单
+ 	private Goodsinfo goodsinfo; // 关联商品信息
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Comments() {
-	}
-
-	public Comments(Integer comId) {
+    /** default constructor */
+    public Comments() {
+    }
+    
+    public Comments(Integer comId, Integer comRes, Integer orderdoneId,
+			Integer comParentId, String userId, String goodsId,
+			String comContent, Timestamp comTime, Integer comUps) {
 		super();
 		this.comId = comId;
-	}
-
-	/** full constructor */
-	public Comments(Users users, Comments comChild, OrderDone orderDone,
-			Goodsinfo goodsinfo, String comContent, Date comTime,
-			Integer comUps, Comments comParent) {
-		this.users = users;
-		this.comChild = comChild;
-		this.orderDone = orderDone;
-		this.goodsinfo = goodsinfo;
+		this.comRes = comRes;
+		this.orderdoneId = orderdoneId;
+		this.comParentId = comParentId;
+		this.userId = userId;
+		this.goodsId = goodsId;
 		this.comContent = comContent;
 		this.comTime = comTime;
 		this.comUps = comUps;
-		this.comParent = comParent;
 	}
 
-	// Property accessors
-
-	public Integer getComId() {
-		return this.comId;
-	}
 
 	public void setComId(Integer comId) {
-		this.comId = comId;
+        this.comId = comId;
+    }
+
+    public String getComContent() {
+        return this.comContent;
+    }
+    
+    public void setComContent(String comContent) {
+        this.comContent = comContent;
+    }
+
+    public Timestamp getComTime() {
+        return this.comTime;
+    }
+    
+    public void setComTime(Timestamp comTime) {
+        this.comTime = comTime;
+    }
+
+    public Integer getComUps() {
+        return this.comUps;
+    }
+    
+    public void setComUps(Integer comUps) {
+        this.comUps = comUps;
+    }
+
+    public Integer getComRes() {
+        return this.comRes;
+    }
+    
+    public void setComRes(Integer comRes) {
+        this.comRes = comRes;
+    }
+
+    public Integer getOrderdoneId() {
+        return this.orderdoneId;
+    }
+    
+    public void setOrderdoneId(Integer orderdoneId) {
+        this.orderdoneId = orderdoneId;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+    
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getGoodsId() {
+        return this.goodsId;
+    }
+    
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
+    }
+
+	public Integer getComParentId() {
+		return comParentId;
+	}
+
+	public void setComParentId(Integer comParentId) {
+		this.comParentId = comParentId;
 	}
 
 	public Users getUsers() {
-		return this.users;
+		return users;
 	}
 
 	public void setUsers(Users users) {
 		this.users = users;
-	}
-
-	public OrderDone getOrderDone() {
-		return this.orderDone;
-	}
-
-	public void setOrderDone(OrderDone orderDone) {
-		this.orderDone = orderDone;
-	}
-
-	public Goodsinfo getGoodsinfo() {
-		return this.goodsinfo;
-	}
-
-	public void setGoodsinfo(Goodsinfo goodsinfo) {
-		this.goodsinfo = goodsinfo;
-	}
-
-	public String getComContent() {
-		return this.comContent;
-	}
-
-	public void setComContent(String comContent) {
-		this.comContent = comContent;
-	}
-
-	public Date getComTime() {
-		return this.comTime;
-	}
-
-	public void setComTime(Date comTime) {
-		this.comTime = comTime;
-	}
-
-	public Integer getComUps() {
-		return this.comUps;
-	}
-
-	public void setComUps(Integer comUps) {
-		this.comUps = comUps;
 	}
 
 	public Comments getComParent() {
@@ -124,18 +143,35 @@ public class Comments implements java.io.Serializable {
 		this.comChild = comChild;
 	}
 
-	@Override
-	public String toString() {
-		return "Comments [comId=" + comId + ", comContent=" + comContent
-				+ ", comTime=" + comTime + ", comUps=" + comUps + "]";
+	public OrderDone getOrderDone() {
+		return orderDone;
 	}
 
-	// public Set getCommentses() {
-	// return this.commentses;
-	// }
-	//
-	// public void setCommentses(Set commentses) {
-	// this.commentses = commentses;
-	// }
+	public void setOrderDone(OrderDone orderDone) {
+		this.orderDone = orderDone;
+	}
+
+	public Goodsinfo getGoodsinfo() {
+		return goodsinfo;
+	}
+
+	public void setGoodsinfo(Goodsinfo goodsinfo) {
+		this.goodsinfo = goodsinfo;
+	}
+
+	public Integer getComId() {
+		return comId;
+	}
+
+	@Override
+	public String toString() {
+		return "Comments [comId=" + comId + ", comRes=" + comRes
+				+ ", orderdoneId=" + orderdoneId + ", comParentId="
+				+ comParentId + ", userId=" + userId + ", goodsId=" + goodsId
+				+ ", comContent=" + comContent + ", comTime=" + comTime
+				+ ", comUps=" + comUps + "]";
+	}
+    
+
 
 }

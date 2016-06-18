@@ -16,11 +16,5 @@
         <property name="typeStat" type="java.lang.String">
             <column name="type_stat" length="250" />
         </property>
-        <set name="goodsinfos" inverse="true">
-            <key>
-                <column name="goodstype_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsinfo" />
-        </set>
     </class>
 </hibernate-mapping>

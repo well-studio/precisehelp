@@ -10,6 +10,7 @@ import cn.wellstudio.precisehelp.dao.IGoodsTypeDAO;
 import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.Goodstype;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
+import cn.wellstudio.precisehelp.util.Operation;
 
 /** 
  * 商品类型增删改查类
@@ -17,71 +18,41 @@ import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
  */
 public class GoodstypeManage extends ObjectManage implements IGoodsTypeDAO{
 	
-	//根据商品信息获取商品类型
-	public static Goodstype goodstypeQuery(Goodsinfo goodsinfo){
-		Goodstype goodstype = null;
-		Session session;
-		Transaction tr = null;
-		try {
-			session = HibernateSessionFactory.getCurrentSession();
-			tr = session.beginTransaction();
-			// 持久化orderDoing
-			goodsinfo = (Goodsinfo) session.get(Goodsinfo.class,
-					goodsinfo.getGoodsId());
-			goodstype = goodsinfo.getGoodstype();
-			// 懒加载处理
-			goodstype.toString();
-			tr.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				tr.rollback();
-			} catch (HibernateException e1) {
-				e1.printStackTrace();
-			}
-		} finally {
-			try {
-				HibernateSessionFactory.closeCurrentSession();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-		return goodstype;
+	//根据商品类型id获取商品类型
+	public Goodstype findTypeBytypeId(int goodstypeId){
+		String hql = "from Goodstype as gs where gs.typeId = ?";
+		@SuppressWarnings("unchecked")
+		List<Goodstype> goodstypes = Operation.hqlQuery(hql, goodstypeId);
+		return goodstypes.get(0);
 	}
 
 	@Override
 	public boolean addType(Goodstype goods) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean updateType(Goodstype goods) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean removeType(Goodstype goods) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List<Goodstype> findAllType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Override //(unuse)
 	public Goodstype findTypeById(int goodsId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Goodstype findTypeByName(String goodsName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

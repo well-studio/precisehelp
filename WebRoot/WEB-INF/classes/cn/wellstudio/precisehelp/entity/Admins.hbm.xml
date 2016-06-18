@@ -7,44 +7,17 @@
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Admins" table="admins" catalog="precisehelp">
         <id name="admId" type="java.lang.String">
-            <column name="adm_id" />
-            <generator class="uuid.hex"/>
+            <column name="adm_id" length="60" />
+            <generator class="uuid.hex" />
         </id>
         <property name="admAccount" type="java.lang.String">
             <column name="adm_account" length="20" />
         </property>
+        <property name="admPower" type="java.lang.Integer">
+            <column name="adm_power" />
+        </property>
         <property name="admPsw" type="java.lang.String">
             <column name="adm_psw" length="50" />
         </property>
-        <set name="orderDoings" inverse="true">
-            <key>
-                <column name="adm_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDoing" />
-        </set>
-        
-         <set name="todolists" inverse="true">
-            <key>
-                <column name="adm_id" length="60" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Todolist" />
-        </set>
-        <!-- 
-        <set name="adminsinfos" inverse="true">
-            <key>
-                <column name="adm_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Adminsinfo" />
-        </set>
-         -->
-        
-         <one-to-one name="adminsinfo" class="cn.wellstudio.precisehelp.entity.Adminsinfo" property-ref="admins"/>
-         
-        <set name="orderDones" inverse="true">
-            <key>
-                <column name="adm_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.OrderDone" />
-        </set>
     </class>
 </hibernate-mapping>

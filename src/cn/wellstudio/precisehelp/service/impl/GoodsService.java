@@ -40,7 +40,7 @@ public class GoodsService implements IGoodsService {
 	}
 	
 	@Override
-	public List<Goodsinfo> findGoodsByType(String goodType) {
+	public List<Goodsinfo> findGoodsByType(Integer goodType) {
 		
 		List<Goodsinfo> goodsList = goodsDao.findGoodsByType(goodType);
 		
@@ -48,7 +48,7 @@ public class GoodsService implements IGoodsService {
 	}
 	
 	@Override
-	public List<Goodsinfo> findGoodsByArea(String goodArea) {
+	public List<Goodsinfo> findGoodsByArea(Integer goodArea) {
 		
 		List<Goodsinfo> goodsList = goodsDao.findGoodsByArea(goodArea);
 		
@@ -76,7 +76,7 @@ public class GoodsService implements IGoodsService {
 		
 		Goodsinfo goodsinfo = goodsDao.findGoodsById(goodId);
 		
-		return null;
+		return goodsinfo;
 	}
 	
 	

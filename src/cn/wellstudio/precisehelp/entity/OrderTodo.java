@@ -7,12 +7,12 @@ import java.util.Date;
  * @author huhong
  *
  */
+@SuppressWarnings("serial")
 public class OrderTodo implements java.io.Serializable {
 
 	// Fields
 
 	private Integer ordertodoId; // 待做订单id
-	private Users users; // 下单用户
 //	private Goodsinfo goodsinfo; // 商品信息 old
 	private String orderContent;//商品号以及商品数量
 	private String orderNumber; // 订单编号
@@ -20,7 +20,10 @@ public class OrderTodo implements java.io.Serializable {
 	private Date orderTime; // 订单下单时间
 	private Integer orderPay;//是订单是否支付(0 未付款 1 已付款)
 	private Integer orderCancel;//是否退款取消(0 没 1 是)
-	
+    private Integer addressId;
+    private String userId;
+ 	private Users users; // 下单用户
+ 	private Toaddress toaddress; // 收货地址
 	// Constructors
 
 	/** default constructor */
@@ -115,6 +118,32 @@ public class OrderTodo implements java.io.Serializable {
 
 	public void setOrderContent(String orderContent) {
 		this.orderContent = orderContent;
+	}
+	
+	
+
+	public Integer getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Integer addressId) {
+		this.addressId = addressId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Toaddress getToaddress() {
+		return toaddress;
+	}
+
+	public void setToaddress(Toaddress toaddress) {
+		this.toaddress = toaddress;
 	}
 
 	@Override

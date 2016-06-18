@@ -19,11 +19,9 @@ public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 
 	@Override
 	public List<Goodsinfo> findAllGoods() {
-		
 		String hql = "from Goodsinfo";
 		@SuppressWarnings("unchecked")
 		List<Goodsinfo> goodList= Operation.hqlQuery(hql);
-		
 		return goodList;
 	}
 
@@ -36,9 +34,13 @@ public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 			Session session = HibernateSessionFactory.getCurrentSession();
 			tr = session.beginTransaction();
 			goodsinfo = (Goodsinfo)session.createQuery(hql).setString(0,goodId).uniqueResult();
-			//懒加载处理
-//			goodsinfo.getCommentses().toString();
 			tr.commit();
+			//手动获取评论
+			goodsinfo.setCommentses(new CommentsManage().commentsBygoodsIdQuery(goodId));
+			//手动获取商品类型
+			goodsinfo.setGoodstype(new GoodstypeManage().findTypeBytypeId(goodsinfo.getGoodstypeId()));
+			//手动获取商品产地
+			goodsinfo.setGoodsarea(new GoodsareaManage().findAreaByareaId(goodsinfo.getGoodsareaId()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -68,16 +70,16 @@ public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 	}
 
 	@Override
-	public List<Goodsinfo> findGoodsByType(String goodType) {
-		String hql = "from Goodsinfo as gs where gs.goodstype.typeName = ?";
+	public List<Goodsinfo> findGoodsByType(Integer goodType) {
+		String hql = "from Goodsinfo as gs where gs.goodstypeId = ?";
 		@SuppressWarnings("unchecked")
 		List<Goodsinfo> goodList= Operation.hqlQuery(hql, goodType);
 		return goodList;
 	}
 
 	@Override
-	public List<Goodsinfo> findGoodsByArea(String goodArea) {
-		String hql = "from Goodsinfo as gs where gs.goodsarea.areaName = ?";
+	public List<Goodsinfo> findGoodsByArea(Integer goodArea) {
+		String hql = "from Goodsinfo as gs where gs.goodsareaId = ?";
 		@SuppressWarnings("unchecked")
 		List<Goodsinfo> goodList = Operation.hqlQuery(hql, goodArea);
 		return goodList;

@@ -1,109 +1,137 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * 购物券的种类实体
  * @author huhong
  *
  */
-public class Couponstype implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Couponstype  implements java.io.Serializable {
 
-	// Fields
 
-	private Integer typeId; // id
-	private String typeName; // 类型名称
-	private String typeGoods; // 限定购买的商品种类
-	private Integer typeCandis; // 能否用于折扣商品(1 能 0 不能)
-	private Double typeRequire; // 门槛金额
-	private Double typeValue; // 抵用金额
-	private Double typePercent; // 抵用折扣率
-	private Set couponses = new HashSet(0);
+    // Fields    
+ 	private Integer typeId; // id
+ 	private Integer typeInvalid;
+ 	private String typeName; // 类型名称
+ 	private String typeGoods; // 限定购买的商品种类
+ 	private Integer typeCandis; // 能否用于折扣商品(1 能 0 不能)
+ 	private Double typeRequire; // 门槛金额
+ 	private Double typeValue; // 抵用金额
+ 	private Double typePercent; // 抵用折扣率
+ 	private List<Coupons> couponses = new ArrayList<Coupons>();
 
-	// Constructors
 
-	/** default constructor */
-	public Couponstype() {
-	}
+    // Constructors
 
-	/** full constructor */
-	public Couponstype(String typeName, String typeGoods, Integer typeCandis,
-			Double typeRequire, Double typeValue, Double typePercent,
-			Set couponses) {
+    /** default constructor */
+    public Couponstype() {
+    }
+
+    
+    
+    public Couponstype(Integer typeId, Integer typeInvalid, String typeName,
+			String typeGoods, Integer typeCandis, Double typeRequire,
+			Double typeValue, Double typePercent) {
+		super();
+		this.typeId = typeId;
+		this.typeInvalid = typeInvalid;
 		this.typeName = typeName;
 		this.typeGoods = typeGoods;
 		this.typeCandis = typeCandis;
 		this.typeRequire = typeRequire;
 		this.typeValue = typeValue;
 		this.typePercent = typePercent;
-		this.couponses = couponses;
 	}
+
+
 
 	// Property accessors
 
-	public Integer getTypeId() {
-		return this.typeId;
-	}
+    public Integer getTypeId() {
+        return this.typeId;
+    }
+    
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
 
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
-	}
+    public String getTypeName() {
+        return this.typeName;
+    }
+    
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
-	public String getTypeName() {
-		return this.typeName;
-	}
+    public String getTypeGoods() {
+        return this.typeGoods;
+    }
+    
+    public void setTypeGoods(String typeGoods) {
+        this.typeGoods = typeGoods;
+    }
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
+    public Integer getTypeInvalid() {
+        return this.typeInvalid;
+    }
+    
+    public void setTypeInvalid(Integer typeInvalid) {
+        this.typeInvalid = typeInvalid;
+    }
 
-	public String getTypeGoods() {
-		return this.typeGoods;
-	}
+    public Integer getTypeCandis() {
+        return this.typeCandis;
+    }
+    
+    public void setTypeCandis(Integer typeCandis) {
+        this.typeCandis = typeCandis;
+    }
 
-	public void setTypeGoods(String typeGoods) {
-		this.typeGoods = typeGoods;
-	}
+    public Double getTypeRequire() {
+        return this.typeRequire;
+    }
+    
+    public void setTypeRequire(Double typeRequire) {
+        this.typeRequire = typeRequire;
+    }
 
-	public Integer getTypeCandis() {
-		return this.typeCandis;
-	}
+    public Double getTypeValue() {
+        return this.typeValue;
+    }
+    
+    public void setTypeValue(Double typeValue) {
+        this.typeValue = typeValue;
+    }
 
-	public void setTypeCandis(Integer typeCandis) {
-		this.typeCandis = typeCandis;
-	}
+    public Double getTypePercent() {
+        return this.typePercent;
+    }
+    
+    public void setTypePercent(Double typePercent) {
+        this.typePercent = typePercent;
+    }
 
-	public Double getTypeRequire() {
-		return this.typeRequire;
+	public List<Coupons> getCouponses() {
+		return couponses;
 	}
-
-	public void setTypeRequire(Double typeRequire) {
-		this.typeRequire = typeRequire;
-	}
-
-	public Double getTypeValue() {
-		return this.typeValue;
-	}
-
-	public void setTypeValue(Double typeValue) {
-		this.typeValue = typeValue;
-	}
-
-	public Double getTypePercent() {
-		return this.typePercent;
-	}
-
-	public void setTypePercent(Double typePercent) {
-		this.typePercent = typePercent;
-	}
-
-	public Set getCouponses() {
-		return this.couponses;
-	}
-
-	public void setCouponses(Set couponses) {
+	public void setCouponses(List<Coupons> couponses) {
 		this.couponses = couponses;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Couponstype [typeId=" + typeId + ", typeInvalid=" + typeInvalid
+				+ ", typeName=" + typeName + ", typeGoods=" + typeGoods
+				+ ", typeCandis=" + typeCandis + ", typeRequire=" + typeRequire
+				+ ", typeValue=" + typeValue + ", typePercent=" + typePercent
+				+ "]";
+	}
+    
+    
 
 }

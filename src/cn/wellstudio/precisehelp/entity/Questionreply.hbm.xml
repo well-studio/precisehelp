@@ -10,20 +10,20 @@
             <column name="reply_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="user_id" length="60" />
-        </many-to-one>
-        <many-to-one name="goodsquestion" class="cn.wellstudio.precisehelp.entity.Goodsquestion" fetch="select">
-            <column name="ques_id" length="60" />
-        </many-to-one>
         <property name="replyContent" type="java.lang.String">
             <column name="reply_content" length="200" not-null="true" />
         </property>
-        <property name="replyTime" type="java.util.Date">
-            <column name="reply_time" length="10" />
+        <property name="replyTime" type="java.sql.Timestamp">
+            <column name="reply_time" length="19" />
         </property>
-        <property name="replyAdm" type="java.lang.Integer">
-            <column name="reply_adm" />
+        <property name="admId" type="java.lang.String">
+            <column name="adm_id" length="60" />
+        </property>
+        <property name="quesId" type="java.lang.String">
+            <column name="ques_id" length="60" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="user_id" length="60" />
         </property>
     </class>
 </hibernate-mapping>

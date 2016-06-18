@@ -6,15 +6,16 @@
 -->
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Usersfavorite" table="usersfavorite" catalog="precisehelp">
-        <id name="favoId" type="java.lang.Integer">
-            <column name="favo_id" />
-            <generator class="native" />
-        </id>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="user_id" length="60" />
-        </many-to-one>
-        <many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo" fetch="select">
-            <column name="goods_id" length="60" />
-        </many-to-one>
+        <composite-id name="id" class="cn.wellstudio.precisehelp.entity.UsersfavoriteId">
+            <key-property name="userId" type="java.lang.String">
+                <column name="user_id" length="60" />
+            </key-property>
+            <key-property name="goodsId" type="java.lang.String">
+                <column name="goods_id" length="60" />
+            </key-property>
+        </composite-id>
+        <property name="addTime" type="java.sql.Timestamp">
+            <column name="add_time" length="19" />
+        </property>
     </class>
 </hibernate-mapping>

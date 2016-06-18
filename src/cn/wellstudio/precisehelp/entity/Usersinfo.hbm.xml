@@ -10,9 +10,6 @@
             <column name="usersinfo_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" unique="true"  fetch="select">
-            <column name="user_id" />
-        </many-to-one>
         <property name="userImg" type="java.lang.String">
             <column name="user_img" length="100" />
         </property>
@@ -33,6 +30,9 @@
         </property>
         <property name="userRname" type="java.lang.String">
             <column name="user_rname" length="10" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="user_id" length="60" />
         </property>
     </class>
 </hibernate-mapping>

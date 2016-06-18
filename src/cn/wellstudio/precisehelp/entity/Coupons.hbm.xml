@@ -8,25 +8,25 @@
     <class name="cn.wellstudio.precisehelp.entity.Coupons" table="coupons" catalog="precisehelp">
         <id name="couId" type="java.lang.String">
             <column name="cou_id" length="60" />
-            <generator class="native" />
+            <generator class="uuid.hex" />
         </id>
-        <many-to-one name="couponstype" class="cn.wellstudio.precisehelp.entity.Couponstype" fetch="select">
-            <column name="cou_typeid" />
-        </many-to-one>
-        <many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users" fetch="select">
-            <column name="user_id" length="60" />
-        </many-to-one>
         <property name="couNumber" type="java.lang.String">
             <column name="cou_number" length="30" />
         </property>
-        <property name="couStartTime" type="java.util.Date">
-            <column name="cou_start_time" length="10" />
+        <property name="userId" type="java.lang.String">
+            <column name="user_id" length="60" />
         </property>
-        <property name="couEndTime" type="java.util.Date">
-            <column name="cou_end_time" length="10" />
+        <property name="couponstypeId" type="java.lang.Integer">
+            <column name="cou_typeid" />
         </property>
-        <property name="couUseTime" type="java.util.Date">
-            <column name="cou_use_time" length="10" />
+        <property name="couStartTime" type="java.sql.Timestamp">
+            <column name="cou_start_time" length="19" />
+        </property>
+        <property name="couEndTime" type="java.sql.Timestamp">
+            <column name="cou_end_time" length="19" />
+        </property>
+        <property name="couUseTime" type="java.sql.Timestamp">
+            <column name="cou_use_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

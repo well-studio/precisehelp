@@ -73,8 +73,8 @@ public class UserService implements IUserService{
 		
 		if(  ValidateUtil.isValidMobileNo(account) && ValidateUtil.isRegUserPsw(userPsw) && userPsw.equals(userPsw)) {
 			users.setUserId(UUID.randomUUID().toString());
-			// MD5
-			String md5Psw = MD5Util.MD5(userPsw);
+			// MD5 +盐
+			String md5Psw = MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+userPsw);
 			users.setUserPsw(md5Psw);
 			return usersDao.addUser(users);
 		} else {

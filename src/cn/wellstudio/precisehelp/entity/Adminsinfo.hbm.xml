@@ -10,14 +10,14 @@
             <column name="adminfo_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="admins" class="cn.wellstudio.precisehelp.entity.Admins" unique="true" fetch="select">
-            <column name="adm_id" />
-        </many-to-one>
         <property name="admNum" type="java.lang.String">
             <column name="adm_num" length="20" />
         </property>
         <property name="admNickname" type="java.lang.String">
             <column name="adm_nickname" length="20" />
+        </property>
+        <property name="admImg" type="java.lang.String">
+            <column name="adm_img" length="50" />
         </property>
         <property name="admName" type="java.lang.String">
             <column name="adm_name" length="10" />
@@ -28,7 +28,8 @@
         <property name="admIdnum" type="java.lang.String">
             <column name="adm_idnum" length="20" />
         </property>
-        
-        
+        <property name="admId" type="java.lang.String">
+            <column name="adm_id" length="60" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -7,12 +7,12 @@
 <hibernate-mapping>
     <class name="cn.wellstudio.precisehelp.entity.Shoppingcart" table="shoppingcart" catalog="precisehelp">
         <composite-id name="id" class="cn.wellstudio.precisehelp.entity.ShoppingcartId">
-            <key-many-to-one name="users" class="cn.wellstudio.precisehelp.entity.Users">
+            <key-property name="userId" type="java.lang.String">
                 <column name="user_id" length="60" />
-            </key-many-to-one>
-            <key-many-to-one name="goodsinfo" class="cn.wellstudio.precisehelp.entity.Goodsinfo">
+            </key-property>
+            <key-property name="goodsId" type="java.lang.String">
                 <column name="goods_id" length="60" />
-            </key-many-to-one>
+            </key-property>
         </composite-id>
         <property name="goodsNum" type="java.lang.Integer">
             <column name="goods_num" />

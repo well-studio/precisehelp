@@ -1,7 +1,9 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 /**
  * 用户
@@ -9,214 +11,255 @@ import java.util.Set;
  * @author huhong
  *
  */
-public class Users implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Users  implements java.io.Serializable {
 
-	// Fields
+    // Fields    
+ 	private String userId; // 用户id
+ 	private String userAccount; // 用户账号
+ 	private String userPsw; // 用户密码
+ 	private String userPayPsw; // 用户支付密码
+ 	private String userPsw2;// 重复密码
+ 	private List<Letters> lettersesForLetTo = new ArrayList<Letters>(); // 发出去的信
+ 	private List<Letters> lettersesForLetFrom = new ArrayList<Letters>(); // 收到的信
+ 	private List<OrderDoing> orderDoings = new ArrayList<OrderDoing>(); // 正在处理的订单
+ 	private List<Comments> commentses = new ArrayList<Comments>(); // 发出的评论列表
+// 	private List usersinfos = new ArrayList(0); // 用户信息   old
+ 	private Usersinfo usersinfo;// 用户信息，一对一
 
-	private String userId; // 用户id
-	private String userAccount; // 用户账号
-	private String userPsw; // 用户密码
-	private String userZfPsw; // 用户支付密码
-	private String userPsw2;// 重复密码
-	private Set lettersesForLetTo = new HashSet(0); // 发出去的信
-	private Set lettersesForLetFrom = new HashSet(0); // 收到的信
-	private Set orderDoings = new HashSet(0); // 正在处理的订单
-	private Set commentses = new HashSet(0); // 发出的评论列表
-	
-//	private Set usersinfos = new HashSet(0); // 用户信息   old
-	private Usersinfo usersinfo;// 用户信息，一对一
+ 	private List<OrderDone> orderDones = new ArrayList<OrderDone>(); // 该用户已完成的订单
+ 	private List<Toaddress> toaddresses = new ArrayList<Toaddress>(); // 该用户的收货地址
+ 	private List<OrderTodo> orderTodos = new ArrayList<OrderTodo>(); // 该用户待处理的订单
 
-	private Set orderDones = new HashSet(0); // 该用户已完成的订单
-	private Set toaddresses = new HashSet(0); // 该用户的收货地址
-	private Set orderTodos = new HashSet(0); // 该用户待处理的订单
+ 	// +++
+ 	private List<Coupons> couponses = new ArrayList<Coupons>(); // 关联购物券
+ 	private List<Shoppingcart> shoppingcarts = new ArrayList<Shoppingcart>(); // 关联购物车
+ 	private List<Goodsquestion> goodsquestions = new ArrayList<Goodsquestion>(); // 关联商品提问
+ 	private List<Questionreply> questionreplies = new ArrayList<Questionreply>(); // 关联提问回答
+ 	private List<Usersfavorite> usersfavorites = new ArrayList<Usersfavorite>(); // 关联商品收藏夹
 
-	// +++
-	private Set couponses = new HashSet(0); // 关联购物券
-	private Set shoppingcarts = new HashSet(0); // 关联购物车
-	private Set goodsquestions = new HashSet(0); // 关联商品提问
-	private Set questionreplies = new HashSet(0); // 关联提问回答
-	private Set usersfavorites = new HashSet(0); // 关联商品收藏夹
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Users() {
-	}
+    /** default constructor */
+    public Users() {
+    }
 
-	public Users(String userId) {
+    
+    
+
+   
+    public Users(String userId, String userAccount, String userPsw,
+			String userPayPsw, String userPsw2) {
 		super();
 		this.userId = userId;
-	}
-
-	/** full constructor */
-	public Users(String userAccount, String userPsw, String userZfPsw,
-			Set lettersesForLetTo, Set lettersesForLetFrom, Set orderDoings,
-			Set commentses, Set orderDones, Set toaddresses,
-			Set orderTodos) {
 		this.userAccount = userAccount;
 		this.userPsw = userPsw;
-		this.userZfPsw = userZfPsw;
-		this.lettersesForLetTo = lettersesForLetTo;
-		this.lettersesForLetFrom = lettersesForLetFrom;
-		this.orderDoings = orderDoings;
-		this.commentses = commentses;
-		this.orderDones = orderDones;
-		this.toaddresses = toaddresses;
-		this.orderTodos = orderTodos;
+		this.userPayPsw = userPayPsw;
+		this.userPsw2 = userPsw2;
 	}
+
 
 	// Property accessors
 
-	public String getUserId() {
-		return this.userId;
-	}
+    public String getUserId() {
+        return this.userId;
+    }
+    
+    public void ListUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public String getUserAccount() {
+        return this.userAccount;
+    }
+    
+    public void ListUserAccount(String userAccount) {
+        this.userAccount = userAccount;
+    }
 
-	public String getUserAccount() {
-		return this.userAccount;
-	}
+    public String getUserPsw() {
+        return this.userPsw;
+    }
+    
+    public void ListUserPsw(String userPsw) {
+        this.userPsw = userPsw;
+    }
 
-	public void setUserAccount(String userAccount) {
-		this.userAccount = userAccount;
-	}
+    public String getUserPayPsw() {
+        return this.userPayPsw;
+    }
+    
+    public void ListUserPayPsw(String userPayPsw) {
+        this.userPayPsw = userPayPsw;
+    }
 
-	public String getUserPsw() {
-		return this.userPsw;
-	}
-
-	public void setUserPsw(String userPsw) {
-		this.userPsw = userPsw;
-	}
-
-	public String getUserZfPsw() {
-		return this.userZfPsw;
-	}
-
-	public void setUserZfPsw(String userZfPsw) {
-		this.userZfPsw = userZfPsw;
-	}
-
-	public Set getLettersesForLetTo() {
-		return this.lettersesForLetTo;
-	}
-
-	public void setLettersesForLetTo(Set lettersesForLetTo) {
-		this.lettersesForLetTo = lettersesForLetTo;
-	}
-
-	public Set getLettersesForLetFrom() {
-		return this.lettersesForLetFrom;
-	}
-
-	public void setLettersesForLetFrom(Set lettersesForLetFrom) {
-		this.lettersesForLetFrom = lettersesForLetFrom;
-	}
-
-	public Set getOrderDoings() {
-		return this.orderDoings;
-	}
-
-	public void setOrderDoings(Set orderDoings) {
-		this.orderDoings = orderDoings;
-	}
-
-	public Set getCommentses() {
-		return this.commentses;
-	}
-
-	public void setCommentses(Set commentses) {
-		this.commentses = commentses;
-	}
-
-
-	public Set getOrderDones() {
-		return this.orderDones;
-	}
-
-	public void setOrderDones(Set orderDones) {
-		this.orderDones = orderDones;
-	}
-
-	public Set getToaddresses() {
-		return this.toaddresses;
-	}
-
-	public void setToaddresses(Set toaddresses) {
-		this.toaddresses = toaddresses;
-	}
-
-	public Set getOrderTodos() {
-		return this.orderTodos;
-	}
-
-	public void setOrderTodos(Set orderTodos) {
-		this.orderTodos = orderTodos;
-	}
-
-	public Set getCouponses() {
-		return couponses;
-	}
-
-	public void setCouponses(Set couponses) {
-		this.couponses = couponses;
-	}
-
-	public Set getShoppingcarts() {
-		return shoppingcarts;
-	}
-
-	public void setShoppingcarts(Set shoppingcarts) {
-		this.shoppingcarts = shoppingcarts;
-	}
-
-	public Set getGoodsquestions() {
-		return goodsquestions;
-	}
-
-	public void setGoodsquestions(Set goodsquestions) {
-		this.goodsquestions = goodsquestions;
-	}
-
-	public Set getQuestionreplies() {
-		return questionreplies;
-	}
-
-	public void setQuestionreplies(Set questionreplies) {
-		this.questionreplies = questionreplies;
-	}
-
-	public Set getUsersfavorites() {
-		return usersfavorites;
-	}
-
-	public void setUsersfavorites(Set usersfavorites) {
-		this.usersfavorites = usersfavorites;
-	}
 
 	public String getUserPsw2() {
 		return userPsw2;
 	}
 
+
 	public void setUserPsw2(String userPsw2) {
 		this.userPsw2 = userPsw2;
 	}
-	
+
+
+	public List<Letters> getLettersesForLetTo() {
+		return lettersesForLetTo;
+	}
+
+
+	public void setLettersesForLetTo(List<Letters> lettersesForLetTo) {
+		this.lettersesForLetTo = lettersesForLetTo;
+	}
+
+
+	public List<Letters> getLettersesForLetFrom() {
+		return lettersesForLetFrom;
+	}
+
+
+	public void setLettersesForLetFrom(List<Letters> lettersesForLetFrom) {
+		this.lettersesForLetFrom = lettersesForLetFrom;
+	}
+
+
+	public List<OrderDoing> getOrderDoings() {
+		return orderDoings;
+	}
+
+
+	public void setOrderDoings(List<OrderDoing> orderDoings) {
+		this.orderDoings = orderDoings;
+	}
+
+
+	public List<Comments> getCommentses() {
+		return commentses;
+	}
+
+
+	public void setCommentses(List<Comments> commentses) {
+		this.commentses = commentses;
+	}
+
 
 	public Usersinfo getUsersinfo() {
 		return usersinfo;
 	}
 
+
 	public void setUsersinfo(Usersinfo usersinfo) {
 		this.usersinfo = usersinfo;
 	}
 
+
+	public List<OrderDone> getOrderDones() {
+		return orderDones;
+	}
+
+
+	public void setOrderDones(List<OrderDone> orderDones) {
+		this.orderDones = orderDones;
+	}
+
+
+	public List<Toaddress> getToaddresses() {
+		return toaddresses;
+	}
+
+
+	public void setToaddresses(List<Toaddress> toaddresses) {
+		this.toaddresses = toaddresses;
+	}
+
+
+	public List<OrderTodo> getOrderTodos() {
+		return orderTodos;
+	}
+
+
+	public void setOrderTodos(List<OrderTodo> orderTodos) {
+		this.orderTodos = orderTodos;
+	}
+
+
+	public List<Coupons> getCouponses() {
+		return couponses;
+	}
+
+
+	public void setCouponses(List<Coupons> couponses) {
+		this.couponses = couponses;
+	}
+
+
+	public List<Shoppingcart> getShoppingcarts() {
+		return shoppingcarts;
+	}
+
+
+	public void setShoppingcarts(List<Shoppingcart> shoppingcarts) {
+		this.shoppingcarts = shoppingcarts;
+	}
+
+
+	public List<Goodsquestion> getGoodsquestions() {
+		return goodsquestions;
+	}
+
+
+	public void setGoodsquestions(List<Goodsquestion> goodsquestions) {
+		this.goodsquestions = goodsquestions;
+	}
+
+
+	public List<Questionreply> getQuestionreplies() {
+		return questionreplies;
+	}
+
+
+	public void setQuestionreplies(List<Questionreply> questionreplies) {
+		this.questionreplies = questionreplies;
+	}
+
+
+	public List<Usersfavorite> getUsersfavorites() {
+		return usersfavorites;
+	}
+
+
+	public void setUsersfavorites(List<Usersfavorite> usersfavorites) {
+		this.usersfavorites = usersfavorites;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+	public void setUserAccount(String userAccount) {
+		this.userAccount = userAccount;
+	}
+
+
+	public void setUserPsw(String userPsw) {
+		this.userPsw = userPsw;
+	}
+
+
+	public void setUserPayPsw(String userPayPsw) {
+		this.userPayPsw = userPayPsw;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", userAccount=" + userAccount
-				+ ", userPsw=" + userPsw + ", userZfPsw=" + userZfPsw + "]";
+				+ ", userPsw=" + userPsw + ", userPayPsw=" + userPayPsw
+				+ ", userPsw2=" + userPsw2 + "]";
 	}
-
+    
 }

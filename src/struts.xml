@@ -17,16 +17,28 @@
 			<result name="updateSuceess">index.jsp</result>
 			<!-- 操作失败 -->
 			<result name="operationFail" type="json">
-				<param name="contentType">json</param>
+				<param name="contentType">text/html</param>
 				<param name="root">Msg</param>
 			</result>
-			
 		</action>
+		
+		<action name="userinfo_*" method="{1}" class="cn.wellstudio.precisehelp.action.UserInfoAction" >
+			<result name="updateSuceess">index.jsp</result>
+			<!-- 操作失败 -->
+			<result name="findSuceess" type="json">
+				<param name="contentType">text/html</param>
+				<param name="root">usersinfo</param>
+			</result>
+		
+		</action>
+		
+		
+		
 		
 		<action name="admin_*" method="{1}" class="cn.wellstudio.precisehelp.action.AdminAction">
 			<result name="loginSuccess" type="redirect">index.jsp</result>
 			<result name="loginFail" type="json">
-				<param name="contentType">json</param>
+				<param name="contentType">text/html</param>
 				<param name="root">loginMsg</param>
 			</result>
 			
@@ -37,29 +49,29 @@
 			<result name="createFail">index.jsp</result>
 			<result name="updateSuccess">index.jsp</result>
 			<result name="updateFail">index.jsp</result>
+			<result name="error">index.jsp</result>
+			
 			<result name="findAllGoods" type="json">
 				<param name="contentType">text/html</param>
 				<param name="root">goodsList</param>
-				<param name="includeProperties">
+				<param name="excludeProperties">
 					goodsList\[\d+\]\.commentses,
 					goodsList\[\d+\]\.goodsquestions,
 					goodsList\[\d+\]\.usersfavorites,
-					goodsList\[\d+\]\.shoppingcarts
+					goodsList\[\d+\]\.shoppingcarts,
+					goodsList\[\d+\]\.orderTodos,
+					goodsList\[\d+\]\.orderDoings,
+					goodsList\[\d+\]\.orderDones
 				</param>
 			</result>
 			
-			<result name="findGoodsById" type="json">
-				<param name="contentType">json</param>
-				<param name="root">goodsInfoById</param>
-				<param name="excludeProperties">
-					goodsInfoById.goodsquestions,
-					goodsInfoById.usersfavorites,
-					goodsInfoById.shoppingcarts
-				</param>
+			<result name="goodsDetailInfo" type="json">
+				<param name="contentType">text/html</param>
+				<param name="root">goodsInfo</param>
 			</result>
 			
 			<result name="findGoodsByType" type="json">
-				<param name="contentType">json</param>
+				<param name="contentType">text/html</param>
 				<param name="root">goodsList</param>
 				<param name="excludeProperties">
 					goodsList\[\d+\]\.commentses,
@@ -69,7 +81,7 @@
 				</param>
 			</result>
 			<result name="findGoodsByName" type="json">
-				<param name="contentType">json</param>
+				<param name="contentType">text/html</param>
 				<param name="root">goodsList</param>
 				<param name="excludeProperties">
 					goodsList\[\d+\]\.commentses,
@@ -79,7 +91,7 @@
 				</param>
 			</result>
 			<result name="findGoodsByArea" type="json">
-				<param name="contentType">json</param>
+				<param name="contentType">text/html</param>
 				<param name="root">goodsList</param>
 				<param name="excludeProperties">
 					goodsList\[\d+\]\.commentses,

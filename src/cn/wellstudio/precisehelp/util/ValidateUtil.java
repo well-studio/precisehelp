@@ -496,7 +496,7 @@ public class ValidateUtil
     public static boolean isRegUserPsw(String userPsw)  
     {  
   
-        String str = "^\\w[6-15]$";  
+        String str = "^\\w{6,15}$";  
         boolean flag = true;  
         if (userPsw != null)  
         {  

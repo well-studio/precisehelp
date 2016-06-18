@@ -1,126 +1,157 @@
 package cn.wellstudio.precisehelp.entity;
 
+
+
 /**
- * 用户资料实体
+ * 用户资料
  * @author huhong
  *
  */
-public class Usersinfo implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Usersinfo  implements java.io.Serializable {
 
-	// Fields
 
-	private Integer usersinfoId; // 用户资料id
-	private Users users; // 该资料属于哪一个用户
-	private String userImg; // 用户头像
-	private String userSex; // 用户性别
-	private String userNickname; // 用户昵称
-	private String userSign; // 用户个性签名
-	private String userPhone; // 用户手机号码
-	private String userIdnum; // 用户身份证号码
-	private String userRname; // 用户真实姓名
+    // Fields    
 
-	// Constructors
+     private Integer usersinfoId;
+     private String userImg;
+     private String userSex;
+     private String userNickname;
+     private String userSign;
+     private String userPhone;
+     private String userIdnum;
+     private String userRname;
+     private String userId;
+     private Users user;
 
-	/** default constructor */
-	public Usersinfo() {
+
+    // Constructors
+
+    /** default constructor */
+    public Usersinfo() {
+    }
+
+    
+    /** full constructor */
+    public Usersinfo(String userImg, String userSex, String userNickname, String userSign, String userPhone, String userIdnum, String userRname, String userId) {
+        this.userImg = userImg;
+        this.userSex = userSex;
+        this.userNickname = userNickname;
+        this.userSign = userSign;
+        this.userPhone = userPhone;
+        this.userIdnum = userIdnum;
+        this.userRname = userRname;
+        this.userId = userId;
+    }
+
+   
+    // Property accessors
+
+    public Integer getUsersinfoId() {
+        return this.usersinfoId;
+    }
+    
+    public void setUsersinfoId(Integer usersinfoId) {
+        this.usersinfoId = usersinfoId;
+    }
+
+    public String getUserImg() {
+        return this.userImg;
+    }
+    
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
+    public String getUserSex() {
+        return this.userSex;
+    }
+    
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+
+    public String getUserNickname() {
+        return this.userNickname;
+    }
+    
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
+
+    public String getUserSign() {
+        return this.userSign;
+    }
+    
+    public void setUserSign(String userSign) {
+        this.userSign = userSign;
+    }
+
+    public String getUserPhone() {
+        return this.userPhone;
+    }
+    
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserIdnum() {
+        return this.userIdnum;
+    }
+    
+    public void setUserIdnum(String userIdnum) {
+        this.userIdnum = userIdnum;
+    }
+
+    public String getUserRname() {
+        return this.userRname;
+    }
+    
+    public void setUserRname(String userRname) {
+        this.userRname = userRname;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+    
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    
+	public Users getUser() {
+		return user;
 	}
 
-	/** full constructor */
-	public Usersinfo(Users users, String userImg, String userSex,
-			String userNickname, String userSign, String userPhone,
-			String userIdnum, String userRname) {
-		this.users = users;
-		this.userImg = userImg;
-		this.userSex = userSex;
-		this.userNickname = userNickname;
-		this.userSign = userSign;
-		this.userPhone = userPhone;
-		this.userIdnum = userIdnum;
-		this.userRname = userRname;
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
-	// Property accessors
-
-	public Integer getUsersinfoId() {
-		return this.usersinfoId;
-	}
-
-	public void setUsersinfoId(Integer usersinfoId) {
-		this.usersinfoId = usersinfoId;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
-
-	public String getUserImg() {
-		return this.userImg;
-	}
-
-	public void setUserImg(String userImg) {
-		this.userImg = userImg;
-	}
-
-	public String getUserSex() {
-		return this.userSex;
-	}
-
-	public void setUserSex(String userSex) {
-		this.userSex = userSex;
-	}
-
-	public String getUserNickname() {
-		return this.userNickname;
-	}
-
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
-	}
-
-	public String getUserSign() {
-		return this.userSign;
-	}
-
-	public void setUserSign(String userSign) {
-		this.userSign = userSign;
-	}
-
-	public String getUserPhone() {
-		return this.userPhone;
-	}
-
-	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
-	}
-
-	public String getUserIdnum() {
-		return this.userIdnum;
-	}
-
-	public void setUserIdnum(String userIdnum) {
-		this.userIdnum = userIdnum;
-	}
-
-	public String getUserRname() {
-		return this.userRname;
-	}
-
-	public void setUserRname(String userRname) {
-		this.userRname = userRname;
-	}
 
 	@Override
 	public String toString() {
 		return "Usersinfo [usersinfoId=" + usersinfoId + ", userImg=" + userImg
 				+ ", userSex=" + userSex + ", userNickname=" + userNickname
 				+ ", userSign=" + userSign + ", userPhone=" + userPhone
-				+ ", userIdnum=" + userIdnum + ", userRname=" + userRname + "]";
+				+ ", userIdnum=" + userIdnum + ", userRname=" + userRname
+				+ ", userId=" + userId + ", getUsersinfoId()="
+				+ getUsersinfoId() + ", getUserImg()=" + getUserImg()
+				+ ", getUserSex()=" + getUserSex() + ", getUserNickname()="
+				+ getUserNickname() + ", getUserSign()=" + getUserSign()
+				+ ", getUserPhone()=" + getUserPhone() + ", getUserIdnum()="
+				+ getUserIdnum() + ", getUserRname()=" + getUserRname()
+				+ ", getUserId()=" + getUserId() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]\n";
 	}
-	
-	
+   
+
+
+
+    
+
+
+
 
 }

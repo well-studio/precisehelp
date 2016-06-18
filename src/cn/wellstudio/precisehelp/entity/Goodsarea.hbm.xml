@@ -19,11 +19,5 @@
         <property name="areaStat" type="java.lang.String">
             <column name="area_stat" length="65535" />
         </property>
-        <set name="goodsinfos" inverse="true">
-            <key>
-                <column name="goodsarea_id" />
-            </key>
-            <one-to-many class="cn.wellstudio.precisehelp.entity.Goodsinfo" />
-        </set>
     </class>
 </hibernate-mapping>

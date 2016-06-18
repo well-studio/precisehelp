@@ -1,97 +1,184 @@
 package cn.wellstudio.precisehelp.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 /**
  * 购物券实体
  * @author huhong
  *
  */
-public class Coupons implements java.io.Serializable {
+@SuppressWarnings("serial")
+public class Coupons  implements java.io.Serializable {
 
-	// Fields
 
-	private String couId; // 购物券id
-	private Couponstype couponstype; // 购物券种类
-	private Users users; // 关联的用户
-	private String couNumber; // 购物券编号
-	private Date couStartTime; // 购物券的开始时间
-	private Date couEndTime; // 购物券的结束时间
-	private Date couUseTime; // 购物券的使用时间
+    // Fields    
+ 	private String couId; // 购物券id
+ 	private String couNumber; // 购物券编号
+ 	private Timestamp couStartTime; // 购物券的开始时间
+ 	private Timestamp couEndTime; // 购物券的结束时间
+ 	private Timestamp couUseTime; // 购物券的使用时间
+    private Integer couponstypeId;
+    private String userId;
+ 	private Couponstype couponstype; // 购物券种类
+ 	private Users users; // 关联的用户
+    // Constructors
 
-	// Constructors
+    /** default constructor */
+    public Coupons() {
+    }
+    
+    
 
-	/** default constructor */
-	public Coupons() {
-	}
-
-	/** full constructor */
-	public Coupons(Couponstype couponstype, Users users, String couNumber,
-			Date couStartTime, Date couEndTime, Date couUseTime) {
-		this.couponstype = couponstype;
-		this.users = users;
+   
+    public Coupons(String couId, String couNumber, Timestamp couStartTime,
+			Timestamp couEndTime, Timestamp couUseTime, Integer couponstypeId,
+			String userId) {
+		super();
+		this.couId = couId;
 		this.couNumber = couNumber;
 		this.couStartTime = couStartTime;
 		this.couEndTime = couEndTime;
 		this.couUseTime = couUseTime;
+		this.couponstypeId = couponstypeId;
+		this.userId = userId;
 	}
 
-	// Property accessors
+
+
 
 	public String getCouId() {
-		return this.couId;
+		return couId;
 	}
+
+
+
 
 	public void setCouId(String couId) {
 		this.couId = couId;
 	}
 
-	public Couponstype getCouponstype() {
-		return this.couponstype;
-	}
 
-	public void setCouponstype(Couponstype couponstype) {
-		this.couponstype = couponstype;
-	}
 
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
 
 	public String getCouNumber() {
-		return this.couNumber;
+		return couNumber;
 	}
+
+
+
 
 	public void setCouNumber(String couNumber) {
 		this.couNumber = couNumber;
 	}
 
-	public Date getCouStartTime() {
-		return this.couStartTime;
+
+
+
+	public Timestamp getCouStartTime() {
+		return couStartTime;
 	}
 
-	public void setCouStartTime(Date couStartTime) {
+
+
+
+	public void setCouStartTime(Timestamp couStartTime) {
 		this.couStartTime = couStartTime;
 	}
 
-	public Date getCouEndTime() {
-		return this.couEndTime;
+
+
+
+	public Timestamp getCouEndTime() {
+		return couEndTime;
 	}
 
-	public void setCouEndTime(Date couEndTime) {
+
+
+
+	public void setCouEndTime(Timestamp couEndTime) {
 		this.couEndTime = couEndTime;
 	}
 
-	public Date getCouUseTime() {
-		return this.couUseTime;
+
+
+
+	public Timestamp getCouUseTime() {
+		return couUseTime;
 	}
 
-	public void setCouUseTime(Date couUseTime) {
+
+
+
+	public void setCouUseTime(Timestamp couUseTime) {
 		this.couUseTime = couUseTime;
 	}
+
+
+
+
+	public Integer getCouponstypeId() {
+		return couponstypeId;
+	}
+
+
+
+
+	public void setCouponstypeId(Integer couponstypeId) {
+		this.couponstypeId = couponstypeId;
+	}
+
+
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+
+
+	public Couponstype getCouponstype() {
+		return couponstype;
+	}
+
+
+
+
+	public void setCouponstype(Couponstype couponstype) {
+		this.couponstype = couponstype;
+	}
+
+
+
+
+	public Users getUsers() {
+		return users;
+	}
+
+
+
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Coupons [couId=" + couId + ", couNumber=" + couNumber
+				+ ", couStartTime=" + couStartTime + ", couEndTime="
+				+ couEndTime + ", couUseTime=" + couUseTime
+				+ ", couponstypeId=" + couponstypeId + ", userId=" + userId
+				+ "]";
+	}
+
 
 }
