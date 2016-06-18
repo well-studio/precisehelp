@@ -9,7 +9,7 @@ block content
       .item-signin-box
         form.form-horizontal
           .form-group
-            label.col-sm-2.control-label(for='phonenumber') 手机号
+            label.col-sm-2.control-label(for='phone') 手机号
             .col-sm-10
               input#phone.form-control(type='tel', name='phone')
           .form-group
@@ -17,9 +17,13 @@ block content
             .col-sm-10
               input#pass.form-control(type='password', name='pass')
           .form-group
-            label.col-sm-2.control-label(for='pass') 重复密码
+            label.col-sm-2.control-label(for='pass_sec') 重复密码
             .col-sm-10
               input#pass_sec.form-control(type='password', name='pass_sec')
+          .form-group
+            label.col-sm-2.control-label(for='pass_pay') 支付密码
+            .col-sm-10
+              input#pass_pay.form-control(type='password', name='pass_pay') 
           .form-group
             .col-sm-offset-2.col-sm-10
               button#sub.btn.btn-default.btn-block(type='submit') 注册

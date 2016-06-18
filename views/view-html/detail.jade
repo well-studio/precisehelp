@@ -3,9 +3,20 @@ extends ../layout
 block content
   .container
     // 商品信息(图片什么的)
-    .good-mask
+    .good-mask(style='background-image:url(/images/素材/车厘子.jpg)')
     // 商品详情
     .good-details
+      h4.good-name #{goods.goodsName}
+      .good-stat
+        label 商品简介：
+          p #{goods.goodsStat}
+      .good-area
+        span 商品产地：#{goods.goodsarea.areaLocation}
+      .good-price 
+        span.last-price 上次价格：#{goods.goodsLastPrice}元 #{goods.goodsPriceUnit}
+        span.now-price.pull-right 现在价格：#{goods.goodsNowPrice}元 #{goods.goodsPriceUnit}
+      .good-discount  
+        span 商品折扣：#{goods.goodsDiscount*100}%
     button.btn.btn-default.btn-block(style='margin-top: 30px;', onclick='openAdd2Cart()') 购买
   script(type='text/javascript', src='/plugins/jquery/2.2.3/jquery.min.js')
   script(type='text/javascript', src='/plugins/layer/layer.js')

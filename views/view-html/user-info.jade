@@ -1,25 +1,41 @@
 extends ../layout
-  
-block content 
+block content
   .container
     .mask
       .head-box
         .head-pic-box
-          // src放用户头像url
-          img(src='head-pic.jpg', alt='头像')
-        // 昵称
-        span 你我帮扶:用户xxx
+          //- src放用户头像url
+          img(src='#{userData.userImg}', alt='头像')
+        //- 昵称
+        span #{userData.userNickname}
     .userinfo-item-container
       .userinfo-item 用户信息
       .userinfo-item
-        form(action='')
+        form(action='/user/info' method="post")
           .form-group
-            label(for='username') 昵称
-            // value放昵称
-            input#username.form-control(type='text', value='你我帮扶:用户xxx')
+            label(for='nickname') 昵称
+            //- value放昵称
+            input#nickname.form-control(type='text',placeholder="愤怒的小鸟", value='#{userData.userNickname}', name="nickname")
           .form-group
-            label(for='phonenumber') 手机号
-            // value放手机号
-            input#phonenumber.form-control(type='tel', value='13333333333')
+            label(for='phone') 手机号
+            //- value放手机号
+            input#phone.form-control(type='tel', value='#{userData.userPhone}', name="phone")
           .form-group
-            input.btn.btn-default.btn-block(type='submit', value='提交修改')
+            label(for='rname') 真实姓名
+            //- 真实姓名
+            input#rname.form-control(type='text', value="#{userData.userRname}", name='rname')
+          .form-group
+            label(for='idnum') 身份证号
+            //- 身份证号
+            input#idnum.form-control(type='text', value="#{userData.userIdnum}", name='idnum')
+          .form-group
+            label(for='sign') 签名
+            //- 用户签名
+            input#sign.form-control(type='text', value="#{userData.userSign}", name='sign')
+
+          input#userId(type='hidden', value='#{userData.userId}', name='userId')
+          .form-group
+            button#sub.btn.btn-default.btn-block(type='submit') 提交修改
+  script(src='/plugins/jquery/2.2.3/jquery.min.js')
+  script(type='text/javascript', src='/plugins/layer/layer.js')
+  script(src='/js/user-info.js')

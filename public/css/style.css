@@ -68,6 +68,7 @@ nav a:hover {
 	margin: 0 auto;
 }
 .item {
+	display:block;
 	height: 300px;
 	margin-top: 10px;
 }
