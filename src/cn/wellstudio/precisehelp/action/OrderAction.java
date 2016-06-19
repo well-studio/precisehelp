@@ -1,97 +1,58 @@
 package cn.wellstudio.precisehelp.action;
 
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import cn.wellstudio.precisehelp.entity.OrderDone;
+import cn.wellstudio.precisehelp.entity.OrderTodo;
 import cn.wellstudio.precisehelp.service.IOrderService;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 /**
  * 订单控制器
  * @author huhong
  *
  */
-public class OrderAction extends ActionSupport{
+@SuppressWarnings("serial")
+public class OrderAction extends ActionSupport implements ModelDriven<OrderDone>{
 	
 	IOrderService orderService;
 	public void setOrderService(IOrderService orderService) {
 		this.orderService = orderService;
 	}
-	
-	/**
-	 * 创建订单
-	 * @return
-	 */
-	public String createOrder() {
-		
-		return null;
+	private OrderDone orderDone;
+	public void setOrderDone(OrderDone orderDone) {
+		this.orderDone = orderDone;
+	}
+	public OrderDone getOrderDone() {
+		return orderDone;
 	}
 	
-	/**
-	 * 查询全部待处理订单
-	 * @return
-	 */
-	public String findAllTodoOrders() {
-		
-		return null;
+	Map<String,Object> valueMap = new HashMap<String,Object>();
+	public Map<String, Object> getValueMap() {
+		return valueMap;
 	}
-	
-	/**
-	 * 查询全部待处理中订单
-	 * @return
-	 */
-	public String findAllDoingOrders() {
-		
-		return null;
+	public void setValueMap(Map<String, Object> valueMap) {
+		this.valueMap = valueMap;
 	}
-	
-	/**
-	 * 查询全部待处理完毕订单
-	 * @return
-	 */
-	public String findAllDoneOrders() {
-		
-		return null;
-	}
-	
 	
 	/**
 	 * 根据用户查 询全部订单信息
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public String findOrdersByUser() {
 		
-		return null;
+		List<OrderTodo> orderList = (List<OrderTodo>) orderService.findAllOrdersByUser(orderDone.getUserId());
+		if( orderList.size() != 0) {
+			valueMap.put("orderList", orderList);
+			return "success";
+		}
+		return "failed";
 	}
-	
-	
-	/**
-	 * 根据用户查询待做订单信息
-	 * @return
-	 */
-	public String findTodoOrdersByUser() {
-		
-		return null;
-	}
-	
-	
-	
-	/**
-	 * 根据用户查询正在进行订单信息
-	 * @return
-	 */
-	public String findDoingOrdersByUser() {
-		
-		return null;
-	}
-	
-	
-	/**
-	 * 根据用户查询完成订单信息
-	 * @return
-	 */
-	public String findDoneOrdersByUser() {
-		
-		return null;
-	}
-	
 	
 	
 	/**
@@ -100,55 +61,60 @@ public class OrderAction extends ActionSupport{
 	 */
 	public String findOrderByNum() {
 		
-		return null;
+		Object orderInfo = orderService.findOrderByNum(orderDone.getUserId());
+		if( orderInfo != null) {
+			valueMap.put("orderInfo", orderInfo);
+		} else {
+			valueMap.put("Msg", "查询订单失败~");
+		}
+		return "valueMap";
+		
 	}
-	
-	
 	
 	/**
-	 * 根据订单编号修改订单信息
+	 * 根据时间查询订单信息
 	 * @return
 	 */
-	public String updateOrderByNum() {
+	public String findOrderByTime() {
+		Integer IstartTime = Integer.valueOf(startTime);
+		Integer IendTime = Integer.valueOf(endTime);
 		
-		return null;
-	}
-	
-	
-	/**
-	 * 取消订单 - 删除 or 标识
-	 * @return
-	 */
-	public String cancelOrder() {
+		Timestamp startTime = new Timestamp(IstartTime);
+		Timestamp endTime = new Timestamp(IendTime);
 		
-		return null;
-	}
-	
-	
-	/**
-	 * 申请退款
-	 * @return
-	 */
-	public String cancelMoney() {
+		Object orderInfo = orderService.findOrdersByTime(startTime,endTime);
+		if( orderInfo != null) {
+			valueMap.put("orderInfo", orderInfo);
+		} else {
+			valueMap.put("Msg", "查询订单失败~");
+		}
+		return "valueMap";
 		
-		return null;
-	}
-	
-	
-	
-	/**
-	 * 确认收货
-	 * @return
-	 */
-	public String confirmOrder() {
-		
-		return null;
 	}
 	
 	
 	
 	
 	
+	@Override
+	public OrderDone getModel() {
+		
+		return orderDone;
+	}
+	private String startTime;
+	private String endTime;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
 	
 
 }

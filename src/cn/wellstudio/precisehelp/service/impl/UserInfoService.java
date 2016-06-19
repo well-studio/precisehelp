@@ -21,6 +21,7 @@ public class UserInfoService implements IUserInfoService {
 	@Override
 	public boolean updateUserInfo(Usersinfo usersinfo) {
 		boolean res = false;
+		Integer usersinfoId = usersinfo.getUsersinfoId();
 		String userIdnum = usersinfo.getUserIdnum();
 		String userImg = usersinfo.getUserImg();
 		String userNickname = usersinfo.getUserNickname();
@@ -30,6 +31,9 @@ public class UserInfoService implements IUserInfoService {
 		String userSign = usersinfo.getUserSign();
 		String userId = usersinfo.getUserId();
 		Usersinfo usersInfo2 = userInfoDao.findUserInfo(userId);
+		
+		if( usersinfoId == null)
+			usersinfo.setUsersinfoId(usersInfo2.getUsersinfoId());
 		if( userIdnum == null)
 			usersinfo.setUserIdnum(usersInfo2.getUserIdnum());
 		if( userImg == null)

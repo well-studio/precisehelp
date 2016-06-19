@@ -9,9 +9,7 @@ import cn.wellstudio.precisehelp.dao.impl.GoodsinfoManage;
 import cn.wellstudio.precisehelp.dao.impl.GoodsquestionManage;
 import cn.wellstudio.precisehelp.dao.impl.GoodstypeManage;
 import cn.wellstudio.precisehelp.dao.impl.LettersManage;
-import cn.wellstudio.precisehelp.dao.impl.OrderDoingManage;
-import cn.wellstudio.precisehelp.dao.impl.OrderDoneManage;
-import cn.wellstudio.precisehelp.dao.impl.OrderTodoManage;
+import cn.wellstudio.precisehelp.dao.impl.OrderManage;
 import cn.wellstudio.precisehelp.dao.impl.QuestionreplyManage;
 import cn.wellstudio.precisehelp.dao.impl.ShoppingcartManage;
 import cn.wellstudio.precisehelp.dao.impl.ToaddressManage;
@@ -56,20 +54,12 @@ public class DaoFactory {
 		return new QuestionreplyManage();
 	}
 	
-	//生产代做订单对象
-	public static OrderTodoManage getOrderTodo(){
-		return new OrderTodoManage();
-	}
 	
 	//生产正在处理中的订单对象
-	public static OrderDoingManage getOrderDoing(){
-		return new OrderDoingManage();
+	public static OrderManage getOrderDoing(){
+		return new OrderManage();
 	}
-	
-	//生产已完成的订单对象
-	public static OrderDoneManage getOrderDone(){
-		return new OrderDoneManage();
-	}
+
 	
 	//生产站内信对象
 	public static LettersManage getLetters(){

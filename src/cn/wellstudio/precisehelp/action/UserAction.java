@@ -1,5 +1,6 @@
 package cn.wellstudio.precisehelp.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,7 +24,7 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 	//接收的数据
 	private Users user = new Users();// User
 //	private Usersinfo usersinfo = new Usersinfo();//用户信息
-	
+	private Map<String, Object> valueMap = new HashMap<String, Object>();
 	//返回的数据
 	private String Msg;//返回请求信息
 	public void setMsg(String msg) {
@@ -38,6 +39,16 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 	public Users getUser() {
 		return user;
 	}
+	
+
+
+	public Map<String, Object> getValueMap() {
+		return valueMap;
+	}
+	public void setValueMap(Map<String, Object> valueMap) {
+		this.valueMap = valueMap;
+	}
+
 
 
 	IUserService usersService;
@@ -69,8 +80,9 @@ public class UserAction extends ActionSupport implements SessionAware,ModelDrive
 		if(usersService.userLogin(user)){
 			//登入成功，保存登入信息
 			session.put("loginInfo", user);
-			user.setUsersinfo(usersService.queryUsersinfo(user.getUserAccount()));
-			return "loginSuceess";
+			valueMap.put("user", user);
+			valueMap.put("userinfo", usersService.queryUsersinfo(user.getUserAccount()));
+			return "valueMap";
 		}
 		Msg = "用户名或密码错误！";
 		return "operationFail";

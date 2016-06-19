@@ -72,13 +72,15 @@
 	</bean>
 	<bean id="lettersManage" class="cn.wellstudio.precisehelp.dao.impl.LettersManage">
 	</bean>
-	<bean id="orderDoingManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoingManage">
+	<bean id="orderManage" class="cn.wellstudio.precisehelp.dao.impl.OrderManage">
 	</bean>
-	<bean id="objectManage" class="cn.wellstudio.precisehelp.dao.impl.ObjectManage">
+	<bean id="orderTodoManage" class="cn.wellstudio.precisehelp.dao.impl.OrderTodoManage">
+	</bean>
+	<bean id="orderDoingManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoingManage">
 	</bean>
 	<bean id="orderDoneManage" class="cn.wellstudio.precisehelp.dao.impl.OrderDoneManage">
 	</bean>
-	<bean id="orderTodoManage" class="cn.wellstudio.precisehelp.dao.impl.OrderTodoManage">
+	<bean id="objectManage" class="cn.wellstudio.precisehelp.dao.impl.ObjectManage">
 	</bean>
 	<bean id="questionReplyManage" class="cn.wellstudio.precisehelp.dao.impl.QuestionreplyManage">
 	</bean>
@@ -128,8 +130,15 @@
 		<property name="letterDao" ref="lettersManage"></property>
 	</bean>
 	<bean id="orderService" class="cn.wellstudio.precisehelp.service.impl.OrderService">
+		<property name="orderDao" ref="orderManage"></property>
+	</bean>
+	<bean id="orderTodoService" class="cn.wellstudio.precisehelp.service.impl.OrderTodoService">
 		<property name="orderTodoDao" ref="orderTodoManage"></property>
+	</bean>
+	<bean id="orderDoingService" class="cn.wellstudio.precisehelp.service.impl.OrderDoingService">
 		<property name="orderDoingDao" ref="orderDoingManage"></property>
+	</bean>
+	<bean id="orderDoneService" class="cn.wellstudio.precisehelp.service.impl.OrderDoneService">
 		<property name="orderDoneDao" ref="orderDoneManage"></property>
 	</bean>
 	
@@ -179,6 +188,15 @@
 	</bean>
 	<bean id="orderAction" class="cn.wellstudio.precisehelp.action.OrderAction" scope="prototype">
 		<property name="orderService" ref="orderService"></property>
+	</bean>
+	<bean id="orderTodoAction" class="cn.wellstudio.precisehelp.action.OrderTodoAction" scope="prototype">
+		<property name="orderTodoService" ref="orderTodoService"></property>
+	</bean>
+	<bean id="orderDoingAction" class="cn.wellstudio.precisehelp.action.OrderDoingAction" scope="prototype">
+		<property name="orderDoingService" ref="orderDoingService"></property>
+	</bean>
+	<bean id="orderDoneAction" class="cn.wellstudio.precisehelp.action.OrderDoneAction" scope="prototype">
+		<property name="orderDoneService" ref="orderDoneService"></property>
 	</bean>
 	<bean id="shoppingCartAction" class="cn.wellstudio.precisehelp.action.ShoppingCartAction" scope="prototype">
 		<property name="shoppingCartService" ref="shoppingCartService"></property>

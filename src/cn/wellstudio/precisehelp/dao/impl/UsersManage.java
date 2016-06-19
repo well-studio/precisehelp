@@ -3,7 +3,6 @@ package cn.wellstudio.precisehelp.dao.impl;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -36,7 +35,6 @@ public class UsersManage extends ObjectManage implements IUsersDAO {
 		String hql = "select u.userPsw from Users as u where u.userAccount = ?";
 		String psw = null;
 		Transaction tr = null;
-		Query query;
 		try {
 			Session session = HibernateSessionFactory.getCurrentSession();
 			tr = session.beginTransaction();

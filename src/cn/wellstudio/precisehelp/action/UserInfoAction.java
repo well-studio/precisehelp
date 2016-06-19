@@ -1,5 +1,8 @@
 package cn.wellstudio.precisehelp.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.wellstudio.precisehelp.entity.Usersinfo;
 import cn.wellstudio.precisehelp.service.IUserInfoService;
 
@@ -17,6 +20,8 @@ public class UserInfoAction extends ActionSupport implements
 		ModelDriven<Usersinfo> {
 	private Usersinfo usersinfo = new Usersinfo();// 返回用户信息数据
 	private String Msg;// 返回操作信息
+	
+	private Map<String, Object> valueMap = new HashMap<String, Object>();
 
 	private IUserInfoService usersInfoService;
 
@@ -39,6 +44,15 @@ public class UserInfoAction extends ActionSupport implements
 
 	public void setMsg(String msg) {
 		Msg = msg;
+	}
+	
+
+	public Map<String, Object> getValueMap() {
+		return valueMap;
+	}
+
+	public void setValueMap(Map<String, Object> valueMap) {
+		this.valueMap = valueMap;
 	}
 
 	/**
@@ -65,8 +79,8 @@ public class UserInfoAction extends ActionSupport implements
 	 */
 	public String findUserInfo() {
 		this.usersinfo = usersInfoService.findUserInfo(usersinfo.getUserId());
-		System.out.println(usersinfo);
 		if (usersinfo != null) {
+			valueMap.put("userinfo", usersinfo);
 			return "findSuceess";
 		}
 		Msg = "error";

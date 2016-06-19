@@ -5,6 +5,9 @@ package cn.wellstudio.precisehelp.util;
 import java.security.MessageDigest;
 
 
+import org.junit.Test;
+
+
 public class MD5Util {
 	public final static String MD5(String s) {
 		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -27,6 +30,17 @@ public class MD5Util {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	
+	/**
+	 * 生成密码 123456
+	 */
+	@Test
+	public void createPsw() {
+		
+		System.out.println(MD5Util.MD5("Yb6CwCWP2rh1veRyn5SgCC4vHTE5Awlp"+"123456"+"15211183724"));
+		
 	}
 
 }

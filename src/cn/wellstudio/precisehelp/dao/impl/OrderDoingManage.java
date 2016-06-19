@@ -3,138 +3,56 @@ package cn.wellstudio.precisehelp.dao.impl;
 import java.util.List;
 
 import cn.wellstudio.precisehelp.dao.IOrderDAO;
+import cn.wellstudio.precisehelp.dao.IOrderDoingDao;
 import cn.wellstudio.precisehelp.entity.Admins;
 import cn.wellstudio.precisehelp.entity.OrderDoing;
 import cn.wellstudio.precisehelp.entity.OrderDone;
-import cn.wellstudio.precisehelp.entity.OrderTodo;
-import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.util.Operation;
 
-/**
- * 正在进行的订单增删改查类
- * @author xxmodd
- */
-public class OrderDoingManage extends ObjectManage implements IOrderDAO{
+public class OrderDoingManage extends ObjectManage implements IOrderDoingDao {
 
-	// 用户查询自己的正在进行处理的订单（用户已付款） 一对多查询
-	@SuppressWarnings("unchecked")
-	public static List<OrderDoing> OrderDoingByUser(Users user) {
-		List<OrderDoing> orderDoings = null;
-		// `orderdoing_id`,`order_num`,`order_ps`,`order_time`,`order_stat`,`order_kcom`,`order_knum`
-		String sql = "select * from order_doing where user_id = ?";
-		orderDoings = Operation.sqlQuery(sql, new OrderDoing(),user.getUserId());
-		return orderDoings;
-	}
-
-	// 管理员查询自己正在进行处理的订单（用户已付款） 一对多查询
-	@SuppressWarnings("unchecked")
-	public static List<OrderDoing> OrderDoingByAdmin(Admins admins) {
-		List<OrderDoing> orderDoings = null;
-		// `orderdoing_id`,`order_num`,`order_ps`,`order_time`,`order_stat`,`order_kcom`,`order_knum`
-		String sql = "select * from order_doing where adm_id = ?";
-		orderDoings = Operation.sqlQuery(sql, new OrderDoing(),admins.getAdmId());
-		return orderDoings;
-	}
-
-	@Override
-	public boolean createTodoOrder(OrderTodo order) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<OrderTodo> findAllTodoOrders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<OrderTodo> findAllTodoOrderByUser(Users users) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean createDoneOrder(OrderDone order) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<OrderDone> findAllDoneOrders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<OrderDone> findAllDoneOrderByUser(Users users) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<OrderDone> findAllDoneOrderByAdmin(Admins admins) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	// 创建正在处理订单(添加到管理员todolist)
 	@Override
 	public boolean createDoingOrder(OrderDoing order) {
-		// TODO Auto-generated method stub
-		return false;
+		return add(order);
 	}
 
+	// 查询全部doing订单(管理员)
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderDoing> findAllDoingOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from OrderDoing";
+		return Operation.hqlQuery(hql);
 	}
 
+	// 根据用户查询全部doing订单(用户)
+	@SuppressWarnings("unchecked")
+	public List<OrderDoing> findAllDoingOrderByUser(String userId) {
+		String hql = "from OrderDoing as od where od.userId = ?";
+		return  Operation.hqlQuery(hql, userId);
+	}
+
+
+	//完成订单(确认收货)
 	@Override
-	public List<OrderDoing> findAllDoingOrderByUser(Users users) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean confirmOrder(OrderDone order) {
+		String deleteSql = "DELETE FROM `order_doing` WHERE (`order_num`=?)";
+		boolean flag1 = Operation.sqlExecute(deleteSql, order.getOrderNum());
+		if(flag1){
+			return add(order);
+		}else{
+			return false;
+		}
+		
 	}
-
+	
+	
+	// 根据admin查询正在处理的订单(todolist正在执行的)
 	@Override
 	public List<OrderDoing> findAllDoingOrderByAdmin(Admins admins) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
-	@Override
-	public List<?> findAllOrdersByUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object findOrderByNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object updateOrderByNum(String orderNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean cancelOrder(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean cancelMoney(String orderNum) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean confirmOrder(OrderDone order) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

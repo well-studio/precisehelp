@@ -50,7 +50,7 @@ public class ValidateUtil
         // 2、[\u4E00-\u9FA5]* 汉字匹配 一次或者多次  
         boolean flag = false;  
         Pattern p = Pattern  
-                .compile("^[\u4E00-\u9FA5]{2-4}");  
+                .compile("^[\u4E00-\u9FA5]{2,4}");  
         if (str != null)  
         {  
             Matcher match = p.matcher(str);  
@@ -71,7 +71,7 @@ public class ValidateUtil
     	// 2、[\u4E00-\u9FA5]* 汉字匹配 一次或者多次  
     	boolean flag = false;  
     	Pattern p = Pattern  
-    			.compile("^\\w{1-12}");  
+    			.compile("^[\\s\\S]{1,20}");  
     	if (str != null)  
     	{  
     		Matcher match = p.matcher(str);  
@@ -89,7 +89,7 @@ public class ValidateUtil
     public static boolean isValidIdCard(String cardStr)  
     {  
         boolean flag = false;  
-        Pattern pEighteen = Pattern.compile("^\\d{17}(\\d{1}|x)$");// 18位身份证号码  
+        Pattern pEighteen = Pattern.compile("^\\d{17}(\\d{1}|x|X)$");// 18位身份证号码  
         // 包括末尾是“x”的校验码  
         Pattern pFifteen = Pattern.compile("^\\d{15}$");// 15位身份证号码  
         if (cardStr != null)  
@@ -325,7 +325,7 @@ public class ValidateUtil
         boolean flag = false;  
         // Pattern p = Pattern.compile("^(1[358][13567890])(\\d{8})$");  
         Pattern p = Pattern  
-                .compile("^((13[0-9])|(15[0-9])|(18[0-9]))\\d{8}$");  
+                .compile("^1[35478]\\d{9}$");  
         Matcher match = p.matcher(mobileNo);  
         if (mobileNo != null)  
         {  
@@ -609,7 +609,7 @@ public class ValidateUtil
      * @return 如果是符合格式的字符串,返回 <b>true </b>,否则为 <b>false </b>
      */
     public static boolean IsSignLength(String str) {
-    	String regex = "^\\w{1,200}$";
+    	String regex = "^[\\s\\S]{1,200}$";
     	boolean flag = true;
     	if (str != null)  
     	{  
