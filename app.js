@@ -2,7 +2,8 @@ var app      = require('koa')()
 , koa        = require('koa-router')()
 , logger     = require('koa-logger')
 , json       = require('koa-json')
-, views      = require('koa-views');
+, views      = require('koa-views')
+, session    = require('koa-session');
 
 //路由
 var index = require('./routes/index'),
@@ -12,8 +13,8 @@ search    = require('./routes/search'),
 order     = require('./routes/order'),
 pay       = require('./routes/pay'),
 user      = require('./routes/user'),
-service   = require('./routes/service'),
-error     = require('./routes/error');
+error     = require('./routes/error'),
+service   = require('./routes/service');
 
 // global middlewares
 app.use(views('views', {
@@ -23,8 +24,11 @@ app.use(views('views', {
 }));
 
 app.use(require('koa-bodyparser')());
+app.keys = ['precise help'];
+app.use(session(app));
 app.use(json());
 app.use(logger());
+
 
 app.use(function *(next){
   var start = new Date;
@@ -43,9 +47,7 @@ koa.use('/search', search.routes(), search.allowedMethods());
 koa.use('/order', order.routes(), order.allowedMethods());
 koa.use('/pay', pay.routes(), pay.allowedMethods());
 koa.use('/user', user.routes(), user.allowedMethods());
-//数据请求路由
 koa.use('/service', service.routes(), service.allowedMethods());
-
 //404及其他情况处理
 koa.get('*', error.routes(), error.allowedMethods());
 

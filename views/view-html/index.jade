@@ -4,18 +4,15 @@ block content
   .container
     #carousel-box(style='height: 350px;')
     .cate-box
-      each cat in cats
+      each cat in categories
         .col-xs-3.cate-innerbox
-          a(href='#{cat.href}')
+          a(href='/category/#{cat.id}')
             img.cate-img(src= '#{cat.img}')
             | #{cat.name}
-    .item(style='background:#eee')
-    .item(style='background:#eee')
-    .item(style='background:#eee')
-    .item(style='background:#eee')
-    .item(style='background:#eee')
-    .item(style='background:#eee')
-    .item(style='background:#eee')
+    each commodity in goods
+      a.item(style='background-image:url(/images/素材/车厘子.jpg)' href="/detail/#{commodity.goodsId}")
+      
+
   script(type='text/javascript', src='/js/carousel.js')
   script.
     var _s = new Carousel();

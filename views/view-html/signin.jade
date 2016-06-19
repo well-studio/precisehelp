@@ -1,21 +1,25 @@
 extends ../layout
 
-block content 
+block content
   .container
     .mask
       .head-box(style='font-size: 30px')
         | 用户登录
     .item-signin
       .item-signin-box
-        form.form-horizontal
+        form.form-horizontal(action="/signin", method="post")
           .form-group
-            label.col-sm-2.control-label(for='phonenumber') 手机号
+            label.col-sm-2.control-label(for='phone') 手机号
             .col-sm-10
-              input#phonenumber.form-control(type='tel')
+              input#phonenumber.form-control(type='tel', name="phone")
           .form-group
             label.col-sm-2.control-label(for='pass') 密码
             .col-sm-10
-              input#pass.form-control(type='password')
+              input#pass.form-control(type='password', name="pass")
           .form-group
             .col-sm-offset-2.col-sm-10
               button.btn.btn-default.btn-block(type='submit') 登录
+  script(src='/plugins/jquery/2.2.3/jquery.min.js')
+  script(type='text/javascript', src='/plugins/layer/layer.js')
+  script(src='/js/signin.js')
+

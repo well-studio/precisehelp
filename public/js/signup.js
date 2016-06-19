@@ -11,7 +11,7 @@ $('form').submit(function(){
 	}
 	$('#sub').html('<i class="fa fa-circle-o-notch fa-spin"></h4>').attr('disabled', true);
 	$.ajax({
-		url : '/ajax',
+		url : '/signup',
 		type: 'post',
 		dataType: 'json',
 		data: {
@@ -19,16 +19,16 @@ $('form').submit(function(){
 			phone: $('#phone').val(),
 			pass: $('#pass').val(),
 			pass_sec: $('#pass_sec').val(),
+			pass_pay: $('#pass_pay').val()
 		},
 		success: function(data){
 			/* 这里处理注册成功的跳转 */
-			console.log(data);
 			layer.msg('注册成功，请等待跳转');
 			setTimeout(function(){
-				window.location.href = '/signin'
-			},1000)
-			/* 这里处理注册失败的弹窗提示 */
+				window.location.href = '/user/'+data.usersinfo.userId+'/data';
+			},1000);
 		},
+		/* 这里处理注册失败的弹窗提示 */
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			layer.msg('unknown error');
 			$('#sub').attr('disabled', false).html('注册');

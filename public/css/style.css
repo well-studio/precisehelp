@@ -68,6 +68,7 @@ nav a:hover {
 	margin: 0 auto;
 }
 .item {
+	display:block;
 	height: 300px;
 	margin-top: 10px;
 }
@@ -272,4 +273,33 @@ nav a:hover {
 	margin-top: 10px;
 	background: #eee;
 	height: 900px;
+}
+.search-item {
+	display:block;
+	height: 100px;
+	margin: 20px 0px;
+}
+.search-img {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+}
+.search-info {
+	height: 100px;
+}
+.search-info .row {
+	padding-left:30px;
+}
+.search-info .row+.row {
+	position: absolute;
+	bottom: 0px;
+}
+.search-info:hover {
+	background: #ddd;
+}
+/*头像*/
+.avt{
+	width: 20px;
+	height:20px;
+	border-radius:50%;
 }

@@ -1,1 +1,9 @@
-category.jade
+extends ../layout
+
+block content  
+  .container
+    h3 
+    each commodity in goods
+      a.item(style='background-image:url(/images/素材/车厘子.jpg)' href="/detail/#{commodity.goodsId}")
+
+  
