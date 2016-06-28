@@ -55,4 +55,13 @@ public class OrderTodoService implements IOrderTodoService {
 		return orderTodoDao.cancelMoney(orderNum);
 	}
 
+
+	@Override
+	public OrderTodo viewTodoOrder(OrderTodo orderTodo) {
+		
+		return orderTodoDao.viewTodoOrder(orderTodo);
+	}
+	
+	
+
 }

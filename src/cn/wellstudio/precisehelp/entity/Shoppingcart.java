@@ -13,8 +13,8 @@ public class Shoppingcart  implements java.io.Serializable {
 
     // Fields    
 
-     private ShoppingcartId id;
-     private Integer goodsNum;
+     private ShoppingcartId id = new ShoppingcartId();
+     private Integer goodsNum = 1;
 
 
     // Constructors

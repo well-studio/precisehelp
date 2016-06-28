@@ -46,9 +46,14 @@ public class ToaddressManage extends ObjectManage implements IToaddressDAO{
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Toaddress findAddressById(int addressId) {
-		// TODO Auto-generated method stub
+		String hql = "from Toaddress as to where to.addressId = ?";
+		List<Toaddress> toaddressList = Operation.hqlQuery(hql, addressId);
+		if(toaddressList!=null&&toaddressList.size()!=0){
+			return toaddressList.get(0);
+		}
 		return null;
 	}
 

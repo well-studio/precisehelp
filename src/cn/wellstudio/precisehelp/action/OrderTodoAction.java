@@ -45,15 +45,28 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 	}
 	
 	/**
-	 * 创建订单
+	 * 创建订单 OK
 	 * @return
 	 */
 	public String createOrder() {
 		
 		if(orderTodoService.createTodoOrder(orderTodo)) {
 			valueMap.put("orderTodo", orderTodo);
+			valueMap.put("Msg", "创建订单成功");
 		} else {
 			valueMap.put("Msg", "创建订单失败");
+		}
+		return "valueMap";
+	}
+	
+	
+	public String viewOrder() {
+		OrderTodo viewTodoOrder = orderTodoService.viewTodoOrder(orderTodo);
+		if(viewTodoOrder.getToaddress() != null) {
+			valueMap.put("orderTodo", viewTodoOrder);
+			valueMap.put("Msg", "查询订单成功");
+		} else {
+			valueMap.put("Msg", "查询订单失败");
 		}
 		return "valueMap";
 	}
@@ -61,7 +74,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 
 	
 	/**
-	 * 查询全部待处理订单
+	 * 查询全部待处理订单  OK
 	 * @return
 	 */
 	public String findAllTodoOrders() {
@@ -69,6 +82,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 		List<OrderTodo> orderTodoList = orderTodoService.findAllTodoOrders();
 		if(orderTodoList.size() != 0) {
 			valueMap.put("orderTodoList", orderTodoList);
+			valueMap.put("Msg", "管理员~查询订单成功");
 		} else {
 			valueMap.put("Msg", "管理员~待处理订单为空哦");
 		}
@@ -77,7 +91,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 	}
 
 	/**
-	 * 根据用户查询待做订单信息
+	 * 根据用户查询待做订单信息 OK
 	 * @return
 	 */
 	public String findTodoOrdersByUser() {
@@ -85,6 +99,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 		List<OrderTodo> orderTodoList = orderTodoService.findAllTodoOrderByUser(orderTodo.getUserId());
 		if(orderTodoList.size() != 0) {
 			valueMap.put("orderTodoList", orderTodoList);
+			valueMap.put("Msg", "查询用户待处理订单成功");
 		} else {
 			valueMap.put("Msg", "您的待处理订单为空哦");
 		}
@@ -94,7 +109,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 	
 	
 	/**
-	 * 根据订单编号修改订单信息
+	 * 根据订单编号修改订单信息  dont't work
 	 * @return
 	 */
 	public String updateOrderByNum() {
@@ -102,7 +117,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 		OrderTodo orderTodo2 = orderTodoService.updateOrderByNum(orderTodo.getOrderNumber());
 		if( orderTodo2 != null) {
 			valueMap.put("orderTodo", orderTodo2);
-			return "";
+			valueMap.put("Msg", "更新订单成功");
 		} else {
 			valueMap.put("Msg", "对不起更新订单失败~");
 		}
@@ -127,7 +142,7 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 	
 	
 	/**
-	 * 申请退款
+	 * 申请退款 don't work
 	 * @return
 	 */
 	public String cancelMoney() {
@@ -140,6 +155,4 @@ public class OrderTodoAction extends ActionSupport implements ModelDriven<OrderT
 		}
 		return "valueMap";
 	}
-	
-	
 }

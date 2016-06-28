@@ -18,8 +18,8 @@ public class OrderTodo implements java.io.Serializable {
 	private String orderNumber; // 订单编号
 	private String orderPs; // 订单注释
 	private Date orderTime; // 订单下单时间
-	private Integer orderPay;//是订单是否支付(0 未付款 1 已付款)
-	private Integer orderCancel;//是否退款取消(0 没 1 是)
+	private Integer orderPay = 0;//是订单是否支付(0 未付款 1 已付款)
+	private Integer orderCancel = 0;//是否退款取消(0 没 1 是)
     private Integer addressId;
     private String userId;
  	private Users users; // 下单用户

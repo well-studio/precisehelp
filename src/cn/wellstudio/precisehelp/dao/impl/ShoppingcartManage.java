@@ -8,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import cn.wellstudio.precisehelp.dao.IShoppingCartDAO;
-import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.Shoppingcart;
-import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
 
 /**
@@ -19,9 +17,9 @@ import cn.wellstudio.precisehelp.util.HibernateSessionFactory;
  */
 public class ShoppingcartManage extends ObjectManage implements IShoppingCartDAO{
 
-	// 用户查询自己的购物车
-	@SuppressWarnings("unchecked")
-	public List<Shoppingcart> userShoppingcartQuery(Users user) {
+	//用户查询购物车   test  true
+	@Override
+	public List<Shoppingcart> findCartByUser(String userId) {
 		List<Shoppingcart> shoppingList = null;
 		// String hql = "from Shoppingcart s left join Users u "
 		// + "on s.id.users.userId = u.userId "
@@ -29,20 +27,21 @@ public class ShoppingcartManage extends ObjectManage implements IShoppingCartDAO
 		// + " = g.goodsId "
 		// + "where u.userId = '" + user.getUserId()+"'";
 		// shoppingList = Operation.hqlQuery(hql);
-		String hql = "from Shoppingcart as sc where sc.id.users.userId = '"+user.getUserId()+"'";
+//		String hql = "from Shoppingcart as sc where sc.id.users.userId = '"+user.getUserId()+"'";
+//		String sql = "select * from shoppingcart where user_id = ?";
+		String hql ="from Shoppingcart as s where s.id.userId = ?";
 		Transaction tr = null;
 		Query query;
 		try {
 			Session session = HibernateSessionFactory.getCurrentSession();
 			tr = session.beginTransaction();
-			query = session.createQuery(hql);
+			query = session.createQuery(hql).setString(0, userId);
 			shoppingList = query.list();
-			//懒加载处理
-			for (Shoppingcart shoppingcart : shoppingList) {
-				shoppingcart.getId().getGoodsinfo().toString();
-				shoppingcart.getGoodsNum();
-			}
 			tr.commit();
+			//手动添加商品信息
+			for (Shoppingcart shoppingcart : shoppingList) {
+				shoppingcart.getId().setGoodsinfo(new GoodsinfoManage().findroughGoodsById(shoppingcart.getId().getGoodsId()));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -62,27 +61,20 @@ public class ShoppingcartManage extends ObjectManage implements IShoppingCartDAO
 		return shoppingList;
 	}
 
+	//添加商品到购物车
 	@Override
-	public boolean addGoodsToCart(Goodsinfo goods) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addGoodsToCart(Shoppingcart shoppingcart) {
+		return add(shoppingcart);
 	}
 
 	@Override
-	public boolean updateGoodsNum(String goodsNumInCart) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateGoodsNum(Shoppingcart shoppingcart) {
+		return update(shoppingcart);
 	}
 
 	@Override
-	public boolean removeGoods(int gooodsId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeGoods(Shoppingcart shoppingcart) {
+		return delete(shoppingcart);
 	}
 
-	@Override
-	public List<Shoppingcart> findCartByUser(Users users) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

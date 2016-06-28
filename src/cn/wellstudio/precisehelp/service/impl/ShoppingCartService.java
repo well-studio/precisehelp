@@ -3,10 +3,7 @@ package cn.wellstudio.precisehelp.service.impl;
 import java.util.List;
 
 import cn.wellstudio.precisehelp.dao.IShoppingCartDAO;
-import cn.wellstudio.precisehelp.dao.factory.DaoFactory;
-import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.Shoppingcart;
-import cn.wellstudio.precisehelp.entity.Users;
 import cn.wellstudio.precisehelp.service.IShoppingCartService;
 
 /**
@@ -22,32 +19,32 @@ public class ShoppingCartService implements IShoppingCartService{
 		this.shoppingCartDao = shoppingCartDao;
 	}
 	
-	public boolean addGoodsToCart(Goodsinfo goods) {
+	public boolean addGoodsToCart(Shoppingcart shoppingcart) {
 		
-		boolean res = shoppingCartDao.addGoodsToCart(goods);
-		
-		return res;
-	}
-
-
-	public boolean removeGoods(int gooodsId) {
-		
-		boolean res = shoppingCartDao.removeGoods(gooodsId);
+		boolean res = shoppingCartDao.addGoodsToCart(shoppingcart);
 		
 		return res;
 	}
 
-	public boolean updateGoodsNum(String goodsNumInCart) {
+
+	public boolean removeGoods(Shoppingcart shoppingcart) {
 		
-		boolean res = shoppingCartDao.updateGoodsNum(goodsNumInCart);
+		boolean res = shoppingCartDao.removeGoods(shoppingcart);
+		
+		return res;
+	}
+
+	public boolean updateGoodsNum(Shoppingcart shoppingcart) {
+		
+		boolean res = shoppingCartDao.updateGoodsNum(shoppingcart);
 		
 		return res;
 	}
 
 	@Override
-	public List<Shoppingcart> findCartByUser(Users users) {
+	public List<Shoppingcart> findCartByUser(String userId) {
 		
-		List<Shoppingcart> cartList = shoppingCartDao.findCartByUser(users);
+		List<Shoppingcart> cartList = shoppingCartDao.findCartByUser(userId);
 		
 		return cartList;
 	}

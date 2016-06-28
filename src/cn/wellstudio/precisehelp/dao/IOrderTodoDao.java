@@ -18,6 +18,12 @@ public interface IOrderTodoDao {
 	 */
 	public boolean createTodoOrder(OrderTodo order);
 	
+	/**
+	 * 根据订单编号查询订单详细信息
+	 * @param orderNum
+	 * @return
+	 */
+	public OrderTodo viewTodoOrder(OrderTodo orderTodo);
 	
 	/**
 	 * 查询全部todo订单

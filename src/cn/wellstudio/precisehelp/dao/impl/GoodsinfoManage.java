@@ -26,6 +26,37 @@ public class GoodsinfoManage extends ObjectManage implements IGoodsDAO{
 		return goodList;
 	}
 
+	// 粗略信息
+	public Goodsinfo findroughGoodsById(String goodId) {
+		String hql = "from Goodsinfo as gs where gs.goodsId = ?";
+		Goodsinfo goodsinfo;
+		Transaction tr = null;
+		try {
+			Session session = HibernateSessionFactory.getCurrentSession();
+			tr = session.beginTransaction();
+			goodsinfo = (Goodsinfo) session.createQuery(hql)
+					.setString(0, goodId).uniqueResult();
+			tr.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				tr.rollback();
+			} catch (HibernateException e1) {
+				e1.printStackTrace();
+				return null;
+			}
+			return null;
+		} finally {
+			try {
+				HibernateSessionFactory.closeCurrentSession();
+			} catch (Exception e2) {
+				return null;
+			}
+		}
+		return goodsinfo;
+	}
+		
+	//详细信息，包括评论，类型，产地
 	@Override
 	public Goodsinfo findGoodsById(String goodId) {
 		String hql = "from Goodsinfo as gs where gs.goodsId = ?";

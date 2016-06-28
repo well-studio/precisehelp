@@ -2,9 +2,7 @@ package cn.wellstudio.precisehelp.service;
 
 import java.util.List;
 
-import cn.wellstudio.precisehelp.entity.Goodsinfo;
 import cn.wellstudio.precisehelp.entity.Shoppingcart;
-import cn.wellstudio.precisehelp.entity.Users;
 
 /**
  * 购物车业务接口设计
@@ -18,27 +16,27 @@ public interface IShoppingCartService {
 	 * @param goods
 	 * @return
 	 */
-	public boolean addGoodsToCart(Goodsinfo goods);
+	public boolean addGoodsToCart(Shoppingcart shoppingcart);
 
 	/**
 	 * 更新商品数量 (?????)
 	 * @param goodsNumInCart
 	 * @return
 	 */
-	public boolean updateGoodsNum(String goodsNumInCart);
+	public boolean updateGoodsNum(Shoppingcart shoppingcart);
 
 	/**
 	 * 购物车删除商品
 	 * @param gooodsId
 	 * @return
 	 */
-	public boolean removeGoods(int gooodsId);
+	public boolean removeGoods(Shoppingcart shoppingcart);
 	
 	/**
 	 * 根据user查询购物车
 	 * @param users
 	 * @return
 	 */
-	public List<Shoppingcart> findCartByUser(Users users);
+	public List<Shoppingcart> findCartByUser(String userId);
 	
 }
