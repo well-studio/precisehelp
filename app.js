@@ -15,6 +15,7 @@ pay       = require('./routes/pay'),
 user      = require('./routes/user'),
 error     = require('./routes/error'),
 service   = require('./routes/service');
+ajax      = require('./routes/ajax');
 
 // global middlewares
 app.use(views('views', {
@@ -48,6 +49,8 @@ koa.use('/order', order.routes(), order.allowedMethods());
 koa.use('/pay', pay.routes(), pay.allowedMethods());
 koa.use('/user', user.routes(), user.allowedMethods());
 koa.use('/service', service.routes(), service.allowedMethods());
+koa.use('/ajax', ajax.routes(), ajax.allowedMethods());
+
 //404及其他情况处理
 koa.get('*', error.routes(), error.allowedMethods());
 

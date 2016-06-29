@@ -20,7 +20,7 @@ $('form').submit(function(){
 			/* 这里处理登录成功的跳转 */
 			layer.msg('登录成功，请等待跳转');
 			setTimeout(function(){
-				window.location.href = '/user/'+data.usersinfo.userId;
+				window.location.href = '/user/'+data.userinfo.userId;
 			},1000);
 		},
 		/* 这里处理登录失败的弹窗提示 */

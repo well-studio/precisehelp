@@ -1,70 +1,108 @@
 extends ../layout
 
-block content 
+block content
   .container
-    // 商户
+    //- 商户
     .cart-item
-      // 商户名
+      //- 商户名
       .cart-item-shopname 商户1
-      // 商户的商品
-      .cart-item-shopitem
-        .cart-item-select
-          .cart-item-select-button
-            input(type='checkbox', name='good_id')
-            .cart-item-img
-              img(src='/images/素材/车厘子.jpg')
-        .cart-item-description
-          .cart-item-des-title
-            | 这是商品的标题
-          .cart-item-des-price
-            | ¥ 12.56
-        .cart-item-right
-          i.fa.fa-times-circle-o(aria-hidden='true')
-          .input-group
-            span.input-group-btn
-              button.btn.btn-default(type='button') -
-            input.form-control(type='tel', value='100')
-            span.input-group-btn
-              button.btn.btn-default(type='button') +
-      .cart-item-shopitem
-        .cart-item-select
-          .cart-item-select-button
-            input(type='checkbox', name='good_id')
-            .cart-item-img
-              img(src='/images/素材/车厘子.jpg')
-        .cart-item-description
-          .cart-item-des-title
-            | 这是商品的标题
-          .cart-item-des-price
-            | ¥ 12.56
-        .cart-item-right
-          i.fa.fa-times-circle-o(aria-hidden='true')
-          .input-group
-            span.input-group-btn
-              button.btn.btn-default(type='button') -
-            input.form-control(type='tel', value='100')
-            span.input-group-btn
-              button.btn.btn-default(type='button') +
-      .cart-item-shopitem
-        .cart-item-select
-          .cart-item-select-button
-            input(type='checkbox', name='good_id')
-            .cart-item-img
-              img(src='/images/素材/车厘子.jpg')
-        .cart-item-description
-          .cart-item-des-title
-            | 这是商品的标题
-          .cart-item-des-price
-            | ¥ 12.56
-        .cart-item-right
-          i.fa.fa-times-circle-o(aria-hidden='true')
-          .input-group
-            span.input-group-btn
-              button.btn.btn-default(type='button') -
-            input.form-control(type='tel', value='100')
-            span.input-group-btn
-              button.btn.btn-default(type='button') +
+      //- 商户的商品
+      - var price = [];
+      - var sumPrice = 0;
+      - for(var i=0; i<list.length; i++){
+        .cart-item-shopitem
+          .cart-item-select
+            .cart-item-select-button
+              .cart-item-img
+                img(src='#{list[i].id.goodsinfo.goodsImg}')
+          .cart-item-description
+            .cart-item-des-title
+              | #{list[i].id.goodsinfo.goodsName}
+            .cart-item-des-price(id='price-box-#{list[i].id.goodsId}')
+              - price[i] = (list[i].id.goodsinfo.goodsNowPrice * list[i].goodsNum).toFixed(2);
+              - sumPrice += parseFloat(price[i]);
+              | ￥#{price[i]}
+          .cart-item-right
+            a(onclick='del(\'#{list[i].id.goodsId}\')')
+              i.fa.fa-times-circle-o(aria-hidden='true')
+            .input-group
+              span.input-group-btn
+                button.btn.btn-default(type='button', onclick='sub(\'#{list[i].id.goodsId}\')') -
+              input.form-control(type='tel', value='#{list[i].goodsNum}', id='price-input-#{list[i].id.goodsId}', disabled='disabled')
+              span.input-group-btn
+                button.btn.btn-default(type='button', onclick='add(\'#{list[i].id.goodsId}\')') +
+      - }
+      - sumPrice = sumPrice.toFixed(2);
       .cart-item-bottom
-        input(type='checkbox', name='good_id')
-        span ¥ 123.45
+        span ￥#{sumPrice}
         button.btn.btn-default 结算
+  - var prcs = {};
+  - for(var i=0; i<list.length; i++){
+    - prcs[list[i].id.goodsId] = list[i].id.goodsinfo.goodsNowPrice;
+  - }
+  - var prcsOut = JSON.stringify(prcs);
+  script(type='text/javascript', src='/plugins/jquery/2.2.3/jquery.min.js')
+  script(type='text/javascript', src='/plugins/layer/layer.js')
+  script.
+    var prcs = !{prcsOut}
+    function add(id){
+      var val = $('#price-input-' + id).val();
+      if(!val.match(/[1-9]\d?/)){
+        val = 0;
+      }
+      if(val>99) val = 99;
+      $('#price-input-' + id).val(++val);
+      $('#price-box-' + id).html('￥' + (prcs[id] * val).toFixed(2));
+      submit(id, function(){});
+    }
+    function sub(id){
+      var val = $('#price-input-' + id).val();
+      if(!val.match(/[1-9]\d?/)){
+        val = 2;
+      }
+      if(val<2) val = 2;
+      $('#price-input-' + id).val(--val);
+      $('#price-box-' + id).html('￥' + (prcs[id] * val).toFixed(2));
+      submit(id, function(){});
+    }
+    function del(id){
+      $.ajax({
+        url:'/ajax',
+        method: 'post',
+        data: {
+          func: 'deleteCart',
+          goodsId: id
+        },
+        dataType: 'json',
+        success: function(data){
+          if(data.Msg === '删除商品成功!'){
+            location.href = '';
+          }else{
+            layer.msg(data.Msg);
+          }
+        },
+        error: function(){
+          layer.msg('网络错误，请稍后重试');
+        }
+      })
+    }
+    function submit(id, callback){
+      var val = $('#price-input-' + id).val();
+      $.ajax({
+        url:'/ajax',
+        method: 'post',
+        data: {
+          func: 'updateCart',
+          goodsId: id,
+          goodsNum: val
+        },
+        dataType:'json',
+        success: function(data){
+          layer.msg(data.Msg);
+          callback();
+        },
+        error: function(){
+          window.location.href = '/signin';
+        }
+      });
+    }

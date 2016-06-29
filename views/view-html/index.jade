@@ -1,6 +1,6 @@
 extends ../layout
 
-block content  
+block content
   .container
     #carousel-box(style='height: 350px;')
     .cate-box
@@ -10,31 +10,30 @@ block content
             img.cate-img(src= '#{cat.img}')
             | #{cat.name}
     each commodity in goods
-      a.item(style='background-image:url(/images/素材/车厘子.jpg)' href="/detail/#{commodity.goodsId}")
-      
+      a.item(style='background:url(#{commodity.goodsImg});background-size:cover;background-position:center center;' href="/detail/#{commodity.goodsId}")
 
   script(type='text/javascript', src='/js/carousel.js')
   script.
     var _s = new Carousel();
     _s.init({
-    id:'carousel-box', 				//目标div的id，轮播将在这个元素里面展示
-    openInNewTab:false,		//点击图片后是否在新标签打开
-    transitionTime : 500,	//设置css3中transition的时间(ms)
-    delay: 2000,			//延时时间(ms)
-    autoCarousel: true,		//自动轮播
-    stretch:true,			//是否拉伸
-    img:[{					//图片数组
-    src:'/images/素材/车厘子.jpg',
-    target:'#'
-    },{
-    src:'/images/素材/葡萄.jpg',
-    target:'#'
-    },{
-    src:'/images/素材/山竹.jpg',
-    target:'#'
-    }]
+        id:'carousel-box', 				//目标div的id，轮播将在这个元素里面展示
+        openInNewTab:false,		//点击图片后是否在新标签打开
+        transitionTime : 500,	//设置css3中transition的时间(ms)
+        delay: 2000,			//延时时间(ms)
+        autoCarousel: true,		//自动轮播
+        stretch:true,			//是否拉伸
+        img:[{					//图片数组
+            src:'/images/素材/车厘子.jpg',
+            target:'#'
+        },{
+            src:'/images/素材/葡萄.jpg',
+            target:'#'
+        },{
+         src:'/images/素材/山竹.jpg',
+         target:'#'
+        }]
     })
     _s.show();
     function lins(){
-    document.getElementById('t_'+(_s.currImgNum)).style.color = 'rgb(255,100,0)';
+        document.getElementById('t_'+(_s.currImgNum)).style.color = 'rgb(255,100,0)';
     }

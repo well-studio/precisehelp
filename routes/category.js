@@ -7,7 +7,7 @@ router.get('/:id',function *(next){
   var self       = this;
   var categoryId = this.params.id,
   goods;
-  
+
   //资源请求路径配置
   var pathConfig = {
     goods:'/precisehelp/goods_findGoodsByType.action?goodstypeId='+categoryId
@@ -24,8 +24,9 @@ router.get('/:id',function *(next){
     });
   //传入获取到的数据，解析模板并返回html给客户端
   yield this.render(CATEGORY,{
+    session: this.session,
     goods:goods
   });
-  
+
 });
 module.exports = router;

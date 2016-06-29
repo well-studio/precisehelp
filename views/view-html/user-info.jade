@@ -19,7 +19,7 @@ block content
           .form-group
             label(for='phone') 手机号
             //- value放手机号
-            input#phone.form-control(type='tel', value='#{userData.userPhone}', name="phone")
+            input#phone.form-control(type='tel', value='#{userData.userPhone}', name="phone", disabled='disabled')
           .form-group
             label(for='rname') 真实姓名
             //- 真实姓名
@@ -27,7 +27,7 @@ block content
           .form-group
             label(for='idnum') 身份证号
             //- 身份证号
-            input#idnum.form-control(type='text', value="#{userData.userIdnum}", name='idnum')
+            input#idnum.form-control(type='text', value="#{userData.userIdnum}", name='idnum', disabled='disabled')
           .form-group
             label(for='sign') 签名
             //- 用户签名

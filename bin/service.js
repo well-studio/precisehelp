@@ -3,7 +3,7 @@ var http = require('http');
 var options = {
   protocol: 'http://',
   hostname: 'xxmodd.com',
-  port: 8080
+  port: 80
 };
 //服务对象
 

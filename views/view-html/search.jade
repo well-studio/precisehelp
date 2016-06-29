@@ -1,15 +1,26 @@
 extends ../layout
 
-block content 
+block content
   .container
     .search-box
-      // 搜索表单
+      //- 搜索表单
       form(action='')
         .input-group(style='overflow:hidden')
-          input.form-control(type='text', name='search', value='', placeholder='请输入你要搜索的商品关键字')
+          input.form-control(type='text', name='search', value='#{query.search}', placeholder='请输入你要搜索的商品关键字')
           span.input-group-btn
             button.btn.btn-default.btn-block
               i.fa.fa-search
-    span 以下是为您推荐的商品
-    // 推荐一些商品
-    .item(style='background:#eee')
+    if typeof(goods) === "undefined"
+      span 以下是为您推荐的商品
+      //- 推荐一些商品
+      .item(style='background:#eee')
+    else if goods.length > 0
+      .cate-box 商品结果
+        each commodity in goods
+          a.search-item(href="/detail/#{commodity.goodsId}")
+            .search-img.col-sm-3(style='background-image:url(/images/素材/车厘子.jpg)')
+            .search-info.col-sm-9
+              .row #{commodity.goodsName}
+              .row #{commodity.goodsNowPrice}元　#{commodity.goodsPriceUnit}
+    else if goods.length === 0
+      .cate-box(style='padding:20px;font-size:2em') 你查找的东西什么也没有呐！

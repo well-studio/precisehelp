@@ -274,3 +274,29 @@ nav a:hover {
 	background: #eee;
 	height: 900px;
 }
+.search-item {
+	display:block;
+	height: 100px;
+	margin: 20px 0px;
+}
+.search-img {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+}
+.search-info {
+	height: 100px;
+}
+.search-info .row {
+	padding-left:30px;
+}
+.search-info .row+.row {
+	position: absolute;
+	bottom: 0px;
+}
+.search-info:hover {
+	background: #ddd;
+}
+.cart-checkbox {
+	margin-right: 10px !important;
+}

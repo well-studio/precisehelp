@@ -1,6 +1,6 @@
 nav.header
   .container
-    span.logo LOGO
+    span.logo(style='font-size:1.1em;font-weight:bold;') 益启帮
     ul.float-right
       li
         i.fa.fa-home
@@ -10,4 +10,7 @@ nav.header
         a(href='/search') 搜索
       li
         i.fa.fa-user
-        a(href='/user/5') 我的
+        - if(session.userinfo && session.userinfo.userId)
+          a(href='/user/#{session.userinfo.userId}') 我的
+        - else
+          a(href='/signin') 我的

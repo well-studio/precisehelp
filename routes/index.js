@@ -28,12 +28,13 @@ router.get('/', function *(next) {
     });
   //传入获取到的数据，解析模板并返回html给客户端
   yield self.render(INDEX,{
+    session:this.session,
     goods: goods,
     categories: [
       {
         id: 1,
         name:'浓香腊味',
-        img:'/images/素材/车厘子.jpg'
+        img:'http://www.t-cha.com/tutcJDAwMyQxMy8xMDI1NjA5Mi9UMkFOYVlYYVYkNiQ2WF8hITEwMjU2MDkyJDk.jpg'
       },
       {
         id: 2,
@@ -55,8 +56,10 @@ router.get('/', function *(next) {
 });
 //登录页
 router.get('signin', function *(next){
-  this.session = null;
-  yield this.render(SIGNIN);
+  this.session.userinfo = null;
+  yield this.render(SIGNIN,{
+    session:this.session
+  });
 });
 
 router.post('signin',function *(next){
@@ -80,13 +83,16 @@ router.post('signin',function *(next){
     //登录成功
     //session之类的逻辑
     this.session = userData;
+    console.log(this.session);
     return this.body = userData;
   }
 
 });
 //注册页
 router.get('signup', function *(next){
-  yield this.render(SIGNUP);
+  yield this.render(SIGNUP,{
+    session:this.session
+  });
 });
 //发送注册信息
 router.post('signup', function *(next){
